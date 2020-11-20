@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\LogInController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -14,8 +14,11 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('index');
+    return view('home-page');
 });
+
+Route::get('/{user}/customerSelect', [LogInController::class,'userSelect'])->name('customer.select');
+
 
 Auth::routes();
 
