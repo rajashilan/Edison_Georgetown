@@ -52,6 +52,8 @@ h3 {
   letter-spacing: 1px;
   padding-bottom: 10px;
 }
+
+#customermenu,
 #menu h3 {
    color: #555;
 }
@@ -90,6 +92,15 @@ a:focus {
   background-color: #ffffff;
 }
 
+/* customerhome section style */
+#customerhome {
+  color: #656565;
+}
+
+#customermenu {
+	color: #656565;
+	padding-bottom: 50px;
+}
 
 /* All Section styles */
 #about,
@@ -123,8 +134,11 @@ a:focus {
 .section-title {
   padding-bottom: 70px;
 }
+
+#customerhome,
 #about .section-title,
-#menu .section-title {
+#menu,
+#customermenu .section-title {
   text-align: center;
 }
 #contact .section-title {
@@ -174,15 +188,58 @@ a:focus {
             transform: scale(1);
     opacity: 0; } }
 
-
-/* Home section */
-#home {
+/* user select page */
+#userSelect{
 	background: url('../images/edison-entrance.jpg') 50% 0 repeat-y fixed;
 	-webkit-background-size: cover;
 	background-size: cover;
 	background-position: center center;
+	position: relative;
 	overflow: hidden;
+	height: 100vh;
+	color: #ffffff;
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-align: center;
+	-webkit-align-items: center;
+			-ms-flex-align: center;
+				align-items: center;
+	text-align: center;
+	height: 100vh;
+	overflow: hidden;
+	position: relative;
+}
+
+#userSelect .gradient-overlay{
+	background: rgba(0,0,0,0.7);
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	top: 0;
+	overflow: hidden;
+}
+
+#userSelect .btn {
+  background: transparent;
+  border: 3px solid #ffffff;
   color: #ffffff;
+  font-size: 12px;
+  letter-spacing: 2px;
+  padding: 13px 30px;
+  margin-top: 34px;
+  text-transform: uppercase;
+}
+#userSelect .btn:hover,
+#userSelect .btn:focus {
+  color: #c21500;
+}
+
+
+/* Home section */
+#home {
+	color: #ffffff;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -198,12 +255,14 @@ a:focus {
 }
 
 #home .gradient-overlay {
-	background: rgba(0,0,0,0.7);
-  width: 100%;
-  height: 100%;
+	background: #c21500; /* fallback for old browsers */
+  background: -webkit-linear-gradient(to left, #c21500 , #ffc500); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to left, #c21500 , #ffc500); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  opacity: 0.8;
   position: absolute;
   top: 0;
-	overflow: hidden;
+  width: 100%;
+  height: 100vh;
 }
 
 #home .btn {
@@ -221,6 +280,42 @@ a:focus {
   color: #c21500;
 }
 
+/*customer home */
+
+#customerhome .btn {
+  background: black;
+  border: 3px solid #ffffff;
+  color: #ffffff;
+  font-size: 12px;
+  letter-spacing: 2px;
+  padding: 13px 30px;
+  margin: 10px;
+	margin-bottom: 20px;
+  text-transform: uppercase;
+}
+#customerhome .btn:hover,
+#customerhome .btn:focus {
+  color: green;
+	font-weight: bold;
+}
+
+#customermenu .btn {
+  background: black;
+  border: 3px solid #ffffff;
+  color: #ffffff;
+  font-size: 12px;
+  letter-spacing: 2px;
+  padding: 13px 30px;
+  margin: 10px;
+	margin-left: 0px;
+	margin-top: 0px;
+  text-transform: uppercase;
+}
+#customermenu .btn:hover,
+#customermenu .btn:focus {
+  color: green;
+	font-weight: bold;
+}
 
 /* Navigation section */
 .navbar-default {
@@ -327,11 +422,12 @@ a:focus {
 
 
 /* About section  */
+#customerhome,
 #about .col-md-4 ul {
   padding-top: 4px;
-  padding-left: 28px;
 }
 
+#customerhome,
 #about .col-md-4 ul li {
   color: #777;
   font-size: 18px;
@@ -383,17 +479,20 @@ a:focus {
 
 
 /* Menu section */
-#menu .media {
+#menu,
+#customermenu .media {
   padding-bottom: 20px;
 }
 
-#menu .media-object img {
+#menu,
+#customermenu .media-object img {
   width: 220px;
   padding-right: 12px;
   position: relative;
 }
 
-#menu .media-object span.menu-price {
+#menu,
+#customermenu .media-object span.menu-price {
   position: absolute;
   background-color: #ffffff;
   color: #222;
@@ -733,7 +832,12 @@ footer strong {
     height: 65vh;
   }
 
+	#userSelect {
+		height: 65vh;
+	}
+
   #feature .col-md-4:last-child,
+	#customerhome,
   #about .col-md-4 {
     margin-top: 42px;
   }
@@ -775,6 +879,7 @@ footer strong {
   }
 
   #feature .col-md-4,
+	#customerhome,
   #about .col-md-5,
   footer .col-md-4 {
     padding-top: 20px;
@@ -793,6 +898,10 @@ footer strong {
     height: 100vh;
   }
 
+	#userSelect {
+		height: 100vh;
+	}
+
   h1 {
     font-size: 60px;
   }
@@ -805,10 +914,12 @@ footer strong {
     padding-bottom: 80px;
   }
 
+	#customerhome,
   #about,
   #feature,
   #video,
   #menu,
+	#customermenu,
   #team,
   #gallery,
   #contact {
@@ -816,11 +927,13 @@ footer strong {
     padding-bottom: 80px;
   }
 
-  #menu .media-object img {
+  #menu,
+	#customermenu .media-object img {
     width: 100%;
     padding-bottom: 14px;
   }
-  #menu .media-object span.menu-price {
+  #menu,
+	#customermenu .media-object span.menu-price {
     top: 30%;
     left: 6%;
   }

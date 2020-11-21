@@ -7,11 +7,20 @@ use Illuminate\Http\Request;
 class LogInController extends Controller
 {
 
+  //redirect user to a particular page based on the user type
   public function userSelect($user){
     if($user == 'customer'){
       return view('login', compact('user'));
     } elseif($user == 'staff'){
       return view('login', compact('user'));
+    }
+  }
+
+  //customer login validation and page redirect
+  public function customerLogin(Request $request){
+    if($request->bookingID == 123 && $request->password == 123){
+      $customerName = "HeeHee";
+      return view('customer-home', compact('customerName'));
     }
   }
 

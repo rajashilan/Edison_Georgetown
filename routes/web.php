@@ -17,8 +17,24 @@ Route::get('/', function () {
     return view('home-page');
 });
 
-Route::get('/{user}/customerSelect', [LogInController::class,'userSelect'])->name('customer.select');
+Route::get('/bootstrap', function () {
+    return view('index');
+});
 
+//user performs logins selection
+Route::get('/{user}/userSelect', [LogInController::class,'userSelect'])->name('user.select');
+
+//customer login validation
+Route::post('/customerlogin', [LogInController::class,'customerLogin'])->name('customer.login');
+
+Route::get('/breakfastcustomer', function () {
+    return view('breakfast-selection-customer');
+});
+
+
+Route::get('/customerhome', function () {
+    return view('customer-home');
+});
 
 Auth::routes();
 
