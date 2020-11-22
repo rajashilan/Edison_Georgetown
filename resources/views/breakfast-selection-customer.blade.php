@@ -16,8 +16,8 @@
     </div>
     <div class="collapse navbar-collapse">
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="/customerhome" class="smoothScroll">Home</a></li>
-        <li><a href="#feature" class="smoothScroll">Amenities</a></li>
+        <li><a href="/homecustomer" class="smoothScroll">Home</a></li>
+        <li><a href="/amenitiescustomer" class="smoothScroll">Amenities</a></li>
         <li><a href="/breakfastcustomer" class="smoothScroll">Breakfast Selection</a></li>
       </ul>
     </div>

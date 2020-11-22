@@ -151,7 +151,7 @@ http://www.tooplate.com/view/2083-steak-house
       </div>
 
       <div class="clearfix"></div>
-      
+
       <div class="wow fadeInUp col-md-3 col-sm-5" data-wow-delay="0.3s">
         <img src="images/about-img.jpg" class="img-responsive" alt="About">
         <h3>Nunc ullamcorper suscipit neque, ac malesuada purus molestie non.</h3>
@@ -183,7 +183,7 @@ http://www.tooplate.com/view/2083-steak-house
         	<h2>Fine Dining</h2>
          	<p>Steak House is free HTML website template for everyone. Please inform your friends about <a rel="nofollow" href="http://www.tooplate.com/free-templates" target="_blank">Tooplate</a> site.</p>
          	<p>Vestibulum id iaculis nisl. Pellentesque nec tortor sagittis, scelerisque ante at, sollicitudin leo. Vivamus pulvinar a justo vel lobortis.</p>
-         	
+
             <ul>
                 <li>Donec fringilla ipsum</li>
                 <li>Integer nec urna</li>
@@ -212,91 +212,7 @@ http://www.tooplate.com/view/2083-steak-house
     </div>
 </section>
 
-<!-- Menu section -->
-<section id="menu" class="parallax-section">
-  <div class="container">
-    <div class="row">
 
-      <div class="col-md-offset-2 col-md-8 col-sm-offset-1 col-sm-10">
-         <div class="wow fadeInUp section-title" data-wow-delay="0.3s">
-            <h2>Food Menu</h2>
-            <h4>we have special menus</h4>
-        </div>
-      </div>
-
-      <div class="col-md-6 col-sm-12">
-        <div class="media wow fadeInUp" data-wow-delay="0.6s">
-          <div class="media-object pull-left">
-            <img src="images/gallery-img1.jpg" class="img-responsive" alt="Food Menu">
-            <span class="menu-price">$24</span>
-          </div>
-          <div class="media-body">
-            <h3 class="media-heading">Breakfast</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elitquisque tempus ac eget diam et.</p>
-          </div>
-        </div>
-
-        <div class="media wow fadeInUp" data-wow-delay="0.9s">
-          <div class="media-object pull-left">
-            <img src="images/gallery-img2.jpg" class="img-responsive" alt="Food Menu">
-            <span class="menu-price">$36</span>
-          </div>
-          <div class="media-body">
-            <h3 class="media-heading">New Pizza</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elitquisque tempus ac eget diam et.</p>
-          </div>
-        </div>
-
-        <div class="media wow fadeInUp" data-wow-delay="1.2s">
-          <div class="media-object pull-left">
-            <img src="images/gallery-img3.jpg" class="img-responsive" alt="Food Menu">
-            <span class="menu-price">$24</span>
-          </div>
-          <div class="media-body">
-            <h3 class="media-heading">Mushroom</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elitquisque tempus ac eget diam et.</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-md-6 col-sm-12">
-        <div class="media wow fadeInUp" data-wow-delay="1s">
-          <div class="media-object pull-left">
-            <img src="images/gallery-img4.jpg" class="img-responsive" alt="Food Menu">
-            <span class="menu-price">$32</span>
-          </div>
-          <div class="media-body">
-            <h3 class="media-heading">Seafood</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elitquisque tempus ac eget diam et.</p>
-          </div>
-        </div>
-
-        <div class="media wow fadeInUp" data-wow-delay="1.3s">
-          <div class="media-object pull-left">
-            <img src="images/gallery-img5.jpg" class="img-responsive" alt="Food Menu">
-            <span class="menu-price">$64</span>
-          </div>
-          <div class="media-body">
-            <h3 class="media-heading">Spicy Beef</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elitquisque tempus ac eget diam et.</p>
-          </div>
-        </div>
-
-        <div class="media wow fadeInUp" data-wow-delay="1.6s">
-          <div class="media-object pull-left">
-            <img src="images/gallery-img6.jpg" class="img-responsive" alt="Food Menu">
-            <span class="menu-price">$45</span>
-          </div>
-          <div class="media-body">
-            <h3 class="media-heading">Dinner</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elitquisque tempus ac eget diam et.</p>
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</section>
 
 <!-- Team section -->
 <section id="team" class="parallax-section">
@@ -314,7 +230,7 @@ http://www.tooplate.com/view/2083-steak-house
 
       <div class="col-md-3 col-sm-6 wow fadeInUp" data-wow-delay="0.4s">
           <div class="team-thumb">
-            <img src="images/chef1.jpg" class="img-responsive" alt="Team">  
+            <img src="images/chef1.jpg" class="img-responsive" alt="Team">
                 <div class="team-des">
                   <h3>Sandar</h3>
                   <h4>Kitchen Manager</h4>
@@ -329,7 +245,7 @@ http://www.tooplate.com/view/2083-steak-house
 
       <div class="col-md-3 col-sm-6 wow fadeInUp" data-wow-delay="0.6s">
           <div class="team-thumb">
-            <img src="images/chef2.jpg" class="img-responsive" alt="Team">  
+            <img src="images/chef2.jpg" class="img-responsive" alt="Team">
               <div class="team-des">
                 <h3>Candy</h3>
                 <h4>Co-Founder</h4>
@@ -342,7 +258,7 @@ http://www.tooplate.com/view/2083-steak-house
 
       <div class="col-md-3 col-sm-6 wow fadeInUp" data-wow-delay="0.9s">
           <div class="team-thumb">
-            <img src="images/chef3.jpg" class="img-responsive" alt="Team">  
+            <img src="images/chef3.jpg" class="img-responsive" alt="Team">
               <div class="team-des">
                 <h3>Mama</h3>
                 <h4>Senior Chef</h4>
@@ -391,7 +307,7 @@ http://www.tooplate.com/view/2083-steak-house
             <h4>we have special foods</h4>
         </div>
       </div>
-        
+
           <!-- iso section -->
           <div class="iso-section wow fadeInUp" data-wow-delay="0.6s">
 
@@ -522,7 +438,7 @@ http://www.tooplate.com/view/2083-steak-house
 					</form>
 				</div>
 			</div>
-			
+
 		</div>
 	</div>
 </section>
@@ -534,24 +450,24 @@ http://www.tooplate.com/view/2083-steak-house
 
               <div class="wow fadeInUp col-md-4 col-sm-4" data-wow-delay="1.3s">
                 <h3>About the house</h3>
-                <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod 
+                <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod
                 	tincidunt ut laoreet. Dolore magna aliquam erat volutpat ipsum.</p>
-              </div>  
-        
+              </div>
+
               <div class="wow fadeInUp col-md-4 col-sm-4" data-wow-delay="1.6s">
                 <h3>Contact Detail</h3>
                 <p>123 Delicious Street, San Francisco, CA 10110</p>
                 <p>010-020-0780</p>
                 <p>hello@company.com</p>
-              </div> 
-        
+              </div>
+
               <div class="wow fadeInUp col-md-4 col-sm-4" data-wow-delay="1.9s">
                 <h3>Opening Hours</h3>
                 <strong>Monday - Firday</strong>
                 <p>11:00 AM - 10:00 PM</p>
                 <strong>Saturday - Sunday</strong>
                 <p>10:00 AM - 09:00 PM</p>
-              </div> 
+              </div>
 
 		</div>
 	</div>
@@ -564,7 +480,7 @@ http://www.tooplate.com/view/2083-steak-house
 
       <div class="col-md-8 col-sm-8 col-xs-8">
         <p>Copyright © 2016 Steak House Company - Designed by <a class="designed-by" href="https://plus.google.com/+Tooplate/" target="_blank">Tooplate</a></p>
-      </div>  
+      </div>
 
       <div class="col-md-4 col-sm-4 text-right">
         <a href="#home" class="fa fa-angle-up smoothScroll gototop"></a>

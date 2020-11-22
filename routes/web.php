@@ -25,15 +25,22 @@ Route::get('/bootstrap', function () {
 Route::get('/{user}/userSelect', [LogInController::class,'userSelect'])->name('user.select');
 
 //customer login validation
-Route::post('/customerlogin', [LogInController::class,'customerLogin'])->name('customer.login');
+Route::post('/logincustomer', [LogInController::class,'loginCustomer'])->name('login.customer');
+
+//staff login validation
+Route::post('/loginstaff', [LogInController::class,'loginStaff'])->name('login.staff');
 
 Route::get('/breakfastcustomer', function () {
     return view('breakfast-selection-customer');
 });
 
+Route::get('/amenitiescustomer', function () {
+    return view('amenities-customer');
+});
 
-Route::get('/customerhome', function () {
-    return view('customer-home');
+
+Route::get('/homecustomer', function () {
+    return view('home-page-customer');
 });
 
 Auth::routes();
