@@ -27,7 +27,8 @@
             </div>
             <div class="contact-form wow fadeInUp" style="margin-top: 50px;" data-wow-delay="0.7s">
               <form id="contact-form" method="post" action="{{route('login.staff')}}">
-                <input name="staffID" type="email" class="form-control" placeholder="Staff ID" required>
+                @csrf
+                <input name="staffID" type="text" class="form-control" placeholder="Staff ID" required>
                 <input type="password" name="password" class="form-control" placeholder="Password">
                 <input type="submit" class="form-control submit" value="Sign In">
               </form>

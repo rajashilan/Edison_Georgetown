@@ -38,6 +38,8 @@ http://www.tooplate.com/view/2083-steak-house
 </head>
 <body id="top" data-spy="scroll" data-target=".navbar-collapse" data-offset="50">
 
+	
+
 @yield('content')
 
 <!-- javscript js -->

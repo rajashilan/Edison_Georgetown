@@ -27,8 +27,7 @@ class LogInController extends Controller
   //staff login and page redirect
   public function loginStaff(Request $request){
     if($request->staffID == 123 && $request->password == 123){
-      $staffName = "HeeHee";
-      return view('home-page-staff', compact('staffName'));
+      return view('home-page-staff');
     }
   }
 
