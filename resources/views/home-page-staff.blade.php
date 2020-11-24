@@ -1,8 +1,10 @@
 @extends('layouts.admin-bootstrap')
 
 @section('content')
-<!-- Sidebar -->
-<ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+
+
+  <!-- Sidebar -->
+  <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
     <!-- Sidebar - Brand -->
     <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
@@ -14,7 +16,7 @@
 
     <!-- Nav Item - Dashboard -->
     <li class="nav-item active">
-        <a class="nav-link" href="/admin">
+        <a class="nav-link" href="/homestaff">
             <i class="fas fa-fw fa-tachometer-alt"></i>
             <span>Dashboard</span></a>
     </li>
@@ -43,8 +45,8 @@
             <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
                     <h6 class="collapse-header">Would you like to: </h6>
-                    <a class="collapse-item" href="/admin/buttons">Create a new Customer</a>
-                    <a class="collapse-item" href="/admin/cards">View and Edit Records</a>
+                    <a class="collapse-item" href="/createcustomer">Create a new Customer</a>
+                    <a class="collapse-item" href="viewcustomer">View and Edit Records</a>
                 </div>
             </div>
         </li>
@@ -63,9 +65,6 @@
 
 <!-- Content Wrapper -->
 <div id="content-wrapper" class="d-flex flex-column">
-
-    <!-- Main Content -->
-    <div id="content">
 
         <!-- Topbar -->
         <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
@@ -242,9 +241,13 @@
           </div>
         </div>
 
-        </div>
+      </div>
 
-        </div>
+    </div>
+
+  </div>
+  <!-- End of Content Wrapper -->
+
 
 
 @endsection

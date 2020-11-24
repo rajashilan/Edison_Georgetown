@@ -42,6 +42,14 @@ Route::get('/homestaff', function () {
     return view('home-page-staff');
 });
 
+Route::get('/viewcustomer', function () {
+    return view('view-edit-customer-records');
+});
+
+Route::get('/createcustomer', function () {
+    return view('create-customer');
+});
+
 
 //bootstrap routes
 
