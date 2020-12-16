@@ -15,11 +15,11 @@ class CreateCustomerExternalBookingsTable extends Migration
     {
         Schema::create('customer_external_bookings', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('customer_id');
+            $table->unsignedBigInteger('booking_id');
             $table->unsignedBigInteger('external_booking_id');
-            $table->string('remark');
+            $table->string('remark')->nullable();
             $table->tinyInteger('status');
-            // $table->('visit_time');
+            $table->dateTime('collect_time');
             $table->timestamps();
         });
     }

@@ -15,7 +15,7 @@ class CreateCustomerAmenitiesOrdersTable extends Migration
     {
         Schema::create('customer_amenities_orders', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('customer_id');
+            $table->unsignedBigInteger('booking_id');
             $table->string('remark');
             $table->timestamps();
         });

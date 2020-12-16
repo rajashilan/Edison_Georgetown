@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateAmenitiesSelectionsTable extends Migration
+class CreateBreakfastGroupsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,11 @@ class CreateAmenitiesSelectionsTable extends Migration
      */
     public function up()
     {
-        Schema::create('amenities_selections', function (Blueprint $table) {
-            $table->id();
-            $table->string('item_name');
+        Schema::create('breakfast_groups', function (Blueprint $table) {
+            $table->id('breakfast_group_id');
+            $table->string('group_name');
+            $table->integer('sequence');
             $table->tinyInteger('status');
-            $table->string('remark')->nullable();
             $table->timestamps();
         });
     }
@@ -29,6 +29,6 @@ class CreateAmenitiesSelectionsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('amenities_selections');
+        Schema::dropIfExists('breakfast_groups');
     }
 }

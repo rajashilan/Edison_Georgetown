@@ -18,7 +18,7 @@ class CreateExternalBookingsTable extends Migration
             $table->string('booking_item');
             $table->string('des');
             $table->tinyInteger('status');
-            $table->string('remark');
+            $table->string('remark')->nullable();
             $table->string('category');
             $table->timestamps();
         });
