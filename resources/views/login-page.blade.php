@@ -56,17 +56,40 @@
   </a>
 </div>
 
-<!-- user select -->
-<div class="card p-0 col-md-4" style="margin-top: 20px; height: 100%; margin-right: 30px; margin-left: 30px;">
-  <h3 class="card-header"  style="text-align: center;">Welcome!</h3>
-  <div class="card-body">
-    <h5 class="card-title" style="text-align: center;">Are you a </h5>
-    <a href="{{route('user.select', 'guest')}}" class="btn btn-primary" style="width: 100%; margin-top: 20px; background: #1E261D; border: none;">Guest</a><br>
-    <a href="{{route('user.select', 'staff')}}" class="btn btn-primary" style="width: 100%; margin-top: 20px; background: #1E261D; border: none;">Staff</a>
+@if($user == 'guest')
+<!-- login guest -->
+<form style="margin-top: 20px;" action="{{route('login.guest')}}" method="post">
+  @csrf
+  <div class="form-group">
+    <label for="bookingID">Booking ID</label>
+    <input type="text" class="form-control" id="bookingID" name="bookingID" aria-describedby="emailHelp" placeholder="Enter Booking ID">
+    <small id="emailHelp" class="form-text text-muted">Your Booking ID is provided to you by our staff.</small>
   </div>
-</div>
+  <div class="form-group">
+    <label for="password">Password</label>
+    <input type="password" class="form-control" id="password" name="password" placeholder="Password">
+  </div>
+  <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 20px; background: #1E261D; border: none;">Log In</button>
+</form>
+
+@elseif($user == 'staff')
+<!-- login staff -->
+<form style="margin-top: 20px;" action="{{route('login.staff')}}" method="post">
+  @csrf
+  <div class="form-group">
+    <label for="staffID">Staff ID</label>
+    <input type="text" class="form-control" id="staffID" name="staffID" aria-describedby="emailHelp" placeholder="Enter Staff ID">
+  </div>
+  <div class="form-group">
+    <label for="password">Password</label>
+    <input type="password" class="form-control" id="password" name="password" placeholder="Password">
+  </div>
+  <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 20px; background: #1E261D; border: none;">Log In</button>
+</form>
+@endif
 
 </div>
+
 
 <!-- footer -->
 <footer class="bg-light text-center text-lg-start" style="margin-top: 60px;">
@@ -100,6 +123,7 @@
   </div>
   <!-- Copyright -->
 </footer>
+
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
