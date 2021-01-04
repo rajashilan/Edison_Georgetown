@@ -29,6 +29,7 @@ class UserController extends Controller
 
     //login guest if inputs are valid
     if($guestLogin){
+      $request->session()->put('booking_id', $bookingID);
       return redirect('/guesthome');
     }
     else {

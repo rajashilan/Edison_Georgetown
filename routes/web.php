@@ -15,9 +15,11 @@ use App\Http\Controllers\CustomerController;
 |
 */
 
+
 Route::get('/', function () {
     return view('home-page');
 });
+
 
 Route::get('/guesthome', function () {
     return view('guest-home-page');
@@ -47,13 +49,18 @@ Route::get('/breakfast', function () {
     return view('guest-breakfast-selection-page');
 });
 
+
 Route::get('/{user}', [UserController::class, 'login'])->name('user.select');
 Route::post('/guestlogin', [UserController::class, 'loginGuest'])->name('login.guest');
 Route::post('/stafflogin', [UserController::class, 'loginStaff'])->name('login.staff');
 Route::get('/addcustomer', [UserController::class, 'generatePassword']);
 Route::post('/addcustomer', [UserController::class, 'addCustomer'])->name('add.customer');
 Route::get('/showcustomer', [CustomerController::class, 'showCustomers']);
+Route::get('/breakfast', [CustomerController::class, 'showCustomerBreakfast']);
 
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Auth::routes();
 

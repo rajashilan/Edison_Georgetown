@@ -106,7 +106,7 @@
 <div class="col-md-3" style="margin-top: 20px;">
   Location:
   <div class="custom-control custom-radio custom-control-inline" style="margin-left: 10px;">
-  <input type="radio" id="customRadioInline1" name="customRadioInline1" class="custom-control-input">
+  <input type="radio" id="customRadioInline1" name="customRadioInline1" class="custom-control-input" checked>
   <label class="custom-control-label" for="customRadioInline1">THE LOUNGE</label>
 </div>
 <div class="custom-control custom-radio custom-control-inline">
@@ -120,6 +120,10 @@
 <div class="card col-md-6" style="margin-top: 20px; margin-left: 10px;">
   <div class="card-body">
     Guest Room Number:
+    @foreach($room_mates as $room_mate)
+    {{$room_mate->room_number}}
+    @break
+    @endforeach
   </div>
 </div>
 </div>
@@ -128,16 +132,17 @@
 <table class="table table-bordered col-md-6" style="margin-top: 20px; margin-left: 10px">
   <thead>
     <tr>
-      <th scope="col">#</th>
+      <th scope="col">Booking ID</th>
       <th scope="col">Name</th>
       <th scope="col">Breakfast Selection</th>
       <th scope="col">Actions</th>
     </tr>
   </thead>
   <tbody>
+    @foreach($room_mates as $room_mate)
     <tr>
-      <th scope="row">1</th>
-      <td>Mark</td>
+      <th scope="row">{{$room_mate->booking_id}}</th>
+      <td>{{$room_mate->customer_name}}</td>
       <td>No selections made</td>
       <td>
         <div id="breakfastSelection" class="row justify-content-center">
@@ -147,30 +152,7 @@
         </div>
       </td>
     </tr>
-    <tr>
-      <th scope="row">2</th>
-      <td>Jacob</td>
-      <td>No selections made</td>
-      <td>
-        <div class="row justify-content-center">
-          <button type="submit" class="btn btn-primary fas fa-save" style="margin-left: 10px; background: #1E261D; border: none;"></button>
-          <button type="submit" class="btn btn-primary fas fa-pencil-alt" style="margin-left: 10px; background: #1E261D; border: none;"></button>
-          <button type="submit" class="btn btn-primary fas fa-trash-alt" style="margin-left: 10px; background: #1E261D; border: none;"></button>
-        </div>
-      </td>
-    </tr>
-    <tr>
-      <th scope="row">3</th>
-      <td>John</td>
-      <td>No selections made</td>
-      <td>
-        <div class="row justify-content-center">
-          <button type="submit" class="btn btn-primary fas fa-save" style="margin-left: 10px; background: #1E261D; border: none;"></button>
-          <button type="submit" class="btn btn-primary fas fa-pencil-alt" style="margin-left: 10px; background: #1E261D; border: none;"></button>
-          <button type="submit" class="btn btn-primary fas fa-trash-alt" style="margin-left: 10px; background: #1E261D; border: none;"></button>
-        </div>
-      </td>
-    </tr>
+    @endforeach
   </tbody>
 </table>
 </div>
