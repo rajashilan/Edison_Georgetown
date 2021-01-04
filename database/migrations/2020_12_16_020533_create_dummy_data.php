@@ -19,7 +19,7 @@ class CreateDummyData extends Migration
         // });
 
       $user = new App\Models\User();
-      $user->name = 'Default Account';
+      $user->user_name = 'Default Account';
       $user->email = 'default@mail.com';
       $user->password = bcrypt('123qwe');
       $user->status = '1';
@@ -35,6 +35,6 @@ class CreateDummyData extends Migration
     public function down()
     {
         // Schema::dropIfExists('dummy_data');
-        App\Models\User::where('name', 'Default Account')->first()->delete();
+        App\Models\User::where('user_name', 'Default Account')->first()->delete();
     }
 }
