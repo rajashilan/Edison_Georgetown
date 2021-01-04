@@ -29,7 +29,7 @@
         <a class="nav-link" href="#">Amenities Records</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="/breakfastrecords">Breakfast Records</a>
+        <a class="nav-link" href="#">Breakfast Records</a>
       </li>
       <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -37,7 +37,7 @@
               </a>
               <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                 <a class="dropdown-item" href="/addcustomer">Add a Customer</a>
-                <a class="dropdown-item" href="/showcustomer">View Records</a>
+                <a class="dropdown-item" href="#">View Records</a>
               </div>
             </li>
       <li class="nav-item dropdown">
@@ -53,6 +53,102 @@
     </ul>
   </div>
 </nav>
+
+<div class="row justify-content-center" style="margin-top: 20px; margin-bottom: 20px;">
+<div id="accordion">
+  <div class="card">
+    <div class="card-header">
+      <a class="card-link" data-toggle="collapse" href="#21">
+        Room Number 21
+      </a>
+    </div>
+    <div id="21" class="collapse show" data-parent="#accordion">
+      <div class="card-body">
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">
+          <h5 class="card-title">Jack (Booking ID: 12345)</h5>
+          <p class="card-text">muesli, latte, croissants, americano, pineapple, scrambled</p>
+          </li>
+          <li class="list-group-item">
+          <h5 class="card-title">Mark (Booking ID: 23421)</h5>
+          <p class="card-text">americano, pineapple, scrambled</p>
+          </li>
+          <li class="list-group-item">
+          <h5 class="card-title">John (Booking ID: 98765)</h5>
+          <p class="card-text">soft boiled, fruit loops, croissants</p>
+          </li>
+          <li class="list-group-item">
+            <button type="submit" class="btn btn-primary" style="width: 100%; background: #1E261D; border: none;">Confirm</button>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <a class="card-link" data-toggle="collapse" href="#203">
+        Room Number 203
+      </a>
+    </div>
+    <div id="203" class="collapse" data-parent="#accordion">
+      <div class="card-body">
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">
+          <h5 class="card-title">Jack (Booking ID: 12345)</h5>
+          <p class="card-text">muesli, latte, croissants</p>
+          </li>
+          <li class="list-group-item">
+          <h5 class="card-title">Mark (Booking ID: 23421)</h5>
+          <p class="card-text">americano, pineapple, scrambled</p>
+          </li>
+          <li class="list-group-item">
+          <h5 class="card-title">John (Booking ID: 98765)</h5>
+          <p class="card-text">soft boiled, fruit loops, croissants</p>
+          </li>
+          <li class="list-group-item">
+            <button type="submit" class="btn btn-primary" style="width: 100%; background: #1E261D; border: none;">Confirm</button>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+
+
+  <div class="card">
+    <div class="card-header">
+      <a class="card-link" data-toggle="collapse" href="#312">
+        Room Number 312
+      </a>
+    </div>
+    <div id="312" class="collapse" data-parent="#accordion">
+      <div class="card-body">
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">
+          <h5 class="card-title">Jack (Booking ID: 12345)</h5>
+          <p class="card-text">muesli, latte, croissants</p>
+          </li>
+          <li class="list-group-item">
+          <h5 class="card-title">Mark (Booking ID: 23421)</h5>
+          <p class="card-text">americano, pineapple, scrambled</p>
+          </li>
+          <li class="list-group-item">
+          <h5 class="card-title">John (Booking ID: 98765)</h5>
+          <p class="card-text">soft boiled, fruit loops, croissants</p>
+          </li>
+          <li class="list-group-item">
+            <button type="submit" class="btn btn-primary" style="width: 100%; background: #1E261D; border: none;">Confirm</button>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+
+
 
 <!-- footer -->
 <footer class="bg-light text-center text-lg-start" style="margin-top: 60px;">

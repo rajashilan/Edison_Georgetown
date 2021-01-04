@@ -52,4 +52,23 @@ class UserController extends Controller
       dd("wrong entry");
     }
   }
+
+  public function generatePassword(){
+    $password = rand(100000,999999);
+    return view('add-customer-page', compact('password'));
+  }
+
+  public function addCustomer(Request $request){
+    $password = $request->password;
+    $insert = DB::insert('insert into customers (name, email, contact_number, room_number, booking_id, password, status) values (?, ?, ?, ?, ?, ?, ?)',
+    [$request->name, $request->email, $request->contact_number, $request->room_number, $request->booking_id, $password, 1]);
+
+    if($insert){
+      $success = true;
+      return redirect()->back()->with('success');
+    } else {
+      $success = false;
+      return redirect()->back()->with('success');
+    }
+  }
 }

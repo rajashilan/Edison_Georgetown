@@ -54,6 +54,33 @@
   </div>
 </nav>
 
+<h1 style="text-align: center; margin-top: 20px;">Customer Records</h1>
+
+  <table class="table table-bordered table-hover" style="margin-top: 30px;">
+    <thead>
+      <tr>
+        <th scope="col">Customer ID</th>
+        <th scope="col">Name</th>
+        <th scope="col">Email</th>
+        <th scope="col">Contact No.</th>
+        <th scope="col">Room No.</th>
+        <th scope="col">Booking ID</th>
+      </tr>
+    </thead>
+    <tbody>
+      @foreach($customers as $customer)
+        <tr>
+          <th scope="row">{{$customer->customer_id}}</th>
+          <td>{{$customer->name}}</td>
+          <td>{{$customer->email}}</td>
+          <td>{{$customer->contact_number}}</td>
+          <td>{{$customer->room_number}}</td>
+          <td>{{$customer->booking_id}}</td>
+        </tr>
+      @endforeach
+    </tbody>
+  </table>
+
 <!-- footer -->
 <footer class="bg-light text-center text-lg-start" style="margin-top: 60px;">
   <!-- Grid container -->

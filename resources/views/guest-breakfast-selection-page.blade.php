@@ -125,7 +125,7 @@
 </div>
 
 <div class="row justify-content-center">
-<table class="table table-bordered col-md-10" style="margin-top: 20px; margin-left: 10px">
+<table class="table table-bordered col-md-6" style="margin-top: 20px; margin-left: 10px">
   <thead>
     <tr>
       <th scope="col">#</th>
@@ -140,10 +140,10 @@
       <td>Mark</td>
       <td>No selections made</td>
       <td>
-        <div class="row">
-        <button type="submit" class="btn btn-primary" style="width: 30%; margin-left: 10px; background: #1E261D; border: none;">Add</button>
-        <button type="submit" class="btn btn-primary" style="width: 30%; margin-left: 10px; background: #1E261D; border: none;">Update</button>
-        <button type="submit" class="btn btn-primary" style="width: 30%; margin-left: 10px; background: #1E261D; border: none;">Remove</button>
+        <div id="breakfastSelection" class="row justify-content-center">
+        <button type="submit" class="btn btn-primary fas fa-save" style="margin-left: 10px; background: #1E261D; border: none;"></button>
+        <button type="submit" class="btn btn-primary fas fa-pencil-alt" style="margin-left: 10px; background: #1E261D; border: none;"></button>
+        <button type="submit" class="btn btn-primary fas fa-trash-alt" style="margin-left: 10px; background: #1E261D; border: none;"></button>
         </div>
       </td>
     </tr>
@@ -152,10 +152,10 @@
       <td>Jacob</td>
       <td>No selections made</td>
       <td>
-        <div class="row">
-        <button type="submit" class="btn btn-primary" style="width: 30%; margin-left: 10px; background: #1E261D; border: none;">Add</button>
-        <button type="submit" class="btn btn-primary" style="width: 30%; margin-left: 10px; background: #1E261D; border: none;">Update</button>
-        <button type="submit" class="btn btn-primary" style="width: 30%; margin-left: 10px; background: #1E261D; border: none;">Remove</button>
+        <div class="row justify-content-center">
+          <button type="submit" class="btn btn-primary fas fa-save" style="margin-left: 10px; background: #1E261D; border: none;"></button>
+          <button type="submit" class="btn btn-primary fas fa-pencil-alt" style="margin-left: 10px; background: #1E261D; border: none;"></button>
+          <button type="submit" class="btn btn-primary fas fa-trash-alt" style="margin-left: 10px; background: #1E261D; border: none;"></button>
         </div>
       </td>
     </tr>
@@ -164,10 +164,10 @@
       <td>John</td>
       <td>No selections made</td>
       <td>
-        <div class="row">
-        <button type="submit" class="btn btn-primary" style="width: 30%; margin-left: 10px; background: #1E261D; border: none;">Add</button>
-        <button type="submit" class="btn btn-primary" style="width: 30%; margin-left: 10px; background: #1E261D; border: none;">Update</button>
-        <button type="submit" class="btn btn-primary" style="width: 30%; margin-left: 10px; background: #1E261D; border: none;">Remove</button>
+        <div class="row justify-content-center">
+          <button type="submit" class="btn btn-primary fas fa-save" style="margin-left: 10px; background: #1E261D; border: none;"></button>
+          <button type="submit" class="btn btn-primary fas fa-pencil-alt" style="margin-left: 10px; background: #1E261D; border: none;"></button>
+          <button type="submit" class="btn btn-primary fas fa-trash-alt" style="margin-left: 10px; background: #1E261D; border: none;"></button>
         </div>
       </td>
     </tr>
@@ -397,6 +397,10 @@
     </div>
   </div>
   </div>
+  </div>
+
+  <div class="row justify-content-center" style="margin-right: 20px;">
+    <button type="submit" class="btn btn-primary fas fa-save px-5 py-3" style="background: #1E261D; border: none;"> Save</button>
   </div>
 
 
