@@ -61,15 +61,13 @@ class UserController extends Controller
 
   public function addCustomer(Request $request){
     $password = $request->password;
-    $insert = DB::insert('insert into customers (name, email, contact_number, room_number, booking_id, password, status) values (?, ?, ?, ?, ?, ?, ?)',
+    $insert = DB::insert('insert into customers (customer_name, email, contact_number, room_number, booking_id, password, status) values (?, ?, ?, ?, ?, ?, ?)',
     [$request->name, $request->email, $request->contact_number, $request->room_number, $request->booking_id, $password, 1]);
 
     if($insert){
-      $success = true;
-      return redirect()->back()->with('success');
+      return redirect()->back()->with('success', 'Successfully added.');
     } else {
-      $success = false;
-      return redirect()->back()->with('success');
+      return redirect()->back()->with('fail', 'Failed to add Guest');
     }
   }
 }

@@ -57,6 +57,7 @@ Route::get('/addcustomer', [UserController::class, 'generatePassword']);
 Route::post('/addcustomer', [UserController::class, 'addCustomer'])->name('add.customer');
 Route::get('/showcustomer', [CustomerController::class, 'showCustomers']);
 Route::get('/breakfast', [CustomerController::class, 'showCustomerBreakfast']);
+Route::get('/breakfast/{booking_id}', [CustomerController::class, 'updateCustomerBreakfastSelection'])->name('update.breakfast.customer');
 
 Auth::routes();
 

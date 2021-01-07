@@ -24,4 +24,7 @@ class CustomerController extends Controller
 
     return view('guest-breakfast-selection-page', compact('room_mates'));
   }
+
+  public function updateCustomerBreakfastSelection($booking_id){
+  }
 }

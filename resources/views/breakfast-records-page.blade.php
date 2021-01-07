@@ -37,7 +37,7 @@
               </a>
               <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                 <a class="dropdown-item" href="/addcustomer">Add a Customer</a>
-                <a class="dropdown-item" href="#">View Records</a>
+                <a class="dropdown-item" href="/showcustomer">View Records</a>
               </div>
             </li>
       <li class="nav-item dropdown">
@@ -55,7 +55,22 @@
 </nav>
 
 <div class="row justify-content-center" style="margin-top: 20px; margin-bottom: 20px;">
-<div id="accordion">
+
+  <div class="card text-white bg-success mb-3" style="max-width: 18rem; max-height: 140px; margin-right: 10px;">
+    <div class="card-header">Completed Breakfast Requests</div>
+    <div class="card-body" style="text-align: center;">
+      <h1>21</h1>
+    </div>
+  </div>
+
+  <div class="card text-dark bg-warning mb-3" style="max-width: 18rem; max-height: 140px; margin-right: 10px;">
+  <div class="card-header">Pending Breakfast Requests</div>
+  <div class="card-body" style="text-align: center;">
+    <h1>10</h1>
+  </div>
+</div>
+
+<div id="accordion" class="col-md-6">
   <div class="card">
     <div class="card-header">
       <a class="card-link" data-toggle="collapse" href="#21">
@@ -66,16 +81,43 @@
       <div class="card-body">
         <ul class="list-group list-group-flush">
           <li class="list-group-item">
-          <h5 class="card-title">Jack (Booking ID: 12345)</h5>
+          <h5 class="card-title">Jack</h5>
           <p class="card-text">muesli, latte, croissants, americano, pineapple, scrambled</p>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+            <label class="form-check-label" for="flexCheckDefault">
+              Noted
+            </label>
+          </div>
+          <div class="form-floating" style="margin-top: 10px;">
+            <textarea class="form-control" placeholder="Leave a remark here" id="floatingTextarea2" style="height: 100px"></textarea>
+          </div>
           </li>
           <li class="list-group-item">
-          <h5 class="card-title">Mark (Booking ID: 23421)</h5>
+          <h5 class="card-title">Mark</h5>
           <p class="card-text">americano, pineapple, scrambled</p>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+            <label class="form-check-label" for="flexCheckDefault">
+              Noted
+            </label>
+          </div>
+          <div class="form-floating" style="margin-top: 10px;">
+            <textarea class="form-control" placeholder="Leave a remark here" id="floatingTextarea2" style="height: 100px"></textarea>
+          </div>
           </li>
           <li class="list-group-item">
-          <h5 class="card-title">John (Booking ID: 98765)</h5>
+          <h5 class="card-title">John</h5>
           <p class="card-text">soft boiled, fruit loops, croissants</p>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+            <label class="form-check-label" for="flexCheckDefault">
+              Noted
+            </label>
+          </div>
+          <div class="form-floating" style="margin-top: 10px;">
+            <textarea class="form-control" placeholder="Leave a remark here" id="floatingTextarea2" style="height: 100px"></textarea>
+          </div>
           </li>
           <li class="list-group-item">
             <button type="submit" class="btn btn-primary" style="width: 100%; background: #1E261D; border: none;">Confirm</button>
@@ -95,16 +137,43 @@
       <div class="card-body">
         <ul class="list-group list-group-flush">
           <li class="list-group-item">
-          <h5 class="card-title">Jack (Booking ID: 12345)</h5>
+          <h5 class="card-title">Jack</h5>
           <p class="card-text">muesli, latte, croissants</p>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+            <label class="form-check-label" for="flexCheckDefault">
+              Noted
+            </label>
+          </div>
+          <div class="form-floating" style="margin-top: 10px;">
+            <textarea class="form-control" placeholder="Leave a remark here" id="floatingTextarea2" style="height: 100px"></textarea>
+          </div>
           </li>
           <li class="list-group-item">
-          <h5 class="card-title">Mark (Booking ID: 23421)</h5>
+          <h5 class="card-title">Mark</h5>
           <p class="card-text">americano, pineapple, scrambled</p>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+            <label class="form-check-label" for="flexCheckDefault">
+              Noted
+            </label>
+          </div>
+          <div class="form-floating" style="margin-top: 10px;">
+            <textarea class="form-control" placeholder="Leave a remark here" id="floatingTextarea2" style="height: 100px"></textarea>
+          </div>
           </li>
           <li class="list-group-item">
-          <h5 class="card-title">John (Booking ID: 98765)</h5>
+          <h5 class="card-title">John</h5>
           <p class="card-text">soft boiled, fruit loops, croissants</p>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+            <label class="form-check-label" for="flexCheckDefault">
+              Noted
+            </label>
+          </div>
+          <div class="form-floating" style="margin-top: 10px;">
+            <textarea class="form-control" placeholder="Leave a remark here" id="floatingTextarea2" style="height: 100px"></textarea>
+          </div>
           </li>
           <li class="list-group-item">
             <button type="submit" class="btn btn-primary" style="width: 100%; background: #1E261D; border: none;">Confirm</button>
@@ -126,16 +195,43 @@
       <div class="card-body">
         <ul class="list-group list-group-flush">
           <li class="list-group-item">
-          <h5 class="card-title">Jack (Booking ID: 12345)</h5>
+          <h5 class="card-title">Jack</h5>
           <p class="card-text">muesli, latte, croissants</p>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+            <label class="form-check-label" for="flexCheckDefault">
+              Noted
+            </label>
+          </div>
+          <div class="form-floating" style="margin-top: 10px;">
+            <textarea class="form-control" placeholder="Leave a remark here" id="floatingTextarea2" style="height: 100px"></textarea>
+          </div>
           </li>
           <li class="list-group-item">
-          <h5 class="card-title">Mark (Booking ID: 23421)</h5>
+          <h5 class="card-title">Mark</h5>
           <p class="card-text">americano, pineapple, scrambled</p>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+            <label class="form-check-label" for="flexCheckDefault">
+              Noted
+            </label>
+          </div>
+          <div class="form-floating" style="margin-top: 10px;">
+            <textarea class="form-control" placeholder="Leave a remark here" id="floatingTextarea2" style="height: 100px"></textarea>
+          </div>
           </li>
           <li class="list-group-item">
-          <h5 class="card-title">John (Booking ID: 98765)</h5>
+          <h5 class="card-title">John</h5>
           <p class="card-text">soft boiled, fruit loops, croissants</p>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+            <label class="form-check-label" for="flexCheckDefault">
+              Noted
+            </label>
+          </div>
+          <div class="form-floating" style="margin-top: 10px;">
+            <textarea class="form-control" placeholder="Leave a remark here" id="floatingTextarea2" style="height: 100px"></textarea>
+          </div>
           </li>
           <li class="list-group-item">
             <button type="submit" class="btn btn-primary" style="width: 100%; background: #1E261D; border: none;">Confirm</button>

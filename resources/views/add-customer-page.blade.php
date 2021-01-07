@@ -56,6 +56,20 @@
 
 <h1 style="text-align: center; margin-top: 20px;">Add a customer</h1>
 
+@if (session('success'))
+    <div class="alert alert-success alert-dismissible col-md-8 " auto-close="5000" style="margin: 0 auto;">
+        {{ session('success') }}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span>
+    </div>
+@endif
+
+@if (session('fail'))
+    <div class="alert alert-warning alert-dismissible col-md-8 " auto-close="5000" style="margin: 0 auto;">
+        {{ session('fail') }}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span>
+    </div>
+@endif
+
 <div class="card p-0 col-md-8" style="margin: 0 auto; margin-top: 10px; margin-bottom: 20px;">
   <h5 class="card-header">Fill in all the details below</h5>
   <div class="card-body">

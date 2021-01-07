@@ -71,7 +71,7 @@
       @foreach($customers as $customer)
         <tr>
           <th scope="row">{{$customer->customer_id}}</th>
-          <td>{{$customer->name}}</td>
+          <td>{{$customer->customer_name}}</td>
           <td>{{$customer->email}}</td>
           <td>{{$customer->contact_number}}</td>
           <td>{{$customer->room_number}}</td>
