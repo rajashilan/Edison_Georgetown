@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\CustomerController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,13 +15,11 @@ use App\Http\Controllers\UserController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
 
-Route::get('/main', function () {
+Route::get('/', function () {
     return view('home-page');
 });
+
 
 Route::get('/guesthome', function () {
     return view('guest-home-page');
@@ -28,6 +27,18 @@ Route::get('/guesthome', function () {
 
 Route::get('/staffhome', function () {
     return view('staff-home-page');
+});
+
+Route::get('/addcustomer', function () {
+    return view('add-customer-page');
+});
+
+Route::get('/showcustomer', function () {
+    return view('view-customer-page');
+});
+
+Route::get('/breakfastrecords', function () {
+    return view('breakfast-records-page');
 });
 
 Route::get('/amenities', function () {
@@ -38,11 +49,19 @@ Route::get('/breakfast', function () {
     return view('guest-breakfast-selection-page');
 });
 
+
 Route::get('/{user}', [UserController::class, 'login'])->name('user.select');
 Route::post('/guestlogin', [UserController::class, 'loginGuest'])->name('login.guest');
 Route::post('/stafflogin', [UserController::class, 'loginStaff'])->name('login.staff');
+Route::get('/addcustomer', [UserController::class, 'generatePassword']);
+Route::post('/addcustomer', [UserController::class, 'addCustomer'])->name('add.customer');
+Route::get('/showcustomer', [CustomerController::class, 'showCustomers']);
+Route::get('/breakfast', [CustomerController::class, 'showCustomerBreakfast']);
+Route::get('/breakfast/{booking_id}', [CustomerController::class, 'updateCustomerBreakfastSelection'])->name('update.breakfast.customer');
 
+Auth::routes();
 
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Auth::routes();
 

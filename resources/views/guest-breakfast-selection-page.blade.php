@@ -83,8 +83,9 @@
 </div>
 <script type="text/javascript">
     $('.date').datepicker({
-       format: 'mm-dd-yyyy'
-     });
+      format: "dd/mm/yyyy",
+      startDate: new Date()
+    });
 </script>
 
 <div class="card col-md-2" style="margin-left: 10px;">
@@ -106,7 +107,7 @@
 <div class="col-md-3" style="margin-top: 20px;">
   Location:
   <div class="custom-control custom-radio custom-control-inline" style="margin-left: 10px;">
-  <input type="radio" id="customRadioInline1" name="customRadioInline1" class="custom-control-input">
+  <input type="radio" id="customRadioInline1" name="customRadioInline1" class="custom-control-input" checked>
   <label class="custom-control-label" for="customRadioInline1">THE LOUNGE</label>
 </div>
 <div class="custom-control custom-radio custom-control-inline">
@@ -120,88 +121,77 @@
 <div class="card col-md-6" style="margin-top: 20px; margin-left: 10px;">
   <div class="card-body">
     Guest Room Number:
+    @foreach($room_mates as $room_mate)
+    {{$room_mate->room_number}}
+    @break
+    @endforeach
   </div>
 </div>
 </div>
 
 <div class="row justify-content-center">
-<table class="table table-bordered col-md-10" style="margin-top: 20px; margin-left: 10px">
+<table class="table table-bordered col-md-8" style="margin-top: 20px; margin-left: 10px">
   <thead>
     <tr>
-      <th scope="col">#</th>
       <th scope="col">Name</th>
       <th scope="col">Breakfast Selection</th>
       <th scope="col">Actions</th>
     </tr>
   </thead>
   <tbody>
-    <tr>
-      <th scope="row">1</th>
-      <td>Mark</td>
-      <td>No selections made</td>
+    @foreach($room_mates as $room_mate)
+    <tr id="tr-{{$room_mate->booking_id}}">
+      <th scope="row">{{$room_mate->customer_name}}</th>
+      <td id="td-{{$room_mate->booking_id}}">No selections made</td>
       <td>
-        <div class="row">
-        <button type="submit" class="btn btn-primary" style="width: 30%; margin-left: 10px; background: #1E261D; border: none;">Add</button>
-        <button type="submit" class="btn btn-primary" style="width: 30%; margin-left: 10px; background: #1E261D; border: none;">Update</button>
-        <button type="submit" class="btn btn-primary" style="width: 30%; margin-left: 10px; background: #1E261D; border: none;">Remove</button>
+        <div id="breakfastSelection" class="row justify-content-center">
+        <a href="{{route('update.breakfast.customer', $room_mate->booking_id)}}" class="btn btn-primary fas fa-plus" style="margin-left: 5px; margin-right: 5px; margin-top: 10px; background: #1E261D; border: none;"
+          onclick="event.preventDefault();
+            $('input[type=checkbox]').prop('checked',false);
+            document.getElementById('rd1').checked=true;
+            selectingFor.innerText = 'Selecting for {{$room_mate->customer_name}}';
+            customer_id.innerText = {{$room_mate->booking_id}};"
+        ></a>
+        <button type="submit" class="btn btn-primary fas fa-save" style="margin-left: 5px; margin-right: 5px; margin-top: 10px; background: #1E261D; border: none;"></button>
+        <button type="submit" class="btn btn-primary fas fa-pencil-alt" style="margin-left: 5px; margin-right: 5px; margin-top: 10px; background: #1E261D; border: none;"></button>
+        <button type="submit" class="btn btn-primary fas fa-trash-alt" style="margin-left: 5px; margin-right: 5px; margin-top: 10px; background: #1E261D; border: none;"></button>
         </div>
       </td>
     </tr>
-    <tr>
-      <th scope="row">2</th>
-      <td>Jacob</td>
-      <td>No selections made</td>
-      <td>
-        <div class="row">
-        <button type="submit" class="btn btn-primary" style="width: 30%; margin-left: 10px; background: #1E261D; border: none;">Add</button>
-        <button type="submit" class="btn btn-primary" style="width: 30%; margin-left: 10px; background: #1E261D; border: none;">Update</button>
-        <button type="submit" class="btn btn-primary" style="width: 30%; margin-left: 10px; background: #1E261D; border: none;">Remove</button>
-        </div>
-      </td>
-    </tr>
-    <tr>
-      <th scope="row">3</th>
-      <td>John</td>
-      <td>No selections made</td>
-      <td>
-        <div class="row">
-        <button type="submit" class="btn btn-primary" style="width: 30%; margin-left: 10px; background: #1E261D; border: none;">Add</button>
-        <button type="submit" class="btn btn-primary" style="width: 30%; margin-left: 10px; background: #1E261D; border: none;">Update</button>
-        <button type="submit" class="btn btn-primary" style="width: 30%; margin-left: 10px; background: #1E261D; border: none;">Remove</button>
-        </div>
-      </td>
-    </tr>
+    @endforeach
   </tbody>
 </table>
+
 </div>
 
 <div id="breakfastSelection">
 <div class="row" style="justify-content: center; margin-top: 30px; margin-bottom: 30px; margin-left: 20px; margin-right: 20px;">
   <div class="col-md-12 col-xs-9">
-    <h5>Make your breakfast selection: </h5>
+    <h3 id ="selectingFor" style="text-align: center;">Make your breakfast selection: </h3>
+    <p style="display: none; text-align: center;" id="customer_id"></p>
     <div class="tabs">
       <div class="tab">
         <input type="radio" id="rd1" name="rd">
         <label class="tab-label" for="rd1">Local & Artisanal Bread</label>
         <div class="tab-content">
           <label class="container">Croissant
-            <input type="checkbox">
+            <input type="checkbox" id="Croissant" onclick="checkBox(this.id)">
             <span class="checkmark"></span>
           </label>
           <label class="container">Muesli
-            <input type="checkbox">
+            <input type="checkbox" id="Muesli" onclick="checkBox(this.id)">
             <span class="checkmark"></span>
           </label>
           <label class="container">Farmers
-            <input type="checkbox">
+            <input type="checkbox" id="Farmers" onclick="checkBox(this.id)">
             <span class="checkmark"></span>
           </label>
           <label class="container">Village Seed
-            <input type="checkbox">
+            <input type="checkbox" id="Village Seed" onclick="checkBox(this.id)">
             <span class="checkmark"></span>
           </label>
           <label class="container">Butterscotch Muffin
-            <input type="checkbox">
+            <input type="checkbox" id="Butterscotch Muffin" onclick="checkBox(this.id)">
             <span class="checkmark"></span>
           </label>
         </div>
@@ -211,19 +201,19 @@
         <label class="tab-label" for="rd2">Artisanal Jam & Spread</label>
         <div class="tab-content">
           <label class="container">Grapefruit Marmalade
-            <input type="checkbox">
+            <input type="checkbox" id="Grapefruit Marmalade" onclick="checkBox(this.id)">
             <span class="checkmark"></span>
           </label>
           <label class="container">Pineapple & Cinnamon
-            <input type="checkbox">
+            <input type="checkbox" id="Pineapple & Cinnamon" onclick="checkBox(this.id)">
             <span class="checkmark"></span>
           </label>
           <label class="container">Papaya & Nutmeg
-            <input type="checkbox">
+            <input type="checkbox" id="Papaya & Nutmeg" onclick="checkBox(this.id)">
             <span class="checkmark"></span>
           </label>
           <label class="container">Kaya (Coconut Jam)
-            <input type="checkbox">
+            <input type="checkbox" id="Kaya (Coconut Jam)" onclick="checkBox(this.id)">
             <span class="checkmark"></span>
           </label>
         </div>
@@ -233,11 +223,11 @@
         <label class="tab-label" for="rd4">Cheese</label>
         <div class="tab-content">
           <label class="container">Cheddar
-            <input type="checkbox">
+            <input type="checkbox" id="Cheddar" onclick="checkBox(this.id)">
             <span class="checkmark"></span>
           </label>
           <label class="container">Spreadable Cheese
-            <input type="checkbox">
+            <input type="checkbox" id="Spreadable Cheese" onclick="checkBox(this.id)">
             <span class="checkmark"></span>
           </label>
         </div>
@@ -247,15 +237,15 @@
         <label class="tab-label" for="rd5">Fresh Seasonal Fruit</label>
         <div class="tab-content">
           <label class="container">Papaya
-            <input type="checkbox">
+            <input type="checkbox" id="Papaya" onclick="checkBox(this.id)">
             <span class="checkmark"></span>
           </label>
           <label class="container">Watermelon
-            <input type="checkbox">
+            <input type="checkbox" id="Watermelon" onclick="checkBox(this.id)">
             <span class="checkmark"></span>
           </label>
           <label class="container">Dragonfruit
-            <input type="checkbox">
+            <input type="checkbox" id="Dragonfruit" onclick="checkBox(this.id)">
             <span class="checkmark"></span>
           </label>
         </div>
@@ -265,19 +255,19 @@
         <label class="tab-label" for="rd6">Cereal</label>
         <div class="tab-content">
           <label class="container">Cornflakes
-            <input type="checkbox">
+            <input type="checkbox" id="Cornflakes" onclick="checkBox(this.id)">
             <span class="checkmark"></span>
           </label>
           <label class="container">Frosties
-            <input type="checkbox">
+            <input type="checkbox" id="Frosties" onclick="checkBox(this.id)">
             <span class="checkmark"></span>
           </label>
           <label class="container">Coco Pops
-            <input type="checkbox">
+            <input type="checkbox" id="Coco Pops" onclick="checkBox(this.id)">
             <span class="checkmark"></span>
           </label>
           <label class="container">Fruit Loops
-            <input type="checkbox">
+            <input type="checkbox" id="Fruit Loops" onclick="checkBox(this.id)">
             <span class="checkmark"></span>
           </label>
         </div>
@@ -286,32 +276,34 @@
         <input type="radio" id="rd7" name="rd">
         <label class="tab-label" for="rd7">Eggs (2 Per Serving)</label>
         <div class="tab-content">
+          <!--
           <label class="container">Sunny Side Up
-            <input type="checkbox">
+            <input type="checkbox" id="Sunny Side Up" onclick="checkBox(this.id)">
             <span class="checkmark"></span>
           </label>
+        -->
           <label class="container">Omelette
-            <input type="checkbox">
+            <input type="checkbox" id="Omelette" onclick="checkBox(this.id)">
             <span class="checkmark"></span>
           </label>
           <label class="container">Over Easy
-            <input type="checkbox">
+            <input type="checkbox" id="Over Easy" onclick="checkBox(this.id)">
             <span class="checkmark"></span>
           </label>
           <label class="container">Hard Boiled
-            <input type="checkbox">
+            <input type="checkbox" id="Hard Boiled" onclick="checkBox(this.id)">
             <span class="checkmark"></span>
           </label>
           <label class="container">Half Boiled
-            <input type="checkbox">
+            <input type="checkbox" id="Half Boiled" onclick="checkBox(this.id)">
             <span class="checkmark"></span>
           </label>
           <label class="container">Scrambled
-            <input type="checkbox">
+            <input type="checkbox" id="Scrambled" onclick="checkBox(this.id)">
             <span class="checkmark"></span>
           </label>
           <label class="container">Soft Boiled
-            <input type="checkbox">
+            <input type="checkbox" id="Soft Boiled" onclick="checkBox(this.id)">
             <span class="checkmark"></span>
           </label>
         </div>
@@ -321,19 +313,19 @@
         <label class="tab-label" for="rd8">Juices & Milk</label>
         <div class="tab-content">
           <label class="container">Orange
-            <input type="checkbox">
+            <input type="checkbox" id="Orange" onclick="checkBox(this.id)">
             <span class="checkmark"></span>
           </label>
           <label class="container">Pineapple
-            <input type="checkbox">
+            <input type="checkbox"  id="Pineapple" onclick="checkBox(this.id)">
             <span class="checkmark"></span>
           </label>
           <label class="container">Pure Fresh Milk - Cold
-            <input type="checkbox">
+            <input type="checkbox"  id="Pure Fresh Milk - Cold" onclick="checkBox(this.id)">
             <span class="checkmark"></span>
           </label>
           <label class="container">Full Cream Milk - Hot
-            <input type="checkbox">
+            <input type="checkbox"  id="Full Cream Milk - Hot" onclick="checkBox(this.id)">
             <span class="checkmark"></span>
           </label>
         </div>
@@ -343,19 +335,19 @@
         <label class="tab-label" for="rd9">Gourmet Coffee</label>
         <div class="tab-content">
           <label class="container">Americano
-            <input type="checkbox">
+            <input type="checkbox" id="Americano" onclick="checkBox(this.id)">
             <span class="checkmark"></span>
           </label>
           <label class="container">Cappuccino
-            <input type="checkbox">
+            <input type="checkbox" id="Cappuccino" onclick="checkBox(this.id)">
             <span class="checkmark"></span>
           </label>
           <label class="container">Espresso (Single/Double)
-            <input type="checkbox">
+            <input type="checkbox" id="Espresso (Single/Double)" onclick="checkBox(this.id)">
             <span class="checkmark"></span>
           </label>
           <label class="container">Latte
-            <input type="checkbox">
+            <input type="checkbox" id="Latte" onclick="checkBox(this.id)">
             <span class="checkmark"></span>
           </label>
         </div>
@@ -365,27 +357,27 @@
         <label class="tab-label" for="rd10">Artisanal Tea</label>
         <div class="tab-content">
           <label class="container">English Breakfast
-            <input type="checkbox">
+            <input type="checkbox" id="English Breakfast" onclick="checkBox(this.id)">
             <span class="checkmark"></span>
           </label>
           <label class="container">Lemongrass & Ginger
-            <input type="checkbox">
+            <input type="checkbox" id="Lemongrass & Ginger" onclick="checkBox(this.id)">
             <span class="checkmark"></span>
           </label>
           <label class="container">Earl Grey
-            <input type="checkbox">
+            <input type="checkbox" id="Earl Grey" onclick="checkBox(this.id)">
             <span class="checkmark"></span>
           </label>
           <label class="container">Red Berry
-            <input type="checkbox">
+            <input type="checkbox" id="Red Berry" onclick="checkBox(this.id)">
             <span class="checkmark"></span>
           </label>
           <label class="container">Green
-            <input type="checkbox">
+            <input type="checkbox" id="Green" onclick="checkBox(this.id)">
             <span class="checkmark"></span>
           </label>
           <label class="container">Chamomile
-            <input type="checkbox">
+            <input type="checkbox" id="Chamomile" onclick="checkBox(this.id)">
             <span class="checkmark"></span>
           </label>
         </div>
@@ -398,6 +390,32 @@
   </div>
   </div>
   </div>
+
+  <div class="row justify-content-center" style="margin-right: 20px;">
+    <button id="saveCheckBox" onclick="saveCheckBox()" type="submit" class="btn btn-primary fas fa-save px-5 py-3" style="background: #1E261D; border: none;"> Save</button>
+  </div>
+
+  <script type="text/javascript">
+    //create food array to save the selection to the table
+    const food = [];
+
+    function checkBox(checkBox_id){
+      //push the selected checkboxes id value to the table
+      food.push(checkBox_id);
+    }
+
+    function saveCheckBox(){
+      //get the customer id from the hidden element
+      var customerID = document.getElementById('customer_id').innerText;
+      //save the selection to the row that has the selected user' ID
+      document.getElementById('td-' + customerID).innerHTML = food;
+      alert("Saved");
+      //set the array back to 0 for the next user to use
+      food.length = 0;
+      //scroll to top
+      window.scrollTo({top: 0, behavior: 'smooth'});
+    }
+  </script>
 
 
   <!-- footer -->

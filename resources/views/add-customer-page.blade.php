@@ -54,6 +54,58 @@
   </div>
 </nav>
 
+<h1 style="text-align: center; margin-top: 20px;">Add a customer</h1>
+
+@if (session('success'))
+    <div class="alert alert-success alert-dismissible col-md-8 " auto-close="5000" style="margin: 0 auto;">
+        {{ session('success') }}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span>
+    </div>
+@endif
+
+@if (session('fail'))
+    <div class="alert alert-warning alert-dismissible col-md-8 " auto-close="5000" style="margin: 0 auto;">
+        {{ session('fail') }}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span>
+    </div>
+@endif
+
+<div class="card p-0 col-md-8" style="margin: 0 auto; margin-top: 10px; margin-bottom: 20px;">
+  <h5 class="card-header">Fill in all the details below</h5>
+  <div class="card-body">
+    <form action="{{route('add.customer')}}" method="post">
+      @csrf
+      <div class="mb-3">
+        <label for="name" class="form-label">Name</label>
+        <input type="text" class="form-control" id="name" name="name">
+      </div>
+      <div class="mb-3">
+        <label for="email" class="form-label">Email address</label>
+        <input type="email" class="form-control" id="email" name="email">
+      </div>
+      <div class="mb-3">
+        <label for="contact_number" class="form-label">Contact Number</label>
+        <input type="text" class="form-control" id="contact_number" name="contact_number">
+    </div>
+      <div class="mb-3">
+        <label for="room_number" class="form-label">Room Number</label>
+        <input type="text" class="form-control" id="room_number" name="room_number">
+      </div>
+      <div class="mb-3">
+        <label for="booking_id" class="form-label">Booking ID</label>
+        <input type="text" class="form-control" id="booking_id" name="booking_id">
+        </div>
+
+        <div class="mb-3">
+          <label for="staticPassword" class="form-label">Password</label>
+          <input type="text" readonly class="form-control-plaintext" id="staticPassword" value="{{$password ?? ''}}" name="password">
+        </div>
+        <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 20px; background: #1E261D; border: none;">Add Customer</button>
+      </form>
+
+  </div>
+</div>
+
 <!-- footer -->
 <footer class="bg-light text-center text-lg-start" style="margin-top: 60px;">
   <!-- Grid container -->
