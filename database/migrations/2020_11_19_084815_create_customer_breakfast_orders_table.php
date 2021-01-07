@@ -17,7 +17,9 @@ class CreateCustomerBreakfastOrdersTable extends Migration
             $table->id();
             $table->unsignedBigInteger('booking_id');
             $table->unsignedBigInteger('breakfast_selection_id');
+            $table->tinyInteger('status');
             $table->string('remark')->nullable();
+            $table->dateTime('booking_date_time');
             $table->timestamps();
         });
     }
