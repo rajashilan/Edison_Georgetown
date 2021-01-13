@@ -17,7 +17,6 @@ class CreateBreakfastSelectionsTable extends Migration
             $table->id('breakfast_selection_id');
             $table->string('item_name');
             $table->unsignedBigInteger('group_id');
-            $table->string('group_name');
             $table->integer('sequence');
             $table->tinyInteger('status');
             $table->string('photo')->nullable();
