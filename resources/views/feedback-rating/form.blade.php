@@ -56,13 +56,73 @@
   </div>
 
   <div class="form-group">
-    <label for="password">Password</label>
-    <input type="password" class="form-control" id="password" name="password" placeholder="Password">
-    <a class="form-text text-muted small" href="{{ route('password.request') }}">
-    {{ __('Forgot Your Password?') }}
-    </a>
+    <label for="feedback-question2">How was the speed of our breakfast service delivery?</label>
+    <br/>
+    {{-- <input type="text" class="form-control" id="feedback-question1" name="feedback-question1" aria-describedby="emailHelp" placeholder="Enter Booking ID"> --}}
+    <div class="form-check form-check-inline">
+      <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
+      <label class="form-check-label" for="inlineRadio1">Option one</label>
+    </div>
+    <div class="form-check form-check-inline">
+      <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
+      <label class="form-check-label" for="inlineRadio2">Option Two</label>
+    </div>
+    <div class="form-check form-check-inline">
+      <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3">
+      <label class="form-check-label" for="inlineRadio3">Option tree</label>
+    </div>
+    <div class="form-check form-check-inline">
+      <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio4" value="option4">
+      <label class="form-check-label" for="inlineRadio4">Option four</label>
+    </div>
+    <div class="form-check form-check-inline">
+      <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio5" value="option5">
+      <label class="form-check-label" for="inlineRadio5">Option five</label>
+    </div>
   </div>
-  <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 20px; background: #1E261D; border: none;">Log In</button>
+
+  <div class="form-group">
+    <label for="feedback-question2">Were we able to meet your expectations to our Continental Breakfast offerings?</label>
+    <br/>
+    {{-- <input type="text" class="form-control" id="feedback-question1" name="feedback-question1" aria-describedby="emailHelp" placeholder="Enter Booking ID"> --}}
+    <div class="form-check form-check-inline">
+      <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
+      <label class="form-check-label" for="inlineRadio1">Option one</label>
+    </div>
+    <div class="form-check form-check-inline">
+      <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
+      <label class="form-check-label" for="inlineRadio2">Option Two</label>
+    </div>
+    <div class="form-check form-check-inline">
+      <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3">
+      <label class="form-check-label" for="inlineRadio3">Option tree</label>
+    </div>
+    <div class="form-check form-check-inline">
+      <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio4" value="option4">
+      <label class="form-check-label" for="inlineRadio4">Option four</label>
+    </div>
+    <div class="form-check form-check-inline">
+      <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio5" value="option5">
+      <label class="form-check-label" for="inlineRadio5">Option five</label>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="feedback-question2">What was your favourite breakfast item?</label>
+    <br/>
+    <textarea class="form-control" id="question4" rows="3"></textarea>
+  </div>
+
+  <div class="form-group">
+    <label for="question5">What are the areas of improvement to enhance your breakfast experience?</label>
+    {{-- <input type="question5" class="form-control" id="question5" name="question5" placeholder="Question 5"> --}}
+    <textarea class="form-control" id="question5" rows="3"></textarea>
+    {{-- <a class="form-text text-muted small" href="{{ route('password.request') }}"> --}}
+    {{-- {{ __('Forgot Your Password?') }} --}}
+    {{-- </a> --}}
+  </div>
+  <small id="emailHelp" class="form-text text-muted text-center">Thank you for your feedback and visit. ^^</small>
+  <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 20px; background: #1E261D; border: none;">Submit</button>
 </form>
 </div>
 
