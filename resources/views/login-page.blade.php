@@ -102,16 +102,27 @@
           <img src="images/logo@2x.jpg" alt="The Edison Georgetown" height="200px" width="max">
       </div>
       <!--Grid column-->
+      <!--Grid column-->
 
-      <!--Grid column-->
-      <div class="col-lg-6 col-md-12 mb-4 mb-md-0" style="text-align: right; margin-top: 40px;">
-        <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec urna sapien, fermentum at volutpat non, blandit ut felis.
-            Donec laoreet iaculis lacus, sed dignissim tellus fermentum a. Maecenas id elementum leo. Nunc tincidunt tempor laoreet.
-            Donec eu pulvinar lectus. Vestibulum massa justo, ultrices eu mollis sit amet, aliquam vitae nisl
-        </p>
-      </div>
-      <!--Grid column-->
+    <div class="col-lg-6 col-md-6 mb-4 mb-md-0" style="margin-top: 40px; text-align: right;">
+
+      <ul class="list-unstyled mb-0">
+        <li>
+          <h5>+604 262 2990</h5>
+        </li>
+        <li>
+          <h5>15 Lebuh Leith,</h5>
+        </li>
+        <li>
+          <h5>George Town,</h5>
+        </li>
+        <li>
+          <h5>10200 Penang, Malaysia.</h5>
+        </li>
+      </ul>
+    </div>
+    <!--Grid column-->
+    <!--Grid column-->
     </div>
     <!--Grid row-->
   </div>
