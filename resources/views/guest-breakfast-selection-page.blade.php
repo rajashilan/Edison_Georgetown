@@ -55,53 +55,6 @@
 </nav>
 
 <!-- date -->
-<div class="row justify-content-center" style="margin-top:20px;">
-<div class="card col-md-2" style="margin-left: 25px;">
-  <div class="card-body">
-    Date:
-    <?php
-    date_default_timezone_set("Singapore");
-    echo date('d-m-Y');
-     ?>
-  </div>
-</div>
-
-<div class="card col-md-2" style="margin-left: 10px;">
-  <div class="card-body">
-    Time:
-    <?php
-    date_default_timezone_set("Singapore");
-    echo date("h:ia");
-     ?>
-  </div>
-</div>
-
-<div class="card col-md-2" style="margin-left: 10px;">
-  <div class="card-body">
-    <input class="date form-control" type="text" placeholder="Order Date">
-  </div>
-</div>
-<script type="text/javascript">
-    $('.date').datepicker({
-      format: "dd/mm/yyyy",
-      startDate: new Date()
-    });
-</script>
-
-<div class="card col-md-2" style="margin-left: 10px;">
-  <div class="card-body">
-    <input class="timepicker form-control" type="text" placeholder='Order Time'>
-    <?php
-
-     ?>
-  </div>
-</div>
-<script type="text/javascript">
-    $('.timepicker').datetimepicker({
-        format: 'HH:mm'
-    });
-</script>
-</div>
 
 <div class="row justify-content-center">
 <div class="col-md-3" style="margin-top: 20px;">
@@ -117,20 +70,59 @@
 </div>
 </div>
 
-<div class="row justify-content-center">
-<div class="card col-md-6" style="margin-top: 20px; margin-left: 10px;">
-  <div class="card-body">
-    Guest Room Number:
+<div class="row justify-content-center" style="margin-top: 10px;">
+<div class="card col-md-2" style="margin-left: 5px; margin-right: 5px; height: 50px; max-height: 50px">
+  <div class="card-body" style="display: flex; align-items: center">
+    Room Number:
     @foreach($room_mates as $room_mate)
     {{$room_mate->room_number}}
     @break
     @endforeach
   </div>
 </div>
+
+<div class="card col-md-2" style="margin-left: 5px; margin-right: 5px; max-height: 50px;">
+  <div class="card-body" style="display: flex; align-items: center;">
+    Date:
+    <?php
+    date_default_timezone_set("Singapore");
+    echo date('d-m-Y');
+     ?>
+  </div>
+</div>
+
+<div class="card col-md-2" style="margin-left: 5px; margin-right: 5px; max-height: 50px;">
+  <div class="card-body" style="display: flex; align-items: center;">
+    Time:
+    <?php
+    date_default_timezone_set("Singapore");
+    echo date("h:ia");
+     ?>
+  </div>
+</div>
+
+<div id="orderDate" class="col-md-2">
+    <input class="date form-control " data-format="dd-mm-yyyy" type="text" placeholder="Order Date" style="margin-left: -10px; height: 50px; max-height: 50px;">
+</div>
+<script type="text/javascript">
+    $('.date').datepicker({
+      format: "dd/mm/yyyy",
+      startDate: new Date()
+    });
+</script>
+
+<div id="orderTime" class="col-md-2">
+    <input class="timepicker form-control" data-format="hh:mm" type="text" placeholder='Order Time' style=" margin-left: -30px;height: 50px; max-height: 50px;">
+</div>
+<script type="text/javascript">
+    $('.timepicker').datetimepicker({
+        format: 'HH:mm'
+    });
+</script>
 </div>
 
 <div class="row justify-content-center">
-<table class="table table-bordered col-md-8" style="margin-top: 20px; margin-left: 10px">
+<table id="nameTable" class="table table-bordered col-md-8" style="margin-top: 20px; margin-left: 10px">
   <thead>
     <tr>
       <th scope="col">Name</th>
@@ -140,29 +132,41 @@
   </thead>
   <tbody>
     @foreach($room_mates as $room_mate)
-    <tr id="tr-{{$room_mate->booking_id}}">
+    <tr class="bookingIDUpload" id="{{$room_mate->booking_id}}">
       <th scope="row">{{$room_mate->customer_name}}</th>
-      <td id="td-{{$room_mate->booking_id}}">No selections made</td>
+      <td class ="breakfastUpload" id="td-{{$room_mate->booking_id}}">No selections made</td>
       <td>
         <div id="breakfastSelection" class="row justify-content-center">
-        <a href="{{route('update.breakfast.customer', $room_mate->booking_id)}}" class="btn btn-primary fas fa-plus" style="margin-left: 5px; margin-right: 5px; margin-top: 10px; background: #1E261D; border: none;"
+        <a href="" class="btn btn-primary fas fa-plus" style="margin-left: 5px; margin-right: 5px; margin-top: 10px; background: #1E261D; border: none;"
           onclick="event.preventDefault();
             $('input[type=checkbox]').prop('checked',false);
             document.getElementById('rd1').checked=true;
             selectingFor.innerText = 'Selecting for {{$room_mate->customer_name}}';
             customer_id.innerText = {{$room_mate->booking_id}};"
         ></a>
-        <button type="submit" class="btn btn-primary fas fa-save" style="margin-left: 5px; margin-right: 5px; margin-top: 10px; background: #1E261D; border: none;"></button>
-        <button type="submit" class="btn btn-primary fas fa-pencil-alt" style="margin-left: 5px; margin-right: 5px; margin-top: 10px; background: #1E261D; border: none;"></button>
-        <button type="submit" class="btn btn-primary fas fa-trash-alt" style="margin-left: 5px; margin-right: 5px; margin-top: 10px; background: #1E261D; border: none;"></button>
+        <button type="submit" class="btn btn-primary fas fa-pencil-alt" style="margin-left: 5px; margin-right: 5px; margin-top: 10px; background: #1E261D; border: none;"
+          onclick="
+          selectingFor.innerText = 'Editing for {{$room_mate->customer_name}}';
+          customer_id.innerText = {{$room_mate->booking_id}};
+          editSelection({{$room_mate->booking_id}});
+          "
+        ></button>
+        <button onclick="clearSelection({{$room_mate->booking_id}})" type="submit" class="btn btn-primary fas fa-trash-alt" style="margin-left: 5px; margin-right: 5px; margin-top: 10px; background: #1E261D; border: none;"></button>
         </div>
       </td>
     </tr>
     @endforeach
   </tbody>
 </table>
+</div>
+
+<div class="row justify-content-center">
+  <button id="saveCheckBox" onclick="saveCheckBox()" type="submit" class="btn btn-primary fas fa-save px-5 py-3" style="background: #1E261D; border: none; margin-right: 10px;"> Save</button>
+
+  <button onclick="uploadSelection()" type="submit" class="btn btn-primary px-5 py-3" style="margin-left: 10px; background: #1E261D; border: none;">Confirm Selection</button>
 
 </div>
+
 
 <div id="breakfastSelection">
 <div class="row" style="justify-content: center; margin-top: 30px; margin-bottom: 30px; margin-left: 20px; margin-right: 20px;">
@@ -170,250 +174,192 @@
     <h3 id ="selectingFor" style="text-align: center;">Make your breakfast selection: </h3>
     <p style="display: none; text-align: center;" id="customer_id"></p>
     <div class="tabs">
+      @foreach($groupID as $groupid)
       <div class="tab">
-        <input type="radio" id="rd1" name="rd">
-        <label class="tab-label" for="rd1">Local & Artisanal Bread</label>
+        <input type="radio" id="rd{{$loop->index+1}}" name="rd">
+        <label class="tab-label" for="rd{{$loop->index+1}}">{{$groupid->group_name}}</label>
         <div class="tab-content">
-          <label class="container">Croissant
-            <input type="checkbox" id="Croissant" onclick="checkBox(this.id)">
+          @foreach($breakfastSelection as $breakfastselection)
+            @if($breakfastselection->group_id == $groupid->breakfast_group_id)
+          <label class="container">
+            <input value="{{$breakfastselection->item_name}}" type="checkbox" id="{{$breakfastselection->breakfast_selection_id}}" onclick="checkBox(this.id)">
+              {{$breakfastselection->item_name}}
+            </input>
             <span class="checkmark"></span>
           </label>
-          <label class="container">Muesli
-            <input type="checkbox" id="Muesli" onclick="checkBox(this.id)">
-            <span class="checkmark"></span>
-          </label>
-          <label class="container">Farmers
-            <input type="checkbox" id="Farmers" onclick="checkBox(this.id)">
-            <span class="checkmark"></span>
-          </label>
-          <label class="container">Village Seed
-            <input type="checkbox" id="Village Seed" onclick="checkBox(this.id)">
-            <span class="checkmark"></span>
-          </label>
-          <label class="container">Butterscotch Muffin
-            <input type="checkbox" id="Butterscotch Muffin" onclick="checkBox(this.id)">
-            <span class="checkmark"></span>
-          </label>
+          @endif
+          @endforeach
         </div>
       </div>
-      <div class="tab">
-        <input type="radio" id="rd2" name="rd">
-        <label class="tab-label" for="rd2">Artisanal Jam & Spread</label>
-        <div class="tab-content">
-          <label class="container">Grapefruit Marmalade
-            <input type="checkbox" id="Grapefruit Marmalade" onclick="checkBox(this.id)">
-            <span class="checkmark"></span>
-          </label>
-          <label class="container">Pineapple & Cinnamon
-            <input type="checkbox" id="Pineapple & Cinnamon" onclick="checkBox(this.id)">
-            <span class="checkmark"></span>
-          </label>
-          <label class="container">Papaya & Nutmeg
-            <input type="checkbox" id="Papaya & Nutmeg" onclick="checkBox(this.id)">
-            <span class="checkmark"></span>
-          </label>
-          <label class="container">Kaya (Coconut Jam)
-            <input type="checkbox" id="Kaya (Coconut Jam)" onclick="checkBox(this.id)">
-            <span class="checkmark"></span>
-          </label>
-        </div>
-      </div>
-      <div class="tab">
-        <input type="radio" id="rd4" name="rd">
-        <label class="tab-label" for="rd4">Cheese</label>
-        <div class="tab-content">
-          <label class="container">Cheddar
-            <input type="checkbox" id="Cheddar" onclick="checkBox(this.id)">
-            <span class="checkmark"></span>
-          </label>
-          <label class="container">Spreadable Cheese
-            <input type="checkbox" id="Spreadable Cheese" onclick="checkBox(this.id)">
-            <span class="checkmark"></span>
-          </label>
-        </div>
-      </div>
-      <div class="tab">
-        <input type="radio" id="rd5" name="rd">
-        <label class="tab-label" for="rd5">Fresh Seasonal Fruit</label>
-        <div class="tab-content">
-          <label class="container">Papaya
-            <input type="checkbox" id="Papaya" onclick="checkBox(this.id)">
-            <span class="checkmark"></span>
-          </label>
-          <label class="container">Watermelon
-            <input type="checkbox" id="Watermelon" onclick="checkBox(this.id)">
-            <span class="checkmark"></span>
-          </label>
-          <label class="container">Dragonfruit
-            <input type="checkbox" id="Dragonfruit" onclick="checkBox(this.id)">
-            <span class="checkmark"></span>
-          </label>
-        </div>
-      </div>
-      <div class="tab">
-        <input type="radio" id="rd6" name="rd">
-        <label class="tab-label" for="rd6">Cereal</label>
-        <div class="tab-content">
-          <label class="container">Cornflakes
-            <input type="checkbox" id="Cornflakes" onclick="checkBox(this.id)">
-            <span class="checkmark"></span>
-          </label>
-          <label class="container">Frosties
-            <input type="checkbox" id="Frosties" onclick="checkBox(this.id)">
-            <span class="checkmark"></span>
-          </label>
-          <label class="container">Coco Pops
-            <input type="checkbox" id="Coco Pops" onclick="checkBox(this.id)">
-            <span class="checkmark"></span>
-          </label>
-          <label class="container">Fruit Loops
-            <input type="checkbox" id="Fruit Loops" onclick="checkBox(this.id)">
-            <span class="checkmark"></span>
-          </label>
-        </div>
-      </div>
-      <div class="tab">
-        <input type="radio" id="rd7" name="rd">
-        <label class="tab-label" for="rd7">Eggs (2 Per Serving)</label>
-        <div class="tab-content">
-          <!--
-          <label class="container">Sunny Side Up
-            <input type="checkbox" id="Sunny Side Up" onclick="checkBox(this.id)">
-            <span class="checkmark"></span>
-          </label>
-        -->
-          <label class="container">Omelette
-            <input type="checkbox" id="Omelette" onclick="checkBox(this.id)">
-            <span class="checkmark"></span>
-          </label>
-          <label class="container">Over Easy
-            <input type="checkbox" id="Over Easy" onclick="checkBox(this.id)">
-            <span class="checkmark"></span>
-          </label>
-          <label class="container">Hard Boiled
-            <input type="checkbox" id="Hard Boiled" onclick="checkBox(this.id)">
-            <span class="checkmark"></span>
-          </label>
-          <label class="container">Half Boiled
-            <input type="checkbox" id="Half Boiled" onclick="checkBox(this.id)">
-            <span class="checkmark"></span>
-          </label>
-          <label class="container">Scrambled
-            <input type="checkbox" id="Scrambled" onclick="checkBox(this.id)">
-            <span class="checkmark"></span>
-          </label>
-          <label class="container">Soft Boiled
-            <input type="checkbox" id="Soft Boiled" onclick="checkBox(this.id)">
-            <span class="checkmark"></span>
-          </label>
-        </div>
-      </div>
-      <div class="tab">
-        <input type="radio" id="rd8" name="rd">
-        <label class="tab-label" for="rd8">Juices & Milk</label>
-        <div class="tab-content">
-          <label class="container">Orange
-            <input type="checkbox" id="Orange" onclick="checkBox(this.id)">
-            <span class="checkmark"></span>
-          </label>
-          <label class="container">Pineapple
-            <input type="checkbox"  id="Pineapple" onclick="checkBox(this.id)">
-            <span class="checkmark"></span>
-          </label>
-          <label class="container">Pure Fresh Milk - Cold
-            <input type="checkbox"  id="Pure Fresh Milk - Cold" onclick="checkBox(this.id)">
-            <span class="checkmark"></span>
-          </label>
-          <label class="container">Full Cream Milk - Hot
-            <input type="checkbox"  id="Full Cream Milk - Hot" onclick="checkBox(this.id)">
-            <span class="checkmark"></span>
-          </label>
-        </div>
-      </div>
-      <div class="tab">
-        <input type="radio" id="rd9" name="rd">
-        <label class="tab-label" for="rd9">Gourmet Coffee</label>
-        <div class="tab-content">
-          <label class="container">Americano
-            <input type="checkbox" id="Americano" onclick="checkBox(this.id)">
-            <span class="checkmark"></span>
-          </label>
-          <label class="container">Cappuccino
-            <input type="checkbox" id="Cappuccino" onclick="checkBox(this.id)">
-            <span class="checkmark"></span>
-          </label>
-          <label class="container">Espresso (Single/Double)
-            <input type="checkbox" id="Espresso (Single/Double)" onclick="checkBox(this.id)">
-            <span class="checkmark"></span>
-          </label>
-          <label class="container">Latte
-            <input type="checkbox" id="Latte" onclick="checkBox(this.id)">
-            <span class="checkmark"></span>
-          </label>
-        </div>
-      </div>
-      <div class="tab">
-        <input type="radio" id="rd10" name="rd">
-        <label class="tab-label" for="rd10">Artisanal Tea</label>
-        <div class="tab-content">
-          <label class="container">English Breakfast
-            <input type="checkbox" id="English Breakfast" onclick="checkBox(this.id)">
-            <span class="checkmark"></span>
-          </label>
-          <label class="container">Lemongrass & Ginger
-            <input type="checkbox" id="Lemongrass & Ginger" onclick="checkBox(this.id)">
-            <span class="checkmark"></span>
-          </label>
-          <label class="container">Earl Grey
-            <input type="checkbox" id="Earl Grey" onclick="checkBox(this.id)">
-            <span class="checkmark"></span>
-          </label>
-          <label class="container">Red Berry
-            <input type="checkbox" id="Red Berry" onclick="checkBox(this.id)">
-            <span class="checkmark"></span>
-          </label>
-          <label class="container">Green
-            <input type="checkbox" id="Green" onclick="checkBox(this.id)">
-            <span class="checkmark"></span>
-          </label>
-          <label class="container">Chamomile
-            <input type="checkbox" id="Chamomile" onclick="checkBox(this.id)">
-            <span class="checkmark"></span>
-          </label>
-        </div>
-      </div>
-      <div class="tab">
-        <input type="radio" id="rd3" name="rd">
-        <label for="rd3" class="tab-close">Close All Tabs &times;</label>
-      </div>
+      @endforeach
     </div>
   </div>
   </div>
   </div>
 
   <div class="row justify-content-center" style="margin-right: 20px;">
-    <button id="saveCheckBox" onclick="saveCheckBox()" type="submit" class="btn btn-primary fas fa-save px-5 py-3" style="background: #1E261D; border: none;"> Save</button>
+    <button id="saveCheckBox" onclick="saveCheckBox()" type="submit" class="btn btn-primary fas fa-save px-5 py-3" style="background: #1E261D; border: none; "> legit (delete this)</button>
   </div>
 
   <script type="text/javascript">
-    //create food array to save the selection to the table
-    const food = [];
-
-    function checkBox(checkBox_id){
-      //push the selected checkboxes id value to the table
-      food.push(checkBox_id);
-    }
+    var customerID;
 
     function saveCheckBox(){
+
+      //get all the checkbox inputs that are checked and insert it into an array
+      var checkedSelection = document.querySelectorAll('#breakfastSelection input[type="checkbox"]:checked');
+      var food = [];
+      for (var i = 0; i < checkedSelection.length; i++) food.push(checkedSelection[i].value);
+
       //get the customer id from the hidden element
-      var customerID = document.getElementById('customer_id').innerText;
-      //save the selection to the row that has the selected user' ID
+      customerID = document.getElementById('customer_id').innerText;
+      //save the selection to the row that has the selected customer's ID
       document.getElementById('td-' + customerID).innerHTML = food;
       alert("Saved");
+
       //set the array back to 0 for the next user to use
       food.length = 0;
       //scroll to top
       window.scrollTo({top: 0, behavior: 'smooth'});
+
+    }
+
+    function clearSelection(id){
+
+      //get confirmation from user before deleting their selection
+      var confirm = window.confirm("Do you want to delete your selection?");
+
+      if(confirm == true){
+        document.getElementById('td-' + id).innerHTML = "No selections made";
+      }
+
+    }
+
+    function editSelection(id){
+
+      //uncheck all previously checked checkboxes
+      $('input[type=checkbox]').prop('checked',false);
+      //show the first selection row
+      document.getElementById('rd1').checked=true;
+      //get the food selection from the particular customer's row and remove the commmas
+      //insert it into an array
+      var food = document.getElementById('td-' + id).innerHTML;
+      var foodArray = food.split(',');
+
+      //run a for each loop for the array and check every checkbox that has the same values as the array elements
+      foodArray.forEach(loopFunction);
+
+      function loopFunction(index){
+        //document.getElementById(index).checked = true;
+        var checkedSelection = document.querySelectorAll('#breakfastSelection input[type="checkbox"]');
+        for (var i = 0; i < checkedSelection.length; i++){
+          if(checkedSelection[i].value == index){
+            checkedSelection[i].checked = true;
+          }
+        }
+      }
+
+    }
+
+
+    function uploadSelection(){
+      //get order date and order time input
+      var orderDate = $('input.datepicker').val();
+      var orderTime = $('input.timepicker').val();
+
+      var confirm = window.confirm("Do you want to send your request?");
+
+      var validate;
+
+  /*    if(orderDate == "" || orderTime == ""){
+        alert('Please select your order date and order time.');
+        validate = false;
+      } else {
+        validate = true;
+      }*/
+
+          if(confirm){
+
+          //get the rows of the guest table
+          //initiate some values
+          var table = document.getElementById('nameTable');
+          var rows = table.rows.length;
+          var bookingID = [];
+          var id;
+          var selection = {};
+          var currentSelectionID = [];
+          var getFoodID = document.querySelectorAll('#breakfastSelection input[type="checkbox"]');
+
+          //get the booking id from the rows
+          //push booking id into an array
+          for(var i = 1; i<rows; i++){
+            bookingID.push(table.rows[i].id);
+          }
+
+          //loop through booking id array
+          //get the particular booking id
+          //assign the particular booking id with the particular selection value
+          for (var j = 0; j<bookingID.length; j++) {
+
+            //particular id
+            id = bookingID[j];
+
+            //particular id's food selection
+            var food = document.getElementById('td-' + id).innerHTML;
+            var foodArray = food.split(',');
+            foodArray.forEach(loopFunction);
+
+            //for each customer
+            //get the food from table
+            //choose the checkboxes that has the same value as the food
+            //get the checkbox id and save it to an array
+            //save the id key and array value to selection array
+
+            function loopFunction(index){
+              for(var i = 0; i < getFoodID.length; i++){
+
+                if(getFoodID[i].value == index){
+                  currentSelectionID.push(getFoodID[i].id);
+                }
+              }
+            }
+
+            selection[id] = currentSelectionID;
+            currentSelectionID = [];
+          }
+
+          var sendSelection = encodeURIComponent(JSON.stringify(selection));
+
+          window.location.href = "{{ URL::to('/breakfast/submit/')}}" + "?selection="+sendSelection;
+
+          /*
+
+          $.ajax({
+            url: '/breakfast/submit',
+            type: 'POST',
+            dataType: 'json',
+            contentType: 'json',
+            data: {selection: JSON.stringify(selection)},
+            headers: {
+                'X-CSRF-Token': '{{ csrf_token() }}',
+                },
+          });
+
+
+*/
+
+/*
+
+          for (var key in selection){
+            document.write(key + "=>" + selection[key]);
+            document.write("</br>");
+          }
+*/
+
+
+        }
+
+
     }
   </script>
 
@@ -429,16 +375,27 @@
             <img src="images/logo@2x.jpg" alt="The Edison Georgetown" height="200px" width="max">
         </div>
         <!--Grid column-->
+        <!--Grid column-->
 
-        <!--Grid column-->
-        <div class="col-lg-6 col-md-12 mb-4 mb-md-0" style="text-align: right; margin-top: 40px;">
-          <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec urna sapien, fermentum at volutpat non, blandit ut felis.
-              Donec laoreet iaculis lacus, sed dignissim tellus fermentum a. Maecenas id elementum leo. Nunc tincidunt tempor laoreet.
-              Donec eu pulvinar lectus. Vestibulum massa justo, ultrices eu mollis sit amet, aliquam vitae nisl
-          </p>
-        </div>
-        <!--Grid column-->
+      <div class="col-lg-6 col-md-6 mb-4 mb-md-0" style="margin-top: 40px; text-align: right;">
+
+        <ul class="list-unstyled mb-0">
+          <li>
+            <h5>+604 262 2990</h5>
+          </li>
+          <li>
+            <h5>15 Lebuh Leith,</h5>
+          </li>
+          <li>
+            <h5>George Town,</h5>
+          </li>
+          <li>
+            <h5>10200 Penang, Malaysia.</h5>
+          </li>
+        </ul>
+      </div>
+      <!--Grid column-->
+      <!--Grid column-->
       </div>
       <!--Grid row-->
     </div>
@@ -459,5 +416,6 @@
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   </body>
 </html>

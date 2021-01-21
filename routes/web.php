@@ -49,6 +49,10 @@ Route::get('/breakfast', function () {
     return view('guest-breakfast-selection-page');
 });
 
+Route::get('/trial', function () {
+    return view('guest-breakfast-selection-page-trial');
+});
+
 
 Route::get('/{user}', [UserController::class, 'login'])->name('user.select');
 Route::post('/guestlogin', [UserController::class, 'loginGuest'])->name('login.guest');
@@ -57,7 +61,10 @@ Route::get('/addcustomer', [UserController::class, 'generatePassword']);
 Route::post('/addcustomer', [UserController::class, 'addCustomer'])->name('add.customer');
 Route::get('/showcustomer', [CustomerController::class, 'showCustomers']);
 Route::get('/breakfast', [CustomerController::class, 'showCustomerBreakfast']);
-Route::get('/breakfast/{booking_id}', [CustomerController::class, 'updateCustomerBreakfastSelection'])->name('update.breakfast.customer');
+Route::get('/breakfast/submit', [CustomerController::class, 'submitCustomerBreakfastSelection'])->name('submit.breakfast.customer');
+Route::get('/trial', [CustomerController::class, 'showCustomerBreakfastTrial']);
+Route::get('/trial/{booking_id}', [CustomerController::class, 'updateCustomerBreakfastSelectionTrial'])->name('update.breakfast.customer.trial');
+Route::get('/breakfastrecords', [CustomerController::class, 'showBreakfastRecords']);
 
 Auth::routes();
 

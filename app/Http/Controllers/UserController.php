@@ -24,8 +24,7 @@ class UserController extends Controller
     $password = $request->password;
 
     //call stored procedure to select guest based on input
-    $guestLogin = DB::select('call GetCustomerByBookingID(?,?)',
-                array($bookingID, $password));
+    $guestLogin = DB::select('select * from customers where booking_id = ? and password = ?', [$bookingID, $password]);
 
     //login guest if inputs are valid
     if($guestLogin){
@@ -43,8 +42,7 @@ class UserController extends Controller
     $staffID = $request->staffID;
     $password = $request->password;
 
-    $staffLogin = DB::select('call GetStaffByID(?,?)',
-                array($staffID, $password));
+    $staffLogin = DB::select('select * from users where staff_id = ? and password = ?', [$staffID, $password]);
 
     if($staffLogin){
       return redirect('/staffhome');

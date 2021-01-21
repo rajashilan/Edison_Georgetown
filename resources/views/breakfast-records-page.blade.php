@@ -59,18 +59,20 @@
   <div class="card text-white bg-success mb-3" style="max-width: 18rem; max-height: 140px; margin-right: 10px;">
     <div class="card-header">Completed Breakfast Requests</div>
     <div class="card-body" style="text-align: center;">
-      <h1>21</h1>
+      <h1>{{$countCompleted}}</h1>
     </div>
   </div>
 
   <div class="card text-dark bg-warning mb-3" style="max-width: 18rem; max-height: 140px; margin-right: 10px;">
   <div class="card-header">Pending Breakfast Requests</div>
   <div class="card-body" style="text-align: center;">
-    <h1>10</h1>
+    <h1>{{$countPending}}</h1>
   </div>
 </div>
 
 <div id="accordion" class="col-md-6">
+  @foreach($breakfastRecords as $records)
+  @foreach($customers as $customer)
   <div class="card">
     <div class="card-header">
       <a class="card-link" data-toggle="collapse" href="#21">
@@ -126,120 +128,8 @@
       </div>
     </div>
   </div>
-
-  <div class="card">
-    <div class="card-header">
-      <a class="card-link" data-toggle="collapse" href="#203">
-        Room Number 203
-      </a>
-    </div>
-    <div id="203" class="collapse" data-parent="#accordion">
-      <div class="card-body">
-        <ul class="list-group list-group-flush">
-          <li class="list-group-item">
-          <h5 class="card-title">Jack</h5>
-          <p class="card-text">muesli, latte, croissants</p>
-          <div class="form-check">
-            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-            <label class="form-check-label" for="flexCheckDefault">
-              Noted
-            </label>
-          </div>
-          <div class="form-floating" style="margin-top: 10px;">
-            <textarea class="form-control" placeholder="Leave a remark here" id="floatingTextarea2" style="height: 100px"></textarea>
-          </div>
-          </li>
-          <li class="list-group-item">
-          <h5 class="card-title">Mark</h5>
-          <p class="card-text">americano, pineapple, scrambled</p>
-          <div class="form-check">
-            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-            <label class="form-check-label" for="flexCheckDefault">
-              Noted
-            </label>
-          </div>
-          <div class="form-floating" style="margin-top: 10px;">
-            <textarea class="form-control" placeholder="Leave a remark here" id="floatingTextarea2" style="height: 100px"></textarea>
-          </div>
-          </li>
-          <li class="list-group-item">
-          <h5 class="card-title">John</h5>
-          <p class="card-text">soft boiled, fruit loops, croissants</p>
-          <div class="form-check">
-            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-            <label class="form-check-label" for="flexCheckDefault">
-              Noted
-            </label>
-          </div>
-          <div class="form-floating" style="margin-top: 10px;">
-            <textarea class="form-control" placeholder="Leave a remark here" id="floatingTextarea2" style="height: 100px"></textarea>
-          </div>
-          </li>
-          <li class="list-group-item">
-            <button type="submit" class="btn btn-primary" style="width: 100%; background: #1E261D; border: none;">Confirm</button>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </div>
-
-
-
-  <div class="card">
-    <div class="card-header">
-      <a class="card-link" data-toggle="collapse" href="#312">
-        Room Number 312
-      </a>
-    </div>
-    <div id="312" class="collapse" data-parent="#accordion">
-      <div class="card-body">
-        <ul class="list-group list-group-flush">
-          <li class="list-group-item">
-          <h5 class="card-title">Jack</h5>
-          <p class="card-text">muesli, latte, croissants</p>
-          <div class="form-check">
-            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-            <label class="form-check-label" for="flexCheckDefault">
-              Noted
-            </label>
-          </div>
-          <div class="form-floating" style="margin-top: 10px;">
-            <textarea class="form-control" placeholder="Leave a remark here" id="floatingTextarea2" style="height: 100px"></textarea>
-          </div>
-          </li>
-          <li class="list-group-item">
-          <h5 class="card-title">Mark</h5>
-          <p class="card-text">americano, pineapple, scrambled</p>
-          <div class="form-check">
-            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-            <label class="form-check-label" for="flexCheckDefault">
-              Noted
-            </label>
-          </div>
-          <div class="form-floating" style="margin-top: 10px;">
-            <textarea class="form-control" placeholder="Leave a remark here" id="floatingTextarea2" style="height: 100px"></textarea>
-          </div>
-          </li>
-          <li class="list-group-item">
-          <h5 class="card-title">John</h5>
-          <p class="card-text">soft boiled, fruit loops, croissants</p>
-          <div class="form-check">
-            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-            <label class="form-check-label" for="flexCheckDefault">
-              Noted
-            </label>
-          </div>
-          <div class="form-floating" style="margin-top: 10px;">
-            <textarea class="form-control" placeholder="Leave a remark here" id="floatingTextarea2" style="height: 100px"></textarea>
-          </div>
-          </li>
-          <li class="list-group-item">
-            <button type="submit" class="btn btn-primary" style="width: 100%; background: #1E261D; border: none;">Confirm</button>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </div>
+  @endforeach
+  @endforeach
 </div>
 </div>
 
