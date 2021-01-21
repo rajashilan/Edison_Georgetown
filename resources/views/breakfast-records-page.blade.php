@@ -71,64 +71,45 @@
 </div>
 
 <div id="accordion" class="col-md-6">
-  @foreach($breakfastRecords as $records)
-  @foreach($customers as $customer)
-  <div class="card">
+  @foreach($room_numbers as $room_number)
+  <div class="card" style="margin-bottom: 10px;">
     <div class="card-header">
-      <a class="card-link" data-toggle="collapse" href="#21">
-        Room Number 21
+      <a class="card-link" data-toggle="collapse" href="#{{$room_number->room_number}}">
+        {{$room_number->room_number}}
       </a>
     </div>
-    <div id="21" class="collapse show" data-parent="#accordion">
+    <div id="{{$room_number->room_number}}" class="collapse" data-parent="#accordion">
       <div class="card-body">
         <ul class="list-group list-group-flush">
+          @foreach($breakfastSelections as $breakfastSelection)
+          @if($breakfastSelection->room_number == $room_number->room_number)
           <li class="list-group-item">
-          <h5 class="card-title">Jack</h5>
-          <p class="card-text">muesli, latte, croissants, americano, pineapple, scrambled</p>
-          <div class="form-check">
-            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-            <label class="form-check-label" for="flexCheckDefault">
-              Noted
-            </label>
-          </div>
+          <h3 class="card-title">{{$breakfastSelection->customer_name}}</h3>
+              @foreach(explode(',', $breakfastSelection->breakfast_selection_id) as $selection_id)
+              @foreach($food as $foods)
+              @if($foods->breakfast_selection_id == $selection_id)
+               [{{$foods->item_name}}]
+              @endif
+              @endforeach
+              @endforeach
+              <!--
           <div class="form-floating" style="margin-top: 10px;">
-            <textarea class="form-control" placeholder="Leave a remark here" id="floatingTextarea2" style="height: 100px"></textarea>
+            <textarea class="form-control" placeholder="Leave a remark here" id="remark" style="height: 100px"></textarea>
           </div>
+        -->
           </li>
+          @endif
+          @endforeach
           <li class="list-group-item">
-          <h5 class="card-title">Mark</h5>
-          <p class="card-text">americano, pineapple, scrambled</p>
-          <div class="form-check">
-            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-            <label class="form-check-label" for="flexCheckDefault">
-              Noted
-            </label>
-          </div>
-          <div class="form-floating" style="margin-top: 10px;">
-            <textarea class="form-control" placeholder="Leave a remark here" id="floatingTextarea2" style="height: 100px"></textarea>
-          </div>
-          </li>
-          <li class="list-group-item">
-          <h5 class="card-title">John</h5>
-          <p class="card-text">soft boiled, fruit loops, croissants</p>
-          <div class="form-check">
-            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-            <label class="form-check-label" for="flexCheckDefault">
-              Noted
-            </label>
-          </div>
-          <div class="form-floating" style="margin-top: 10px;">
-            <textarea class="form-control" placeholder="Leave a remark here" id="floatingTextarea2" style="height: 100px"></textarea>
-          </div>
-          </li>
-          <li class="list-group-item">
+            <form action="{{route('submit.breakfast.records', $room_number->room_number)}}" method="post">
+              @csrf
             <button type="submit" class="btn btn-primary" style="width: 100%; background: #1E261D; border: none;">Confirm</button>
+            </form>
           </li>
         </ul>
       </div>
     </div>
   </div>
-  @endforeach
   @endforeach
 </div>
 </div>
@@ -147,16 +128,27 @@
           <img src="images/logo@2x.jpg" alt="The Edison Georgetown" height="200px" width="max">
       </div>
       <!--Grid column-->
+      <!--Grid column-->
 
-      <!--Grid column-->
-      <div class="col-lg-6 col-md-12 mb-4 mb-md-0" style="text-align: right; margin-top: 40px;">
-        <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec urna sapien, fermentum at volutpat non, blandit ut felis.
-            Donec laoreet iaculis lacus, sed dignissim tellus fermentum a. Maecenas id elementum leo. Nunc tincidunt tempor laoreet.
-            Donec eu pulvinar lectus. Vestibulum massa justo, ultrices eu mollis sit amet, aliquam vitae nisl
-        </p>
-      </div>
-      <!--Grid column-->
+    <div class="col-lg-6 col-md-6 mb-4 mb-md-0" style="margin-top: 40px; text-align: right;">
+
+      <ul class="list-unstyled mb-0">
+        <li>
+          <h5>+604 262 2990</h5>
+        </li>
+        <li>
+          <h5>15 Lebuh Leith,</h5>
+        </li>
+        <li>
+          <h5>George Town,</h5>
+        </li>
+        <li>
+          <h5>10200 Penang, Malaysia.</h5>
+        </li>
+      </ul>
+    </div>
+    <!--Grid column-->
+    <!--Grid column-->
     </div>
     <!--Grid row-->
   </div>

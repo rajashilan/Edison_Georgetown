@@ -52,18 +52,20 @@ class UserController extends Controller
     }
   }
 
-  public function generatePassword(){
-    $password = rand(100000,999999);
-    return view('add-customer-page', compact('password'));
-  }
 
   public function addCustomer(Request $request){
-    $password = $request->password;
+    $password = rand(100000,999999);
     $insert = DB::insert('insert into customers (customer_name, email, contact_number, room_number, booking_id, password, status) values (?, ?, ?, ?, ?, ?, ?)',
     [$request->name, $request->email, $request->contact_number, $request->room_number, $request->booking_id, $password, 1]);
 
+    $name = $request->name;
+    $email = $request->email;
+    $contact_number = $request->contact_number;
+    $room_number = $request->room_number;
+    $bookingID = $request->booking_id;
+
     if($insert){
-      return redirect()->back()->with('success', 'Successfully added.');
+      return view('add-customer-page', compact('name', 'email', 'contact_number', 'room_number', 'bookingID', 'password'))->with('success', 'Successfully added. Please send an email to the guest.');
     } else {
       return redirect()->back()->with('fail', 'Failed to add Guest');
     }

@@ -91,8 +91,8 @@ class CustomerController extends Controller
       echo $key . " => " . $sqlFood;
       echo "</br>";
 
-      $submit = DB::insert('insert into customer_breakfast_orders (booking_id, breakfast_selection_id) values (?,?)',
-      [$key, $sqlFood]);
+      $submit = DB::insert('insert into customer_breakfast_orders (booking_id, breakfast_selection_id, status) values (?,?,?)',
+      [$key, $sqlFood, 0]);
       $sqlFood = '';
     }
 
@@ -107,7 +107,26 @@ class CustomerController extends Controller
     $customers = DB::select('select booking_id, room_number from customers');
     $countCompleted = 0;
     $countPending = 0;
-    $room_numbers = DB::select('select distinct room_number from customers');
+    $breakfastSelections = DB::select('
+      select food.*, customer.*
+      from customer_breakfast_orders food
+      inner join
+      (select *
+      from customers) customer
+      on food.booking_id = customer.booking_id
+      where food.status = 0
+    ');
+
+    $room_numbers = DB::select('
+      select food.*, customer.*
+      from customer_breakfast_orders food
+      inner join
+      (select *
+      from customers) customer
+      on food.booking_id = customer.booking_id
+      where food.status = 0
+      group by customer.room_number
+    ');
 
     foreach($breakfastRecords as $records){
     if($records->status == 1){
@@ -120,13 +139,16 @@ class CustomerController extends Controller
     $countPending += 1;
   }
 }
-    return view('breakfast-records-page', compact('breakfastRecords', 'customers', 'food', 'countCompleted', 'countPending', 'room_numbers'));
+    return view('breakfast-records-page', compact('breakfastRecords', 'customers', 'food', 'countCompleted', 'countPending', 'room_numbers', 'breakfastSelections'));
   }
+
+  public function submitBreakfastRecords(Request $request, $room_number){
+    $userIDs = DB::select('select booking_id from customers where room_number = ?', [$room_number]);
+    foreach($userIDs as $id){
+      $completed = DB::update('update customer_breakfast_orders set status = 1 where booking_id = ? ', [$id->booking_id]);
+    }
+
+    return redirect()->back();
+  }
+
 }
-
-
-//loop through all id
-//get the id's room number
-//if same room number
-//put the id in the same card
-//get each id's name and food selection

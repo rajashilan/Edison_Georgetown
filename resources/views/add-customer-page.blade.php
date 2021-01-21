@@ -77,30 +77,41 @@
       @csrf
       <div class="mb-3">
         <label for="name" class="form-label">Name</label>
-        <input type="text" class="form-control" id="name" name="name">
+        <input placeholder="{{$name ?? ''}}" type="text" class="form-control" id="name" name="name">
       </div>
       <div class="mb-3">
         <label for="email" class="form-label">Email address</label>
-        <input type="email" class="form-control" id="email" name="email">
+        <input placeholder="{{$email ?? ''}}" type="email" class="form-control" id="email" name="email">
       </div>
       <div class="mb-3">
         <label for="contact_number" class="form-label">Contact Number</label>
-        <input type="text" class="form-control" id="contact_number" name="contact_number">
+        <input placeholder="{{$contact_number ?? ''}}" type="text" class="form-control" id="contact_number" name="contact_number">
     </div>
       <div class="mb-3">
         <label for="room_number" class="form-label">Room Number</label>
-        <input type="text" class="form-control" id="room_number" name="room_number">
+        <input placeholder="{{$room_number ?? ''}}" type="text" class="form-control" id="room_number" name="room_number">
       </div>
       <div class="mb-3">
         <label for="booking_id" class="form-label">Booking ID</label>
-        <input type="text" class="form-control" id="booking_id" name="booking_id">
+        <input placeholder="{{$bookingID ?? ''}}" type="text" class="form-control" id="booking_id" name="booking_id">
         </div>
 
         <div class="mb-3">
-          <label for="staticPassword" class="form-label">Password</label>
+          <label for="staticPassword" class="form-label">Password (will be generated automatically)</label>
           <input type="text" readonly class="form-control-plaintext" id="staticPassword" value="{{$password ?? ''}}" name="password">
         </div>
-        <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 20px; background: #1E261D; border: none;">Add Customer</button>
+        <div class="row" style="display: flex; justify-content: center;">
+        <button type="submit" class="btn btn-primary" style="width: 70%; margin-right: 5px; margin-left: 5px; margin-top: 20px; background: #1E261D; border: none;">Add Customer</button>
+        <button type="button" id="newButton" class="btn btn-primary" style="width: 25%; margin-right: 5px; margin-left: 5px; margin-top: 20px; background: #1E261D; border: none;"
+          onclick="
+          var confirm = window.confirm('Proceed only if you have emailed the customer.');
+
+          if(confirm){
+            window.location.reload(true);
+          }
+          "
+        >New</button>
+        </div>
       </form>
 
   </div>
@@ -117,16 +128,27 @@
           <img src="images/logo@2x.jpg" alt="The Edison Georgetown" height="200px" width="max">
       </div>
       <!--Grid column-->
+      <!--Grid column-->
 
-      <!--Grid column-->
-      <div class="col-lg-6 col-md-12 mb-4 mb-md-0" style="text-align: right; margin-top: 40px;">
-        <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec urna sapien, fermentum at volutpat non, blandit ut felis.
-            Donec laoreet iaculis lacus, sed dignissim tellus fermentum a. Maecenas id elementum leo. Nunc tincidunt tempor laoreet.
-            Donec eu pulvinar lectus. Vestibulum massa justo, ultrices eu mollis sit amet, aliquam vitae nisl
-        </p>
-      </div>
-      <!--Grid column-->
+    <div class="col-lg-6 col-md-6 mb-4 mb-md-0" style="margin-top: 40px; text-align: right;">
+
+      <ul class="list-unstyled mb-0">
+        <li>
+          <h5>+604 262 2990</h5>
+        </li>
+        <li>
+          <h5>15 Lebuh Leith,</h5>
+        </li>
+        <li>
+          <h5>George Town,</h5>
+        </li>
+        <li>
+          <h5>10200 Penang, Malaysia.</h5>
+        </li>
+      </ul>
+    </div>
+    <!--Grid column-->
+    <!--Grid column-->
     </div>
     <!--Grid row-->
   </div>
