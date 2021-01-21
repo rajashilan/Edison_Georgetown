@@ -68,6 +68,9 @@
   <div class="form-group">
     <label for="password">Password</label>
     <input type="password" class="form-control" id="password" name="password" placeholder="Password">
+    <a class="form-text text-muted small" href="{{ route('password.request') }}">
+    {{ __('Forgot Your Password?') }}
+    </a>  
   </div>
   <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 20px; background: #1E261D; border: none;">Log In</button>
 </form>
@@ -83,6 +86,9 @@
   <div class="form-group">
     <label for="password">Password</label>
     <input type="password" class="form-control" id="password" name="password" placeholder="Password">
+    <a class="form-text text-muted small" href="{{ route('password.request') }}">
+    {{ __('Forgot Your Password?') }}
+    </a>
   </div>
   <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 20px; background: #1E261D; border: none;">Log In</button>
 </form>
