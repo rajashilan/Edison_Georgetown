@@ -16,6 +16,7 @@ class CreateFeedbackQuestionsTable extends Migration
         Schema::create('feedback_questions', function (Blueprint $table) {
             $table->id('f_q_id');
             $table->tinyInteger('type');
+            $table->string('question');
             $table->integer('version');
             $table->tinyInteger('status')->default(1);
             $table->timestamps();
