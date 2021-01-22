@@ -40,16 +40,19 @@
       <li class="nav-item active">
         <a class="nav-link" href="/breakfast">Breakfast Selection<span class="sr-only">(current)</span></a>
       </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/feedback-form">Feedback</a>
+      </li>
       <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Me
-              </a>
-              <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                <a class="dropdown-item" href="#">Info</a>
-                <a class="dropdown-item" href="#">Account Settings</a>
-                <a class="dropdown-item" href="#">Log Out</a>
-              </div>
-            </li>
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Me
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+        <a class="dropdown-item" href="#">Info</a>
+        <a class="dropdown-item" href="#">Account Settings</a>
+        <a class="dropdown-item" href="#">Log Out</a>
+        </div>
+      </li>
     </ul>
   </div>
 </nav>
