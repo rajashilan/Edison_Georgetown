@@ -53,6 +53,10 @@ Route::get('/trial', function () {
     return view('guest-breakfast-selection-page-trial');
 });
 
+Route::get('/feedback-form', function () {
+    return view('feedback-rating.form');
+});
+
 
 Route::get('/{user}', [UserController::class, 'login'])->name('user.select');
 Route::post('/guestlogin', [UserController::class, 'loginGuest'])->name('login.guest');
