@@ -35,23 +35,23 @@
     {{-- <input type="text" class="form-control" id="feedback-question1" name="feedback-question1" aria-describedby="emailHelp" placeholder="Enter Booking ID"> --}}
     <div class="form-check form-check-inline">
       <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
-      <label class="form-check-label" for="inlineRadio1">Option one</label>
+      <label class="form-check-label" for="inlineRadio1">Very Poor</label>
     </div>
     <div class="form-check form-check-inline">
       <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
-      <label class="form-check-label" for="inlineRadio2">Option Two</label>
+      <label class="form-check-label" for="inlineRadio2">Poor</label>
     </div>
     <div class="form-check form-check-inline">
       <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3">
-      <label class="form-check-label" for="inlineRadio3">Option tree</label>
+      <label class="form-check-label" for="inlineRadio3">Fair</label>
     </div>
     <div class="form-check form-check-inline">
       <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio4" value="option4">
-      <label class="form-check-label" for="inlineRadio4">Option four</label>
+      <label class="form-check-label" for="inlineRadio4">Good</label>
     </div>
     <div class="form-check form-check-inline">
       <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio5" value="option5">
-      <label class="form-check-label" for="inlineRadio5">Option five</label>
+      <label class="form-check-label" for="inlineRadio5">Excellent</label>
     </div>
   </div>
 
@@ -60,24 +60,24 @@
     <br/>
     {{-- <input type="text" class="form-control" id="feedback-question1" name="feedback-question1" aria-describedby="emailHelp" placeholder="Enter Booking ID"> --}}
     <div class="form-check form-check-inline">
-      <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
-      <label class="form-check-label" for="inlineRadio1">Option one</label>
+      <input class="form-check-input" type="radio" name="inlineRadioOptions2" id="inlineRadio6" value="option6">
+      <label class="form-check-label" for="inlineRadio6">Very Poor</label>
     </div>
     <div class="form-check form-check-inline">
-      <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
-      <label class="form-check-label" for="inlineRadio2">Option Two</label>
+      <input class="form-check-input" type="radio" name="inlineRadioOptions2" id="inlineRadio7" value="option7">
+      <label class="form-check-label" for="inlineRadio7">Poor</label>
     </div>
     <div class="form-check form-check-inline">
-      <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3">
-      <label class="form-check-label" for="inlineRadio3">Option tree</label>
+      <input class="form-check-input" type="radio" name="inlineRadioOptions2" id="inlineRadio8" value="option8">
+      <label class="form-check-label" for="inlineRadio8">Fair</label>
     </div>
     <div class="form-check form-check-inline">
-      <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio4" value="option4">
-      <label class="form-check-label" for="inlineRadio4">Option four</label>
+      <input class="form-check-input" type="radio" name="inlineRadioOptions2" id="inlineRadio9" value="option9">
+      <label class="form-check-label" for="inlineRadio9">Good</label>
     </div>
     <div class="form-check form-check-inline">
-      <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio5" value="option5">
-      <label class="form-check-label" for="inlineRadio5">Option five</label>
+      <input class="form-check-input" type="radio" name="inlineRadioOptions2" id="inlineRadio10" value="option10">
+      <label class="form-check-label" for="inlineRadio10">Excellent</label>
     </div>
   </div>
 
@@ -86,24 +86,24 @@
     <br/>
     {{-- <input type="text" class="form-control" id="feedback-question1" name="feedback-question1" aria-describedby="emailHelp" placeholder="Enter Booking ID"> --}}
     <div class="form-check form-check-inline">
-      <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
-      <label class="form-check-label" for="inlineRadio1">Option one</label>
+      <input class="form-check-input" type="radio" name="inlineRadioOptions3" id="inlineRadio11" value="option11">
+      <label class="form-check-label" for="inlineRadio11">Very Poor</label>
     </div>
     <div class="form-check form-check-inline">
-      <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
-      <label class="form-check-label" for="inlineRadio2">Option Two</label>
+      <input class="form-check-input" type="radio" name="inlineRadioOptions3" id="inlineRadio12" value="option12">
+      <label class="form-check-label" for="inlineRadio12">Poor</label>
     </div>
     <div class="form-check form-check-inline">
-      <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3">
-      <label class="form-check-label" for="inlineRadio3">Option tree</label>
+      <input class="form-check-input" type="radio" name="inlineRadioOptions3" id="inlineRadio13" value="option13">
+      <label class="form-check-label" for="inlineRadio13">Fair</label>
     </div>
     <div class="form-check form-check-inline">
-      <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio4" value="option4">
-      <label class="form-check-label" for="inlineRadio4">Option four</label>
+      <input class="form-check-input" type="radio" name="inlineRadioOptions3" id="inlineRadio14" value="option14">
+      <label class="form-check-label" for="inlineRadio14">Good</label>
     </div>
     <div class="form-check form-check-inline">
-      <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio5" value="option5">
-      <label class="form-check-label" for="inlineRadio5">Option five</label>
+      <input class="form-check-input" type="radio" name="inlineRadioOptions3" id="inlineRadio15" value="option15">
+      <label class="form-check-label" for="inlineRadio15">Excellent</label>
     </div>
   </div>
 
