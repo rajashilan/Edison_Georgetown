@@ -142,7 +142,9 @@
             $('input[type=checkbox]').prop('checked',false);
             document.getElementById('rd1').checked=true;
             selectingFor.innerText = 'Selecting for {{$room_mate->customer_name}}';
-            customer_id.innerText = {{$room_mate->booking_id}};"
+            customer_id.innerText = {{$room_mate->booking_id}};
+              alert({{$room_mate->booking_id}});
+            "
         ></a>
         <button type="submit" class="btn btn-primary fas fa-pencil-alt" style="margin-left: 5px; margin-right: 5px; margin-top: 10px; background: #1E261D; border: none;"
           onclick="
@@ -172,7 +174,7 @@
 <div class="row" style="justify-content: center; margin-top: 30px; margin-bottom: 30px; margin-left: 20px; margin-right: 20px;">
   <div class="col-md-12 col-xs-9">
     <h3 id ="selectingFor" style="text-align: center;">Make your breakfast selection: </h3>
-    <p style="display: none; text-align: center;" id="customer_id"></p>
+    <p style="text-align: center;" id="customer_id"></p>
     <div class="tabs">
       @foreach($groupID as $groupid)
       <div class="tab">
