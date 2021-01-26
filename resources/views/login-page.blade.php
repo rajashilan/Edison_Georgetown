@@ -8,7 +8,7 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
-    <title>Hello, world!</title>
+    <title>Login</title>
   </head>
   <body>
 
@@ -60,6 +60,14 @@
 <!-- login guest -->
 <form style="margin-top: 20px;" action="{{route('login.guest')}}" method="post">
   @csrf
+
+  @if (session('fail'))
+      <div class="alert alert-warning alert-dismissible" auto-close="5000" style="margin-bottom: 10px; auto; width: 100%;">
+          {{ session('fail') }}
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span>
+      </div>
+  @endif
+
   <div class="form-group">
     <label for="bookingID">Booking ID</label>
     <input type="text" class="form-control" id="bookingID" name="bookingID" aria-describedby="emailHelp" placeholder="Enter Booking ID">
@@ -70,7 +78,7 @@
     <input type="password" class="form-control" id="password" name="password" placeholder="Password">
     <a class="form-text text-muted small" href="{{ route('password.request') }}">
     {{ __('Forgot Your Password?') }}
-    </a>  
+    </a>
   </div>
   <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 20px; background: #1E261D; border: none;">Log In</button>
 </form>
@@ -79,6 +87,14 @@
 <!-- login staff -->
 <form style="margin-top: 20px;" action="{{route('login.staff')}}" method="post">
   @csrf
+
+  @if (session('fail'))
+      <div class="alert alert-warning alert-dismissible" auto-close="5000" style="margin-bottom: 10px; auto; width: 100%;">
+          {{ session('fail') }}
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span>
+      </div>
+  @endif
+  
   <div class="form-group">
     <label for="staffID">Staff ID</label>
     <input type="text" class="form-control" id="staffID" name="staffID" aria-describedby="emailHelp" placeholder="Enter Staff ID">

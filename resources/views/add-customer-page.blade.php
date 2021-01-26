@@ -8,7 +8,7 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
-    <title>Hello, world!</title>
+    <title>Add customer</title>
   </head>
   <body>
 
@@ -25,9 +25,9 @@
       <li class="nav-item active">
         <a class="nav-link" href="#">Home<span class="sr-only">(current)</span></a>
       </li>
-      <li class="nav-item">
+      <!-- <li class="nav-item">
         <a class="nav-link" href="#">Amenities Records</a>
-      </li>
+      </li> -->
       <li class="nav-item">
         <a class="nav-link" href="/breakfastrecords">Breakfast Records</a>
       </li>
@@ -47,7 +47,7 @@
               <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                 <a class="dropdown-item" href="#">Info</a>
                 <a class="dropdown-item" href="#">Account Settings</a>
-                <a class="dropdown-item" href="#">Log Out</a>
+                <a class="dropdown-item" href="/logoutstaff">Log Out</a>
               </div>
             </li>
     </ul>
@@ -77,7 +77,10 @@
       @csrf
       <div class="mb-3">
         <label for="name" class="form-label">Name</label>
-        <input placeholder="{{$name ?? ''}}" type="text" class="form-control" id="name" name="name">
+        <input placeholder="{{$name ?? ''}}" type="text" class="form-control" id="name" name="name" aria-describedby="nameHelpInline">
+          <span id="nameHelpInline" style="color: red; font-size: small;">
+            *required
+          </span>
       </div>
       <div class="mb-3">
         <label for="email" class="form-label">Email address</label>
@@ -89,11 +92,17 @@
     </div>
       <div class="mb-3">
         <label for="room_number" class="form-label">Room Number</label>
-        <input placeholder="{{$room_number ?? ''}}" type="text" class="form-control" id="room_number" name="room_number">
+        <input placeholder="{{$room_number ?? ''}}" type="text" class="form-control" id="room_number" name="room_number" aria-describedby="roomHelpInline">
+        <span id="roomHelpInline" style="color: red; font-size: small;">
+          *required
+        </span>
       </div>
       <div class="mb-3">
         <label for="booking_id" class="form-label">Booking ID</label>
-        <input placeholder="{{$bookingID ?? ''}}" type="text" class="form-control" id="booking_id" name="booking_id">
+        <input placeholder="{{$bookingID ?? ''}}" type="text" class="form-control" id="booking_id" name="booking_id" aria-describedby="bookingIDHelpInline">
+        <span id="bookingIDHelpInline" style="color: red; font-size: small;">
+          *required
+        </span>
         </div>
 
         <div class="mb-3">

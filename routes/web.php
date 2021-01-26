@@ -27,11 +27,19 @@ Route::get('/guesthome', function () {
 
 Route::get('/staffhome', function () {
     return view('staff-home-page');
+})->middleware('checkStaff');
+
+Route::get('/logoutguest', function () {
+    return view('home-page');
+});
+
+Route::get('/logoutstaff', function () {
+    return view('home-page');
 });
 
 Route::get('/addcustomer', function () {
     return view('add-customer-page');
-});
+})->middleware('checkStaff');
 
 Route::get('/showcustomer', function () {
     return view('view-customer-page');
@@ -39,7 +47,7 @@ Route::get('/showcustomer', function () {
 
 Route::get('/breakfastrecords', function () {
     return view('breakfast-records-page');
-});
+})->middleware('checkStaff');
 
 Route::get('/amenities', function () {
     return view('guest-amenities-page');
@@ -61,13 +69,15 @@ Route::get('/feedback-form', function () {
 Route::get('/{user}', [UserController::class, 'login'])->name('user.select');
 Route::post('/guestlogin', [UserController::class, 'loginGuest'])->name('login.guest');
 Route::post('/stafflogin', [UserController::class, 'loginStaff'])->name('login.staff');
+Route::get('/logoutguest', [UserController::class, 'logoutGuest']);
+Route::get('/logoutstaff', [UserController::class, 'logoutStaff']);
 Route::post('/addcustomer', [UserController::class, 'addCustomer'])->name('add.customer');
-Route::get('/showcustomer', [CustomerController::class, 'showCustomers']);
-Route::get('/breakfast', [CustomerController::class, 'showCustomerBreakfast']);
-Route::get('/breakfast/submit', [CustomerController::class, 'submitCustomerBreakfastSelection'])->name('submit.breakfast.customer');
-Route::get('/trial', [CustomerController::class, 'showCustomerBreakfastTrial']);
-Route::get('/trial/{booking_id}', [CustomerController::class, 'updateCustomerBreakfastSelectionTrial'])->name('update.breakfast.customer.trial');
-Route::get('/breakfastrecords', [CustomerController::class, 'showBreakfastRecords']);
+Route::get('/showcustomer', [CustomerController::class, 'showCustomers'])->middleware('checkStaff');
+Route::get('/breakfast', [CustomerController::class, 'showCustomerBreakfast'])->middleware('checkGuest');
+Route::get('/breakfast/submit', [CustomerController::class, 'submitCustomerBreakfastSelection'])->name('submit.breakfast.customer')->middleware('checkGuest');
+// Route::get('/trial', [CustomerController::class, 'showCustomerBreakfastTrial']);
+// Route::get('/trial/{booking_id}', [CustomerController::class, 'updateCustomerBreakfastSelectionTrial'])->name('update.breakfast.customer.trial');
+Route::get('/breakfastrecords', [CustomerController::class, 'showBreakfastRecords'])->middleware('checkStaff');
 Route::post('/breakfastrecords/{room_number}', [CustomerController::class, 'submitBreakfastRecords'])->name('submit.breakfast.records');
 
 Auth::routes();

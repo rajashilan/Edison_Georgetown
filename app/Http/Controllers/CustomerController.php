@@ -7,10 +7,11 @@ use DB;
 use App\Models\Customer;
 use Response;
 use Input;
+use Carbon\Carbon;
 
 class CustomerController extends Controller
 {
-  public function showCustomers(){
+  public function showCustomers(Request $request){
     $customers = Customer::all();
     return view('view-customer-page', compact('customers'));
   }
@@ -23,7 +24,7 @@ class CustomerController extends Controller
 
     $room_number = $customer->room_number;
 
-    $room_mates = DB::select('select * from customers where room_number = ?', [$room_number]);
+    $room_mates = DB::select('select * from customers where room_number = ? and status = ?', [$room_number, 1]);
 
     $breakfastSelection = DB::select('
     select T1.*, T2.*
@@ -42,44 +43,46 @@ class CustomerController extends Controller
     return view('guest-breakfast-selection-page', compact('room_mates', 'breakfastSelection', 'groupID'));
   }
 
-  public function showCustomerBreakfastTrial(Request $request){
-    //handle customer retrieval
-    $bookingID = $request->session()->get('booking_id');
-
-    $customer = DB::table('customers')->where('booking_id', $bookingID)->first();
-
-    $room_number = $customer->room_number;
-
-    $room_mates = DB::select('select * from customers where room_number = ?', [$room_number]);
-
-    //handle breakfast selection retrieval
-    //$breakfastSelection = DB::table('breakfast_selections')->orderBy('group_id')->get();
-
-    $breakfastSelection = DB::select('
-    select T1.*, T2.*
-    from breakfast_selections T1
-    inner join
-    (select *
-    from breakfast_groups
-    order by sequence) T2
-    on T1.group_id = T2.breakfast_group_id
-    ');
-
-    $groupID = DB::select('
-    select *  from breakfast_groups
-    ');
-
-    return view('guest-breakfast-selection-page-trial', compact('room_mates', 'breakfastSelection', 'groupID'));
-  }
-
-  public function updateCustomerBreakfastSelection($booking_id){
-  }
+  // public function showCustomerBreakfastTrial(Request $request){
+  //   //handle customer retrieval
+  //   $bookingID = $request->session()->get('booking_id');
+  //
+  //   $customer = DB::table('customers')->where('booking_id', $bookingID)->first();
+  //
+  //   $room_number = $customer->room_number;
+  //
+  //   $room_mates = DB::select('select * from customers where room_number = ? and status = ?', [$room_number, 1]);
+  //
+  //   //handle breakfast selection retrieval
+  //   //$breakfastSelection = DB::table('breakfast_selections')->orderBy('group_id')->get();
+  //
+  //   $breakfastSelection = DB::select('
+  //   select T1.*, T2.*
+  //   from breakfast_selections T1
+  //   inner join
+  //   (select *
+  //   from breakfast_groups
+  //   order by sequence) T2
+  //   on T1.group_id = T2.breakfast_group_id
+  //   ');
+  //
+  //   $groupID = DB::select('
+  //   select *  from breakfast_groups
+  //   ');
+  //
+  //   return view('guest-breakfast-selection-page-trial', compact('room_mates', 'breakfastSelection', 'groupID'));
+  // }
 
   public function submitCustomerBreakfastSelection(Request $request){
     $data = request()->get('selection');
     $data_array = json_decode($data, true);
     $sqlFood = '';
-    // echo $data_array;
+    $submit;
+
+    $orderDate = request()->get('orderDate');
+    $formatDate = Carbon::createFromFormat('d/m/Y', $orderDate)->format('Y-m-d');
+    $orderTime = request()->get('orderTime');
+    $date = "$formatDate $orderTime:00";
 
 
     foreach($data_array as $key => $value){
@@ -88,25 +91,30 @@ class CustomerController extends Controller
         //food selection id
         $sqlFood.= $food . ',';
       }
-      echo $key . " => " . $sqlFood;
-      echo "</br>";
+      // echo $key . " => " . $sqlFood;
+      // echo "</br>";
 
-      $submit = DB::insert('insert into customer_breakfast_orders (booking_id, breakfast_selection_id, status) values (?,?,?)',
-      [$key, $sqlFood, 0]);
+       $submit = DB::insert('insert into customer_breakfast_orders (booking_id, breakfast_selection_id, status, booking_date_time) values (?,?,?,?)',
+       [$key, $sqlFood, 0, $date]);
       $sqlFood = '';
     }
 
-    return redirect()->back();
+    if($submit){
+      return redirect()->back()->with('success', 'Breakfast selection sent successfully.');
+    }
 
+    return redirect()->back()->with('fail', 'Failed to send breakfast selection.');
   }
 
 
   public function showBreakfastRecords(){
     $breakfastRecords = DB::select('select * from customer_breakfast_orders');
+    //food is from breakfast selections to get food name based on id
     $food = DB::select('select breakfast_selection_id, item_name from breakfast_selections');
     $customers = DB::select('select booking_id, room_number from customers');
     $countCompleted = 0;
     $countPending = 0;
+    //from breakfast orders
     $breakfastSelections = DB::select('
       select food.*, customer.*
       from customer_breakfast_orders food

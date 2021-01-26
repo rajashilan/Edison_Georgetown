@@ -17,7 +17,7 @@
     <script src="https://kit.fontawesome.com/aee88f7c80.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 
-    <title>Hello, world!</title>
+    <title>Breakfast Selection</title>
   </head>
   <body>
 
@@ -31,12 +31,12 @@
   </button>
   <div class="collapse navbar-collapse" id="navbarNav">
     <ul class="navbar-nav">
-      <li class="nav-item">
+      <!-- <li class="nav-item">
         <a class="nav-link" href="/guesthome">Home</a>
-      </li>
-      <li class="nav-item">
+      </li> -->
+      <!-- <li class="nav-item">
         <a class="nav-link" href="/amenities">Amenities</a>
-      </li>
+      </li> -->
       <li class="nav-item active">
         <a class="nav-link" href="/breakfast">Breakfast Selection<span class="sr-only">(current)</span></a>
       </li>
@@ -49,15 +49,27 @@
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
         <a class="dropdown-item" href="#">Info</a>
-        <a class="dropdown-item" href="#">Account Settings</a>
-        <a class="dropdown-item" href="#">Log Out</a>
+        <!-- <a class="dropdown-item" href="#">Account Settings</a> -->
+        <a class="dropdown-item" href="/logoutguest">Log Out</a>
         </div>
       </li>
     </ul>
   </div>
 </nav>
 
-<!-- date -->
+@if (session('success'))
+    <div class="alert alert-success alert-dismissible" auto-close="5000" style="margin-right: 10px; margin-left: 10px; margin-bottom: 10px; auto; width: 100%;">
+        {{ session('success') }}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span>
+    </div>
+@endif
+
+@if (session('fail'))
+    <div class="alert alert-warning alert-dismissible" auto-close="5000" style="margin-right: 10px; margin-left: 10px; margin-bottom: 10px; auto; width: 100%;">
+        {{ session('fail') }}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span>
+    </div>
+@endif
 
 <div class="row justify-content-center">
 <div class="col-md-3" style="margin-top: 20px;">
@@ -110,7 +122,8 @@
 <script type="text/javascript">
     $('.date').datepicker({
       format: "dd/mm/yyyy",
-      startDate: new Date()
+      startDate: new Date(),
+      todayHighlight: true
     });
 </script>
 
@@ -119,6 +132,8 @@
 </div>
 <script type="text/javascript">
     $('.timepicker').datetimepicker({
+        stepping: 5,
+        maxDate: moment({h:10, m:30}),
         format: 'HH:mm'
     });
 </script>
@@ -137,26 +152,25 @@
     @foreach($room_mates as $room_mate)
     <tr class="bookingIDUpload" id="{{$room_mate->booking_id}}">
       <th scope="row">{{$room_mate->customer_name}}</th>
-      <td class ="breakfastUpload" id="td-{{$room_mate->booking_id}}">No selections made</td>
+      <td class ="breakfastUpload" id="td-{{$room_mate->booking_id}}" style="max-width: 200px;">No selections made</td>
       <td>
         <div id="breakfastSelection" class="row justify-content-center">
-        <a href="" class="btn btn-primary fas fa-plus" style="margin-left: 5px; margin-right: 5px; margin-top: 10px; background: #1E261D; border: none;"
+        <a href="" class="btn btn-primary fas fa-plus" name="{{$room_mate->booking_id}}" style="margin-left: 5px; margin-right: 5px; margin-top: 10px; background: #1E261D; border: none;"
           onclick="event.preventDefault();
             $('input[type=checkbox]').prop('checked',false);
             document.getElementById('rd1').checked=true;
             selectingFor.innerText = 'Selecting for {{$room_mate->customer_name}}';
-            customer_id.innerText = {{$room_mate->booking_id}};
-              alert({{$room_mate->booking_id}});
+            customer_id.innerText = this.name;
             "
         ></a>
-        <button type="submit" class="btn btn-primary fas fa-pencil-alt" style="margin-left: 5px; margin-right: 5px; margin-top: 10px; background: #1E261D; border: none;"
+        <button type="submit" class="btn btn-primary fas fa-pencil-alt" name="{{$room_mate->booking_id}}" style="margin-left: 5px; margin-right: 5px; margin-top: 10px; background: #1E261D; border: none;"
           onclick="
           selectingFor.innerText = 'Editing for {{$room_mate->customer_name}}';
-          customer_id.innerText = {{$room_mate->booking_id}};
-          editSelection({{$room_mate->booking_id}});
+          customer_id.innerText = this.name;
+          editSelection(this.name);
           "
         ></button>
-        <button onclick="clearSelection({{$room_mate->booking_id}})" type="submit" class="btn btn-primary fas fa-trash-alt" style="margin-left: 5px; margin-right: 5px; margin-top: 10px; background: #1E261D; border: none;"></button>
+        <button onclick="clearSelection(this.name)" type="submit" class="btn btn-primary fas fa-trash-alt" name="{{$room_mate->booking_id}}" style="margin-left: 5px; margin-right: 5px; margin-top: 10px; background: #1E261D; border: none;"></button>
         </div>
       </td>
     </tr>
@@ -177,7 +191,7 @@
 <div class="row" style="justify-content: center; margin-top: 30px; margin-bottom: 30px; margin-left: 20px; margin-right: 20px;">
   <div class="col-md-12 col-xs-9">
     <h3 id ="selectingFor" style="text-align: center;">Make your breakfast selection: </h3>
-    <p style="text-align: center;" id="customer_id"></p>
+    <p style="display: none; text-align: center;" id="customer_id"></p>
     <div class="tabs">
       @foreach($groupID as $groupid)
       <div class="tab">
@@ -200,10 +214,6 @@
     </div>
   </div>
   </div>
-  </div>
-
-  <div class="row justify-content-center" style="margin-right: 20px;">
-    <button id="saveCheckBox" onclick="saveCheckBox()" type="submit" class="btn btn-primary fas fa-save px-5 py-3" style="background: #1E261D; border: none; "> legit (delete this)</button>
   </div>
 
   <script type="text/javascript">
@@ -269,19 +279,14 @@
 
     function uploadSelection(){
       //get order date and order time input
-      var orderDate = $('input.datepicker').val();
+      var orderDate = $('input.date').val();
       var orderTime = $('input.timepicker').val();
 
-      var confirm = window.confirm("Do you want to send your request?");
-
-      var validate;
-
-  /*    if(orderDate == "" || orderTime == ""){
-        alert('Please select your order date and order time.');
-        validate = false;
+      if(orderDate == '' || orderTime == ''){
+        alert('Please choose your order date and order time.');
       } else {
-        validate = true;
-      }*/
+
+      var confirm = window.confirm("Do you want to send your request?");
 
           if(confirm){
 
@@ -311,6 +316,7 @@
 
             //particular id's food selection
             var food = document.getElementById('td-' + id).innerHTML;
+
             var foodArray = food.split(',');
             foodArray.forEach(loopFunction);
 
@@ -322,7 +328,6 @@
 
             function loopFunction(index){
               for(var i = 0; i < getFoodID.length; i++){
-
                 if(getFoodID[i].value == index){
                   currentSelectionID.push(getFoodID[i].id);
                 }
@@ -335,34 +340,12 @@
 
           var sendSelection = encodeURIComponent(JSON.stringify(selection));
 
-          window.location.href = "{{ URL::to('/breakfast/submit/')}}" + "?selection="+sendSelection;
-
-          /*
-
-          $.ajax({
-            url: '/breakfast/submit',
-            type: 'POST',
-            dataType: 'json',
-            contentType: 'json',
-            data: {selection: JSON.stringify(selection)},
-            headers: {
-                'X-CSRF-Token': '{{ csrf_token() }}',
-                },
-          });
-
-
-*/
-
-/*
-
-          for (var key in selection){
-            document.write(key + "=>" + selection[key]);
-            document.write("</br>");
-          }
-*/
+          window.location.href = "{{ URL::to('/breakfast/submit/')}}" + "?selection="+sendSelection + "&orderDate="+orderDate + "&orderTime="+orderTime;
 
 
         }
+
+      }
 
 
     }

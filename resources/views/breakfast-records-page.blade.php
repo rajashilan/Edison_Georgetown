@@ -8,7 +8,7 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
-    <title>Hello, world!</title>
+    <title>Breakfast Records</title>
   </head>
   <body>
 
@@ -25,9 +25,9 @@
       <li class="nav-item active">
         <a class="nav-link" href="#">Home<span class="sr-only">(current)</span></a>
       </li>
-      <li class="nav-item">
+      <!-- <li class="nav-item">
         <a class="nav-link" href="#">Amenities Records</a>
-      </li>
+      </li> -->
       <li class="nav-item">
         <a class="nav-link" href="#">Breakfast Records</a>
       </li>
@@ -47,7 +47,7 @@
               <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                 <a class="dropdown-item" href="#">Info</a>
                 <a class="dropdown-item" href="#">Account Settings</a>
-                <a class="dropdown-item" href="#">Log Out</a>
+                <a class="dropdown-item" href="/logoutstaff">Log Out</a>
               </div>
             </li>
     </ul>
@@ -86,11 +86,15 @@
           <li class="list-group-item">
           <h3 class="card-title">{{$breakfastSelection->customer_name}}</h3>
               @foreach(explode(',', $breakfastSelection->breakfast_selection_id) as $selection_id)
+              @if($selection_id == '')
+               [No selections made]
+              @else
               @foreach($food as $foods)
               @if($foods->breakfast_selection_id == $selection_id)
                [{{$foods->item_name}}]
               @endif
               @endforeach
+              @endif
               @endforeach
               <!--
           <div class="form-floating" style="margin-top: 10px;">
