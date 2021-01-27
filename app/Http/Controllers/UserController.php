@@ -24,15 +24,15 @@ class UserController extends Controller
     $password = $request->password;
 
     //call stored procedure to select guest based on input
-    $guestLogin = DB::select('select * from customers where booking_id = ? and password = ?', [$bookingID, $password]);
+    $guestLogin = DB::select('select * from customers where booking_id = ? and password = ? and status = ?', [$bookingID, $password, 1]);
 
     //login guest if inputs are valid
     if($guestLogin){
       $request->session()->put('booking_id', $bookingID);
-      return redirect('/guesthome');
+      return redirect('/breakfast');
     }
     else {
-      dd("wrong entry");
+      return redirect()->back()->with('fail', 'Wrong Booking ID or password.');
     }
   }
 
@@ -42,19 +42,42 @@ class UserController extends Controller
     $staffID = $request->staffID;
     $password = $request->password;
 
-    $staffLogin = DB::select('select * from users where staff_id = ? and password = ?', [$staffID, $password]);
+    $staffLogin = DB::select('select * from users where staff_id = ? and password = ? and status = ?', [$staffID, $password, 1]);
 
     if($staffLogin){
+      $request->session()->put('staff_id', $staffID);
       return redirect('/staffhome');
     }
     else {
-      dd("wrong entry");
+      return redirect()->back()->with('fail', 'Wrong Staff ID or password.');
     }
+  }
+
+  public function logoutGuest(Request $request){
+    $request->session()->forget('booking_id');
+    return view('home-page');
+  }
+
+  public function logoutStaff(Request $request){
+    $request->session()->forget('staff_id');
+    return view('home-page');
   }
 
 
   public function addCustomer(Request $request){
     $password = rand(100000,999999);
+    if($request->name == '' || $request->room_number == '' || $request->booking_id == ''){
+      return redirect()->back()->with('fail', 'Please fill up all required entries!');
+    }
+
+    if ($request->email == ''){
+      $request->email = 'none';
+    }
+
+    if ($request->contact_number == ''){
+      $request->contact_number = 'none';
+    }
+
     $insert = DB::insert('insert into customers (customer_name, email, contact_number, room_number, booking_id, password, status) values (?, ?, ?, ?, ?, ?, ?)',
     [$request->name, $request->email, $request->contact_number, $request->room_number, $request->booking_id, $password, 1]);
 

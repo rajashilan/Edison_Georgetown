@@ -8,7 +8,7 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
-    <title>Hello, world!</title>
+    <title>Welcome!</title>
   </head>
   <body>
 
@@ -60,7 +60,7 @@
 <div class="card p-0 col-md-4" style="margin-top: 20px; height: 100%; margin-right: 30px; margin-left: 30px;">
   <h3 class="card-header"  style="text-align: center;">Welcome!</h3>
   <div class="card-body">
-    <h5 class="card-title" style="text-align: center;">Are you a </h5>
+    <h5 class="card-title" style="text-align: center;">Click if you are a</h5>
     <a href="{{route('user.select', 'guest')}}" class="btn btn-primary" style="width: 100%; margin-top: 20px; background: #1E261D; border: none;">Guest</a><br>
     <a href="{{route('user.select', 'staff')}}" class="btn btn-primary" style="width: 100%; margin-top: 20px; background: #1E261D; border: none;">Staff</a>
   </div>
