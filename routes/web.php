@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CustomerController;
-
+use App\Http\Controllers\FeedbackRatingController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -61,9 +61,7 @@ Route::get('/trial', function () {
     return view('guest-breakfast-selection-page-trial');
 });
 
-Route::get('/feedback-form', function () {
-    return view('feedback-rating.form');
-});
+Route::get('/feedback-form', [FeedbackRatingController::class, 'create']);
 
 
 Route::get('/{user}', [UserController::class, 'login'])->name('user.select');
