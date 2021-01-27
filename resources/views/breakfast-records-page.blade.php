@@ -75,7 +75,8 @@
   <div class="card" style="margin-bottom: 10px;">
     <div class="card-header">
       <a class="card-link" data-toggle="collapse" href="#{{$room_number->room_number}}">
-        {{$room_number->room_number}}
+        Room number: {{$room_number->room_number}} | Location: {{$room_number->breakfast_location === 1? "The Lounge" : ($room_number->breakfast_location === 2? "Room" : "Not available")}} </br>
+        Date and Time: {{ date('d-M-y | h:i', strtotime($room_number->booking_date_time)) }}
       </a>
     </div>
     <div id="{{$room_number->room_number}}" class="collapse" data-parent="#accordion">

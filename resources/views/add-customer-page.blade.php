@@ -70,6 +70,15 @@
     </div>
 @endif
 
+@if(!empty($draftEmail))
+<div class="alert alert-info alert-dismissible col-md-8 " auto-close="5000" style="margin: 0 auto;">
+  <h4 class="alert-heading">Please copy and send this to the guest!</h4>
+  <hr>
+    {!! $draftEmail ?? '' ?? '' !!}
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span>
+</div>
+@endif
+
 <div class="card p-0 col-md-8" style="margin: 0 auto; margin-top: 10px; margin-bottom: 20px;">
   <h5 class="card-header">Fill in all the details below</h5>
   <div class="card-body">

@@ -72,21 +72,23 @@
 @endif
 
 <div class="row justify-content-center">
-<div class="col-md-3" style="margin-top: 20px;">
+<div style="margin-top: 20px;">
   Location:
+
   <div class="custom-control custom-radio custom-control-inline" style="margin-left: 10px;">
-  <input type="radio" id="customRadioInline1" name="customRadioInline1" class="custom-control-input" checked>
-  <label class="custom-control-label" for="customRadioInline1">THE LOUNGE</label>
+  <input type="radio" id="locationLounge" name="locationCheck" class="custom-control-input" checked>
+  <label class="custom-control-label" for="locationLounge">THE LOUNGE</label>
 </div>
+
 <div class="custom-control custom-radio custom-control-inline">
-  <input type="radio" id="customRadioInline2" name="customRadioInline1" class="custom-control-input">
-  <label class="custom-control-label" for="customRadioInline2">Room</label>
+  <input type="radio" id="locationRoom" name="locationCheck" class="custom-control-input">
+  <label class="custom-control-label" for="locationRoom">Room</label>
 </div>
 </div>
 </div>
 
 <div class="row justify-content-center" style="margin-top: 10px;">
-<div class="card col-md-2" style="margin-left: 5px; margin-right: 5px; height: 50px; max-height: 50px">
+<div class="card" style="margin-top: 10px; margin-left: 5px; margin-right: 5px; height: 50px; max-height: 50px">
   <div class="card-body" style="display: flex; align-items: center">
     Room Number:
     @foreach($room_mates as $room_mate)
@@ -96,7 +98,7 @@
   </div>
 </div>
 
-<div class="card col-md-2" style="margin-left: 5px; margin-right: 5px; max-height: 50px;">
+<div class="card" style="margin-top: 10px; margin-left: 5px; margin-right: 5px; max-height: 50px;">
   <div class="card-body" style="display: flex; align-items: center;">
     Date:
     <?php
@@ -106,7 +108,7 @@
   </div>
 </div>
 
-<div class="card col-md-2" style="margin-left: 5px; margin-right: 5px; max-height: 50px;">
+<div class="card" style="margin-top: 10px; margin-left: 5px; margin-right: 5px; max-height: 50px;">
   <div class="card-body" style="display: flex; align-items: center;">
     Time:
     <?php
@@ -116,8 +118,8 @@
   </div>
 </div>
 
-<div id="orderDate" class="col-md-2">
-    <input class="date form-control " data-format="dd-mm-yyyy" type="text" placeholder="Order Date" style="margin-left: -10px; height: 50px; max-height: 50px;">
+<div id="orderDate" style="margin-top: 10px; height: 50px; max-height: 50px; margin-left: 5px; margin-right: 5px;">
+    <input class="date form-control " data-format="dd-mm-yyyy" type="text" placeholder="Order Date" style="height: 50px; max-height: 50px;">
 </div>
 <script type="text/javascript">
     $('.date').datepicker({
@@ -127,8 +129,8 @@
     });
 </script>
 
-<div id="orderTime" class="col-md-2">
-    <input class="timepicker form-control" data-format="hh:mm" type="text" placeholder='Order Time' style=" margin-left: -30px;height: 50px; max-height: 50px;">
+<div id="orderTime" style="margin-top: 10px; height: 50px; max-height: 50px; margin-left: 5px; margin-right: 5px;">
+    <input class="timepicker form-control" data-format="hh:mm" type="text" placeholder='Order Time' style="height: 50px; max-height: 50px;">
 </div>
 <script type="text/javascript">
     $('.timepicker').datetimepicker({
@@ -139,8 +141,8 @@
 </script>
 </div>
 
-<div class="row justify-content-center">
-<table id="nameTable" class="table table-bordered col-md-8" style="margin-top: 20px; margin-left: 10px">
+<div class="row justify-content-center" style="margin-left: 10px; margin-right: 10px;">
+<table id="nameTable" class="table table-bordered col-md-8" style="margin-top: 20px;">
   <thead>
     <tr>
       <th scope="col">Name</th>
@@ -281,6 +283,7 @@
       //get order date and order time input
       var orderDate = $('input.date').val();
       var orderTime = $('input.timepicker').val();
+      var location = 0;
 
       if(orderDate == '' || orderTime == ''){
         alert('Please choose your order date and order time.');
@@ -340,7 +343,15 @@
 
           var sendSelection = encodeURIComponent(JSON.stringify(selection));
 
-          window.location.href = "{{ URL::to('/breakfast/submit/')}}" + "?selection="+sendSelection + "&orderDate="+orderDate + "&orderTime="+orderTime;
+          if(document.getElementById('locationLounge').checked){
+            location = 1;
+          } else if (document.getElementById('locationRoom').checked){
+            location = 2;
+          } else {
+            location = 0;
+          }
+
+          window.location.href = "{{ URL::to('/breakfast/submit/')}}" + "?selection="+sendSelection + "&orderDate="+orderDate + "&orderTime="+orderTime + "&location="+location;
 
 
         }
