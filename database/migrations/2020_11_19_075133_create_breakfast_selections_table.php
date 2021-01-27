@@ -14,7 +14,8 @@ class CreateBreakfastSelectionsTable extends Migration
     public function up()
     {
         Schema::create('breakfast_selections', function (Blueprint $table) {
-            $table->id('breakfast_selection_id');
+            $table->id('id');
+            $table->string('breakfast_selection_id');
             $table->string('item_name');
             $table->unsignedBigInteger('group_id');
             $table->integer('sequence');

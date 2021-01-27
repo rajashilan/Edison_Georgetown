@@ -17,7 +17,8 @@ class CreateCustomerFeedbacksTable extends Migration
             $table->id('c_f_id');
             $table->unsignedBigInteger('customer_id');
             $table->unsignedBigInteger('f_q_id');
-            $table->string('remarks');//customer's feedback
+            $table->integer('rating')->nullable();
+            $table->string('remarks')->nullable();
             $table->tinyInteger('status')->default(1);
             $table->timestamps();
         });
