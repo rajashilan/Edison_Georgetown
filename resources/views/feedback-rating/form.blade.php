@@ -27,7 +27,7 @@
 </nav>
 
 <div class="row align-items-center justify-content-center" style="margin-top: 40px;">
-<form style="margin-top: 20px;" action="{{route('login.guest')}}" method="post">
+<form style="margin-top: 20px;" action="{{route('feedback.store')}}" method="post">
   @csrf
 
   @foreach ($questions as $question)
@@ -59,7 +59,7 @@
     @if($question->type === 2)
       <div class="form-group">
         <label>{{$question->question}}</label><br/>
-        <textarea rows="3"></textarea><br/><br/>
+        <textarea name="{{$question->f_q_id}}" rows="3"></textarea><br/><br/>
       </div>
     @endif
    @endforeach
