@@ -76,7 +76,7 @@
   <div class="form-group">
     <label for="password">Password</label>
     <input type="password" class="form-control" id="password" name="password" placeholder="Password">
-    <a class="form-text text-muted small" href="{{ route('password.request') }}">
+    <a class="form-text text-muted small" href="{{ route('forget-password') }}">
     {{ __('Forgot Your Password?') }}
     </a>
   </div>

@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\FeedbackRatingController;
+use App\Http\Controllers\Auth\ForgotPasswordController;
+use App\Http\Controllers\Auth\ResetPasswordController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -60,6 +62,12 @@ Route::get('/breakfast', function () {
 Route::get('/trial', function () {
     return view('guest-breakfast-selection-page-trial');
 });
+
+// -----------------------------forget password ------------------------------
+Route::get('forget-password', [ForgotPasswordController:: class, 'getEmail'])->name('forget-password');
+Route::post('forget-password', [ForgotPasswordController:: class, 'postEmail'])->name('forget-password');
+Route::get('reset-password/{token}', [ResetPasswordController:: class, 'getPassword']);
+Route::post('reset-password', [ResetPasswordController:: class, 'updatePassword']);
 
 Route::get('/feedback-form', [FeedbackRatingController::class, 'create']);
 Route::post('/feedback/store', [FeedbackRatingController::class, 'store'])->name('feedback.store');
