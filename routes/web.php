@@ -62,7 +62,7 @@ Route::get('/trial', function () {
 });
 
 Route::get('/feedback-form', [FeedbackRatingController::class, 'create']);
-
+Route::post('/feedback/store', [FeedbackRatingController::class, 'store'])->name('feedback.store');
 
 Route::get('/{user}', [UserController::class, 'login'])->name('user.select');
 Route::post('/guestlogin', [UserController::class, 'loginGuest'])->name('login.guest');
