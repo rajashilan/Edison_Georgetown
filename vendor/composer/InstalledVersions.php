@@ -42,6 +42,24 @@ private static $installed = array (
       ),
       'reference' => '283a40c901101e66de7061bd359252c013dcc43c',
     ),
+    'cartalyst/sentinel' => 
+    array (
+      'pretty_version' => 'v5.1.0',
+      'version' => '5.1.0.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '6f641c0c6fda3627a6aee9d1cd3c409e73e4fd0d',
+    ),
+    'cartalyst/support' => 
+    array (
+      'pretty_version' => 'v5.1.0',
+      'version' => '5.1.0.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '3be33e19d84938cc9b16ad00c80d3a7c0330606e',
+    ),
     'cordoval/hamcrest-php' => 
     array (
       'replaced' => 
