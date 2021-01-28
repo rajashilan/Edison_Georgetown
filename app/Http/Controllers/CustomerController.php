@@ -83,19 +83,27 @@ class CustomerController extends Controller
     $formatDate = Carbon::createFromFormat('d/m/Y', $orderDate)->format('Y-m-d');
     $orderTime = request()->get('orderTime');
     $date = "$formatDate $orderTime:00";
+    $location = request()->get('location');
+    $i = 0;
 
 
     foreach($data_array as $key => $value){
       //id
       foreach ($value as $keyvalue => $food) {
         //food selection id
+        $numFood = count($value);
+        if(++$i === $numFood){
+          $sqlFood.= $food;
+          $i = 0;
+        } else {
         $sqlFood.= $food . ',';
+        }
       }
       // echo $key . " => " . $sqlFood;
       // echo "</br>";
 
-       $submit = DB::insert('insert into customer_breakfast_orders (booking_id, breakfast_selection_id, status, booking_date_time) values (?,?,?,?)',
-       [$key, $sqlFood, 0, $date]);
+       $submit = DB::insert('insert into customer_breakfast_orders (booking_id, breakfast_selection_id, status, breakfast_location, booking_date_time) values (?,?,?,?,?)',
+       [$key, $sqlFood, 0, $location, $date]);
       $sqlFood = '';
     }
 

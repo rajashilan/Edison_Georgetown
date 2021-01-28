@@ -16,7 +16,7 @@ class CreateCustomerBreakfastOrdersTable extends Migration
         Schema::create('customer_breakfast_orders', function (Blueprint $table) {
             $table->id();
             $table->string('booking_id');
-            $table->unsignedBigInteger('breakfast_selection_id');
+            $table->string('breakfast_selection_id');
             $table->tinyInteger('status');
             $table->string('remark')->nullable();
             $table->tinyInteger('breakfast_location');

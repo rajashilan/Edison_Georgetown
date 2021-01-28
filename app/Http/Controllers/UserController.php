@@ -88,7 +88,13 @@ class UserController extends Controller
     $bookingID = $request->booking_id;
 
     if($insert){
-      return view('add-customer-page', compact('name', 'email', 'contact_number', 'room_number', 'bookingID', 'password'))->with('success', 'Successfully added. Please send an email to the guest.');
+      $draftEmail = "Good day, " . $name . ".</br> </br> We are sending you this email to pass you information about your booking ID and your password,
+                    which you could then use to log in to our customer service website.</br>
+                    </br>
+                    Here is your booking ID : " . $bookingID . "</br>" .
+                    " and here is your password : " . $password . "</br>" .
+                    "</br> Thank you.";
+      return view('add-customer-page', compact('name', 'email', 'contact_number', 'room_number', 'bookingID', 'password', 'draftEmail'))->with('success', 'Successfully added. Please send an email to the guest.');
     } else {
       return redirect()->back()->with('fail', 'Failed to add Guest');
     }
