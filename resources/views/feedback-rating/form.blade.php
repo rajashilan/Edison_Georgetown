@@ -29,98 +29,41 @@
 <div class="row align-items-center justify-content-center" style="margin-top: 40px;">
 <form style="margin-top: 20px;" action="{{route('login.guest')}}" method="post">
   @csrf
-  <div class="form-group">
-    <label for="feedback-question1">How was your overall breakfast experience?</label>
-    <br/>
-    {{-- <input type="text" class="form-control" id="feedback-question1" name="feedback-question1" aria-describedby="emailHelp" placeholder="Enter Booking ID"> --}}
-    <div class="form-check form-check-inline">
-      <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
-      <label class="form-check-label" for="inlineRadio1">Very Poor</label>
-    </div>
-    <div class="form-check form-check-inline">
-      <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
-      <label class="form-check-label" for="inlineRadio2">Poor</label>
-    </div>
-    <div class="form-check form-check-inline">
-      <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3">
-      <label class="form-check-label" for="inlineRadio3">Fair</label>
-    </div>
-    <div class="form-check form-check-inline">
-      <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio4" value="option4">
-      <label class="form-check-label" for="inlineRadio4">Good</label>
-    </div>
-    <div class="form-check form-check-inline">
-      <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio5" value="option5">
-      <label class="form-check-label" for="inlineRadio5">Excellent</label>
-    </div>
-  </div>
 
-  <div class="form-group">
-    <label for="feedback-question2">How was the speed of our breakfast service delivery?</label>
-    <br/>
-    {{-- <input type="text" class="form-control" id="feedback-question1" name="feedback-question1" aria-describedby="emailHelp" placeholder="Enter Booking ID"> --}}
-    <div class="form-check form-check-inline">
-      <input class="form-check-input" type="radio" name="inlineRadioOptions2" id="inlineRadio6" value="option6">
-      <label class="form-check-label" for="inlineRadio6">Very Poor</label>
-    </div>
-    <div class="form-check form-check-inline">
-      <input class="form-check-input" type="radio" name="inlineRadioOptions2" id="inlineRadio7" value="option7">
-      <label class="form-check-label" for="inlineRadio7">Poor</label>
-    </div>
-    <div class="form-check form-check-inline">
-      <input class="form-check-input" type="radio" name="inlineRadioOptions2" id="inlineRadio8" value="option8">
-      <label class="form-check-label" for="inlineRadio8">Fair</label>
-    </div>
-    <div class="form-check form-check-inline">
-      <input class="form-check-input" type="radio" name="inlineRadioOptions2" id="inlineRadio9" value="option9">
-      <label class="form-check-label" for="inlineRadio9">Good</label>
-    </div>
-    <div class="form-check form-check-inline">
-      <input class="form-check-input" type="radio" name="inlineRadioOptions2" id="inlineRadio10" value="option10">
-      <label class="form-check-label" for="inlineRadio10">Excellent</label>
-    </div>
-  </div>
+  @foreach ($questions as $question)
+    @if($question->type === 1)
+      <div class="form-group">
+        <label for="feedback-question1">{{$question->question}}</label>
+        <div class="form-check form-check-inline">
+          <input name={{$question->f_q_id}} type="radio" value="1">
+          <label>Very Poor</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input name={{$question->f_q_id}} type="radio" value="2">
+          <label>Poor</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input name={{$question->f_q_id}} type="radio" value="3">
+          <label>Fair</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input name={{$question->f_q_id}} type="radio" value="4">
+          <label>Good</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input name={{$question->f_q_id}} type="radio" value="5">
+          <label>Excellent</label>
+        </div>
+      </div>
+    @endif
+    @if($question->type === 2)
+      <div class="form-group">
+        <label>{{$question->question}}</label><br/>
+        <textarea rows="3"></textarea><br/><br/>
+      </div>
+    @endif
+   @endforeach
 
-  <div class="form-group">
-    <label for="feedback-question2">Were we able to meet your expectations to our Continental Breakfast offerings?</label>
-    <br/>
-    {{-- <input type="text" class="form-control" id="feedback-question1" name="feedback-question1" aria-describedby="emailHelp" placeholder="Enter Booking ID"> --}}
-    <div class="form-check form-check-inline">
-      <input class="form-check-input" type="radio" name="inlineRadioOptions3" id="inlineRadio11" value="option11">
-      <label class="form-check-label" for="inlineRadio11">Very Poor</label>
-    </div>
-    <div class="form-check form-check-inline">
-      <input class="form-check-input" type="radio" name="inlineRadioOptions3" id="inlineRadio12" value="option12">
-      <label class="form-check-label" for="inlineRadio12">Poor</label>
-    </div>
-    <div class="form-check form-check-inline">
-      <input class="form-check-input" type="radio" name="inlineRadioOptions3" id="inlineRadio13" value="option13">
-      <label class="form-check-label" for="inlineRadio13">Fair</label>
-    </div>
-    <div class="form-check form-check-inline">
-      <input class="form-check-input" type="radio" name="inlineRadioOptions3" id="inlineRadio14" value="option14">
-      <label class="form-check-label" for="inlineRadio14">Good</label>
-    </div>
-    <div class="form-check form-check-inline">
-      <input class="form-check-input" type="radio" name="inlineRadioOptions3" id="inlineRadio15" value="option15">
-      <label class="form-check-label" for="inlineRadio15">Excellent</label>
-    </div>
-  </div>
-
-  <div class="form-group">
-    <label for="feedback-question2">What was your favourite breakfast item?</label>
-    <br/>
-    <textarea class="form-control" id="question4" rows="3"></textarea>
-  </div>
-
-  <div class="form-group">
-    <label for="question5">What are the areas of improvement to enhance your breakfast experience?</label>
-    {{-- <input type="question5" class="form-control" id="question5" name="question5" placeholder="Question 5"> --}}
-    <textarea class="form-control" id="question5" rows="3"></textarea>
-    {{-- <a class="form-text text-muted small" href="{{ route('password.request') }}"> --}}
-    {{-- {{ __('Forgot Your Password?') }} --}}
-    {{-- </a> --}}
-  </div>
   <small id="emailHelp" class="form-text text-muted text-center">Thank you for your feedback and visit. ^^</small>
   <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 20px; background: #1E261D; border: none;">Submit</button>
 </form>
