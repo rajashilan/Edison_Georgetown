@@ -75,11 +75,11 @@
 
 /* The container */
  #breakfastSelection .container {
-  display: inline;
+  display: inline-block !important;
   position: relative;
   padding-left: 35px;
   margin-bottom: 12px;
-  margin-left: 20px;
+  margin-left: 2px !important;
   cursor: pointer;
   font-size: 22px;
   -webkit-user-select: none;
