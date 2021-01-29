@@ -22,13 +22,19 @@ class UserController extends Controller
     //get booking ID and password from guest input
     $bookingID = $request->bookingID;
     $password = $request->password;
+    $customerID = "";
 
     //call stored procedure to select guest based on input
     $guestLogin = DB::select('select * from customers where booking_id = ? and password = ? and status = ?', [$bookingID, $password, 1]);
 
+    foreach ($guestLogin as $login){
+      $customerID = $login->customer_id;
+    }
+
     //login guest if inputs are valid
     if($guestLogin){
       $request->session()->put('booking_id', $bookingID);
+      $request->session()->put('customer_id', $customerID);
       return redirect('/breakfast');
     }
     else {
