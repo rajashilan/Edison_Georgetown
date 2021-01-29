@@ -46,7 +46,7 @@ class UserController extends Controller
 
     if($staffLogin){
       $request->session()->put('staff_id', $staffID);
-      return redirect('/staffhome');
+      return redirect('/breakfastrecords');
     }
     else {
       return redirect()->back()->with('fail', 'Wrong Staff ID or password.');
