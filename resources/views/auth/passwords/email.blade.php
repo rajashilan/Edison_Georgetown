@@ -62,10 +62,17 @@
 <form style="margin-top: 20px;" method="POST" action="/forget-password">
   @csrf
   <div class="form-group">
-    @if (session('status'))
+    {{-- @if (session('status'))
         <div class="alert alert-success" role="alert">
             {{ session('status') }}
             {{ $message }}
+        </div>
+    @endif --}}
+
+    @if (session('success'))
+        <div class="alert alert-success alert-dismissible" auto-close="5000" style="margin-bottom: 10px; auto; width: 100%;">
+            {{ session('success') }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span>
         </div>
     @endif
 
