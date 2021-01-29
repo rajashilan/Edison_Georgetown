@@ -57,27 +57,38 @@
   </a>
 </div>
 
-<form style="margin-top: 20px;" action="{{route('password.email')}}" method="post">
+{{-- <form style="margin-top: 20px;" action="{{route('password.email')}}" method="post"> --}}
+{{-- <form style="margin-top: 20px;" action="{{url('/forgot-password')}}" method="post"> --}}
+<form style="margin-top: 20px;" method="POST" action="/forget-password">
   @csrf
   <div class="form-group">
     @if (session('status'))
         <div class="alert alert-success" role="alert">
             {{ session('status') }}
+            {{ $message }}
         </div>
     @endif
+
+    {{-- @if(session('error'))
+      <div>{{session('error')}}</div>
+    @endif
+
+    @if(session('success'))
+      <div>{{session('success')}}</div>
+    @endif --}}
 
     <label for="email">{{ __('E-Mail Address') }}</label>
     <input type="email" id="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" aria-describedby="emailHelp" placeholder="Enter Email" required autocomplete="email" autofocus>
 
     {{-- <input type="text" class="form-control" id="bookingID" name="bookingID" aria-describedby="emailHelp" placeholder="Enter Booking ID"> --}}
-    <small id="emailHelp" class="form-text text-muted">Your Registered Eamil?</small>
+    <small id="emailHelp" class="form-text text-muted">Your Registered Email</small>
     @error('email')
         <span class="invalid-feedback" role="alert">
             <strong>{{ $message }}</strong>
         </span>
     @enderror
   </div>
-  <button type="button" class="btn btn-primary" style="width: 100%; margin-top: 20px; background: #1E261D; border: none;">Send Password Reset Link</button>
+  <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 20px; background: #1E261D; border: none;">Send Password Reset Link</button>
 </form>
 
 </div>
@@ -124,6 +135,3 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
   </body>
 </html>
-
-{{-- jquery to execute the atore prod --}}
-{{-- ajax fucntion sen dparameter and call page we save data --}}
