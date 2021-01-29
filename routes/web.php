@@ -59,6 +59,10 @@ Route::get('/breakfast', function () {
     return view('guest-breakfast-selection-page');
 });
 
+Route::get('/chart', function () {
+    return view('chart');
+})->middleware('checkStaff');
+
 Route::get('/trial', function () {
     return view('guest-breakfast-selection-page-trial');
 });
@@ -80,6 +84,7 @@ Route::get('/logoutstaff', [UserController::class, 'logoutStaff']);
 Route::post('/addcustomer', [UserController::class, 'addCustomer'])->name('add.customer');
 Route::get('/showcustomer', [CustomerController::class, 'showCustomers'])->middleware('checkStaff');
 Route::get('/breakfast', [CustomerController::class, 'showCustomerBreakfast'])->middleware('checkGuest');
+Route::get('/chart', [FeedbackRatingController::class, 'showChart'])->middleware('checkStaff');
 Route::get('/breakfast/submit', [CustomerController::class, 'submitCustomerBreakfastSelection'])->name('submit.breakfast.customer')->middleware('checkGuest');
 // Route::get('/trial', [CustomerController::class, 'showCustomerBreakfastTrial']);
 // Route::get('/trial/{booking_id}', [CustomerController::class, 'updateCustomerBreakfastSelectionTrial'])->name('update.breakfast.customer.trial');

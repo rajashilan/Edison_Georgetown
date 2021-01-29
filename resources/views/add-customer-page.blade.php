@@ -22,9 +22,9 @@
   </button>
   <div class="collapse navbar-collapse" id="navbarNav">
     <ul class="navbar-nav">
-      <li class="nav-item active">
+      <!-- <li class="nav-item active">
         <a class="nav-link" href="#">Home<span class="sr-only">(current)</span></a>
-      </li>
+      </li> -->
       <!-- <li class="nav-item">
         <a class="nav-link" href="#">Amenities Records</a>
       </li> -->
@@ -40,13 +40,16 @@
                 <a class="dropdown-item" href="/showcustomer">View Records</a>
               </div>
             </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/chart">Customer Feedback</a>
+            </li>
       <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Me
               </a>
               <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                <a class="dropdown-item" href="#">Info</a>
-                <a class="dropdown-item" href="#">Account Settings</a>
+                <!-- <a class="dropdown-item" href="#">Info</a>
+                <a class="dropdown-item" href="#">Account Settings</a> -->
                 <a class="dropdown-item" href="/logoutstaff">Log Out</a>
               </div>
             </li>

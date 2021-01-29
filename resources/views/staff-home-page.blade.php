@@ -45,8 +45,8 @@
                 Me
               </a>
               <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                <a class="dropdown-item" href="#">Info</a>
-                <a class="dropdown-item" href="#">Account Settings</a>
+                <!-- <a class="dropdown-item" href="#">Info</a>
+                <a class="dropdown-item" href="#">Account Settings</a> -->
                 <a class="dropdown-item" href="/logoutstaff">Log Out</a>
               </div>
             </li>
