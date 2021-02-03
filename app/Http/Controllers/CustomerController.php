@@ -86,6 +86,12 @@ class CustomerController extends Controller
     $location = request()->get('location');
     $i = 0;
 
+    //if the submitted date request is present in the database for the submitted customer id
+    //run a for loop and for each customer id
+    //use the for loop to go thru customer_breakfast_orders table
+    //if customer id is the same, delete the row
+    //once done, enter new record
+
 
     foreach($data_array as $key => $value){
       //id

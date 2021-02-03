@@ -19,7 +19,6 @@ class FeedbackRatingController extends Controller
       ]);
     }
 
-<<<<<<< HEAD
     public function showChart(){
 
       $tempFrom = '';
@@ -84,26 +83,42 @@ class FeedbackRatingController extends Controller
       return view('chart', compact('Q1', 'Q2', 'Q3', 'Q4', 'Q5', 'tempFrom', 'tempTo'));
     }
 
-=======
     public function store(Request $request){
 
-      $questions = DB::select('select f_q_id, question from feedback_questions');
+      dd($request);
+
+      $fqid = [];
 
       $customerID = $request->session()->get('customer_id');
-      // $fqID = $request->$questions->f_q_id;
+
+      foreach($questions as $question){
+        $fqid = $question->f_q_id;
+      }
+
+      dd($fqid);
+
+
 
       $insert = DB::insert('insert into customer_feedbacks (customer_id, f_q_id, rating, remarks, status) values (?, ?, ?, ?, ?)',
       [$customerID, 1, 3, $request->remarks, 1]);
 
+
+
       // $rating = $request->$questions->f_q_id;
       // $remarks = $request->$questions->f_q_id;
+
       $insert->remarks = $request->input($questions->f_q_id);
+
+
 
       $insert->save();
 
-      // dd($insert);
+
+
       return view('login-page');
 
+
+
     }
->>>>>>> 26c1710c7c0010ad3bf03897bb7dc7f24d01f77d
+
 }

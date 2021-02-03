@@ -29,10 +29,15 @@ chart.legend.position = 'top'
 chart.legend.paddingBottom = 20
 chart.legend.labels.template.maxWidth = 95
 
+var fromDate = document.getElementById('fromDate').value;
+var toDate = document.getElementById('toDate').value;
+
 let title = chart.titles.create();
-title.text = "Guest Feedbacks";
+title.text = "Guest Feedbacks " + fromDate + " - " + toDate;
 title.fontSize = 25;
 title.marginBottom = 30;
+
+chart.exporting.menu = new am4core.ExportMenu();
 
 var xAxis = chart.xAxes.push(new am4charts.CategoryAxis())
 xAxis.dataFields.category = 'category'
@@ -252,6 +257,7 @@ function arrangeColumns() {
       todayHighlight: true
     });
 </script>
+
 
 <button id="searchButton" onclick="search()" type="submit" class="btn btn-primary fas fa-search px-5 py-3" style="background: #1E261D; border: none; margin-left: 10px; margin-right: 10px;"> Search</button>
 

@@ -129,7 +129,7 @@
     });
 </script>
 
-<div id="orderTime" style="margin-top: 10px; height: 50px; max-height: 50px; margin-left: 5px; margin-right: 5px;">
+<div id="orderTime" style="position:relative; margin-top: 10px; height: 50px; max-height: 50px; margin-left: 5px; margin-right: 5px;">
     <input class="timepicker form-control" data-format="hh:mm" type="text" placeholder='Order Time' style="height: 50px; max-height: 50px;">
 </div>
 <script type="text/javascript">

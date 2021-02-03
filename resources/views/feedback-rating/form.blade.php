@@ -34,24 +34,25 @@
     @if($question->type === 1)
       <div class="form-group">
         <label for="feedback-question1">{{$question->question}}</label>
+        <br/>
         <div class="form-check form-check-inline">
-          <input name={{$question->f_q_id}} type="radio" value="1">
+          <input id='Q{{$question->f_q_id}}_R1' type="radio" name="Q{{$question->f_q_id}}" value="1">
           <label>Very Poor</label>
         </div>
         <div class="form-check form-check-inline">
-          <input name={{$question->f_q_id}} type="radio" value="2">
+          <input id='Q{{$question->f_q_id}}_R2' type="radio" name="Q{{$question->f_q_id}}" value="2">
           <label>Poor</label>
         </div>
         <div class="form-check form-check-inline">
-          <input name={{$question->f_q_id}} type="radio" value="3">
+          <input id='Q{{$question->f_q_id}}_R3' type="radio" name="Q{{$question->f_q_id}}" value="3">
           <label>Fair</label>
         </div>
         <div class="form-check form-check-inline">
-          <input name={{$question->f_q_id}} type="radio" value="4">
+          <input id='Q{{$question->f_q_id}}_R4' type="radio" name="Q{{$question->f_q_id}}" value="4">
           <label>Good</label>
         </div>
         <div class="form-check form-check-inline">
-          <input name={{$question->f_q_id}} type="radio" value="5">
+          <input id='Q{{$question->f_q_id}}_R5' type="radio" name="Q{{$question->f_q_id}}" value="5">
           <label>Excellent</label>
         </div>
       </div>
