@@ -18,8 +18,7 @@ class ResetPasswordController extends Controller
        return view('auth.passwords.reset', ['token' => $token]);
     }
 
-    public function updatePassword(Request $request)
-    {
+    public function reset(Request $request) {
         $request->validate([
             'email' => 'required|email|exists:customers',
             'password' => 'required|string|min:6|confirmed',
@@ -27,7 +26,7 @@ class ResetPasswordController extends Controller
 
         ]);
 
-        $updatePassword = DB::table('customers')
+        $updatePassword = DB::table('password_resets')
                             ->where(['email' => $request->email, 'token' => $request->token])
                             ->first();
 
@@ -35,10 +34,8 @@ class ResetPasswordController extends Controller
             return back()->withInput()->with('error', 'Invalid token!');
 
           $customer = Customer::where('email', $request->email)
-                      ->update(['password' => Hash::make($request->password)]);
+                      ->update(['password' => $request->password]);
 
-          DB::table('customers')->where(['email'=> $request->email])->delete();
-
-          return redirect('/')->with('message', 'Your password has been changed!');
+          return redirect('/guest')->with('message', 'Your password has been changed!');
     }
 }
