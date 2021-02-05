@@ -68,6 +68,12 @@
       </div>
   @endif
 
+  @if (session('message'))
+      <div class="alert alert-success" role="alert">
+          {{ session('message') }}
+      </div>
+  @endif
+
   <div class="form-group">
     <label for="bookingID">Booking ID</label>
     <input type="text" class="form-control" id="bookingID" name="bookingID" aria-describedby="emailHelp" placeholder="Enter Booking ID">

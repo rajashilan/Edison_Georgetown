@@ -71,7 +71,7 @@ Route::get('/trial', function () {
 Route::get('forget-password', [ForgotPasswordController:: class, 'getEmail'])->name('forget-password');
 Route::post('forget-password', [ForgotPasswordController:: class, 'postEmail'])->name('forget-password');
 Route::get('reset-password/{token}', [ResetPasswordController:: class, 'getPassword']);
-Route::post('reset-password', [ResetPasswordController:: class, 'updatePassword']);
+Route::post('reset-password', [ResetPasswordController:: class, 'reset'])->name('password.update');
 
 Route::get('/feedback-form', [FeedbackRatingController::class, 'create']);
 Route::post('/feedback/store', [FeedbackRatingController::class, 'store'])->name('feedback.store');

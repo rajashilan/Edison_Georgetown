@@ -77,7 +77,6 @@
     @endif
 
     <label for="email">{{ __('E-Mail Address') }}</label>
-    {{-- <input type="email" id="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" aria-describedby="emailHelp" placeholder="Enter Email" required autocomplete="email" autofocus> --}}
     <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ $email ?? old('email') }}" placeholder="Enter Email" required autocomplete="email" autofocus>
       @error('email')
           <span class="invalid-feedback" role="alert">
