@@ -81,6 +81,7 @@ Route::post('/guestlogin', [UserController::class, 'loginGuest'])->name('login.g
 Route::post('/stafflogin', [UserController::class, 'loginStaff'])->name('login.staff');
 Route::get('/logoutguest', [UserController::class, 'logoutGuest']);
 Route::get('/logoutstaff', [UserController::class, 'logoutStaff']);
+Route::get('/addcustomer', [UserController::class, 'loadRooms'])->middleware('checkStaff');
 Route::post('/addcustomer', [UserController::class, 'addCustomer'])->name('add.customer');
 Route::get('/showcustomer', [CustomerController::class, 'showCustomers'])->middleware('checkStaff');
 Route::get('/breakfast', [CustomerController::class, 'showCustomerBreakfast'])->middleware('checkGuest');
