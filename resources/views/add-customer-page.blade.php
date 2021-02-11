@@ -104,7 +104,12 @@
     </div>
       <div class="mb-3">
         <label for="room_number" class="form-label">Room Number</label>
-        <input placeholder="{{$room_number ?? ''}}" type="text" class="form-control" id="room_number" name="room_number" aria-describedby="roomHelpInline">
+        <input placeholder="{{$room_number ?? ''}}" type="text" class="form-control" list="roomOptions" id="room_number" name="room_number" aria-describedby="roomHelpInline">
+        <datalist id="roomOptions">
+          @foreach($rooms_available as $rooms)
+          <option value="{{$rooms->room_number ?? ''}}">
+            @endforeach
+        </datalist>
         <span id="roomHelpInline" style="color: red; font-size: small;">
           *required
         </span>

@@ -69,6 +69,11 @@ class UserController extends Controller
     return view('home-page');
   }
 
+  public function loadRooms(){
+    $rooms_available = DB::select('select room_number from rooms where status=?',[1]);
+    return view('add-customer-page', compact('rooms_available'));
+  }
+
 
   public function addCustomer(Request $request){
     $password = rand(100000,999999);
@@ -87,6 +92,8 @@ class UserController extends Controller
     $insert = DB::insert('insert into customers (customer_name, email, contact_number, room_number, booking_id, password, status) values (?, ?, ?, ?, ?, ?, ?)',
     [$request->name, $request->email, $request->contact_number, $request->room_number, $request->booking_id, $password, 1]);
 
+    $roomInsert = DB::update('update rooms set status = ? where room_number = ?', [0,$request->room_number]);
+
     $name = $request->name;
     $email = $request->email;
     $contact_number = $request->contact_number;
@@ -99,6 +106,7 @@ class UserController extends Controller
                     </br>
                     Here is your booking ID : " . $bookingID . "</br>" .
                     " and here is your password : " . $password . "</br>" .
+                    "Your room number is: " . $room_number . "</br>" .
                     "</br> Thank you.";
       return view('add-customer-page', compact('name', 'email', 'contact_number', 'room_number', 'bookingID', 'password', 'draftEmail'))->with('success', 'Successfully added. Please send an email to the guest.');
     } else {
