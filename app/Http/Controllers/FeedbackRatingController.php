@@ -85,39 +85,42 @@ class FeedbackRatingController extends Controller
 
     public function store(Request $request){
 
-      dd($request);
-
-      $fqid = [];
+      DB::beginTransaction();
 
       $customerID = $request->session()->get('customer_id');
 
-      foreach($questions as $question){
-        $fqid = $question->f_q_id;
-      }
+      $currentTime = Carbon::now('Asia/Kuala_Lumpur');
 
-      dd($fqid);
+      try{
 
+      $feedback = DB::insert('insert into customer_feedbacks (customer_id, f_q_id, rating, remarks, status, created_at) values (?, ?, ?, ?, ?, ?)',
+      [$customerID, 1, $request->Q1, "", 1, $currentTime]);
 
+      $feedback = DB::insert('insert into customer_feedbacks (customer_id, f_q_id, rating, remarks, status, created_at) values (?, ?, ?, ?, ?, ?)',
+      [$customerID, 2, $request->Q2, "", 1, $currentTime]);
 
-      $insert = DB::insert('insert into customer_feedbacks (customer_id, f_q_id, rating, remarks, status) values (?, ?, ?, ?, ?)',
-      [$customerID, 1, 3, $request->remarks, 1]);
+      $feedback = DB::insert('insert into customer_feedbacks (customer_id, f_q_id, rating, remarks, status, created_at) values (?, ?, ?, ?, ?, ?)',
+      [$customerID, 3, $request->Q3, "", 1, $currentTime]);
 
+      $feedback = DB::insert('insert into customer_feedbacks (customer_id, f_q_id, rating, remarks, status, created_at) values (?, ?, ?, ?, ?, ?)',
+      [$customerID, 4, "", $request->Q4, 1, $currentTime]);
 
+      $feedback = DB::insert('insert into customer_feedbacks (customer_id, f_q_id, rating, remarks, status, created_at) values (?, ?, ?, ?, ?, ?)',
+      [$customerID, 5, "", $request->Q5, 1, $currentTime]);
 
-      // $rating = $request->$questions->f_q_id;
-      // $remarks = $request->$questions->f_q_id;
+      DB::commit();
 
-      $insert->remarks = $request->input($questions->f_q_id);
+      return redirect('/guest')->with('message', 'Thank you for your feedback!');
 
+    } catch (\Exception $ex) {
 
+      DB::rollback();
 
-      $insert->save();
+      return response()->json([
+        'message' => __('Failed to submit survey. Reason: ') . $ex->getMessage()
+      ], 400);
 
-
-
-      return view('login-page');
-
-
+    }
 
     }
 
