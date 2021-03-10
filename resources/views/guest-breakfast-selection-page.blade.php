@@ -77,7 +77,7 @@
 
   <div class="custom-control custom-radio custom-control-inline" style="margin-left: 10px;">
   <input type="radio" id="locationLounge" name="locationCheck" class="custom-control-input" checked>
-  <label class="custom-control-label" for="locationLounge">THE LOUNGE</label>
+  <label class="custom-control-label" for="locationLounge">The Lounge</label>
 </div>
 
 <div class="custom-control custom-radio custom-control-inline">
@@ -119,7 +119,7 @@
 </div>
 
 <div id="orderDate" style="margin-top: 10px; height: 50px; max-height: 50px; margin-left: 5px; margin-right: 5px;">
-    <input class="date form-control " data-format="dd-mm-yyyy" type="text" placeholder="Order Date" style="height: 50px; max-height: 50px;">
+    <input id="orderDateInput" class="date form-control" data-format="dd-mm-yyyy" type="text" placeholder="Order Date" style="height: 50px; max-height: 50px;">
 </div>
 <script type="text/javascript">
     $('.date').datepicker({
@@ -130,7 +130,7 @@
 </script>
 
 <div id="orderTime" style="position:relative; margin-top: 10px; height: 50px; max-height: 50px; margin-left: 5px; margin-right: 5px;">
-    <input class="timepicker form-control" data-format="hh:mm" type="text" placeholder='Order Time' style="height: 50px; max-height: 50px;">
+    <input id="orderTimeInput" class="timepicker form-control" data-format="hh:mm" type="text" placeholder='Order Time' style="height: 50px; max-height: 50px;">
 </div>
 <script type="text/javascript">
     $('.timepicker').datetimepicker({
@@ -138,6 +138,16 @@
         maxDate: moment({h:10, m:30}),
         format: 'HH:mm'
     });
+</script>
+
+<script type="text/javascript">
+  var checkTime = new Date();
+  checkTime.toLocaleString('en-US', { hour: 'numeric', hour12: true });
+  var time = checkTime.getHours() + "" + checkTime.getMinutes();
+  if(time >1030){
+    document.getElementById('orderDateInput').disabled = true;
+    document.getElementById('orderTimeInput').disabled = true;
+  }
 </script>
 </div>
 
@@ -155,6 +165,7 @@
     <tr class="bookingIDUpload" id="{{$room_mate->booking_id}}">
       <th scope="row">{{$room_mate->customer_name}}</th>
       <td class ="breakfastUpload" id="td-{{$room_mate->booking_id}}" style="max-width: 200px;">No selections made</td>
+
       <td>
         <div id="breakfastSelection" class="row justify-content-center">
         <a href="" class="btn btn-primary fas fa-plus" name="{{$room_mate->booking_id}}" style="margin-left: 5px; margin-right: 5px; margin-top: 10px; background: #1E261D; border: none;"
@@ -217,6 +228,68 @@
   </div>
   </div>
   </div>
+
+  <!-- <div style="margin-top: 50px;">
+    <h2 style="text-align: center;">Your previous breakfast selections' logs and status</h2>
+    <table class="table table-bordered" style="margin: 10px 20px; max-width: 95vw;">
+    <thead>
+      <tr class>
+        <th scope="col">Date and Name</th>
+        <th scope="col">Remark</th>
+        <th scope="col">Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      @foreach($booking_date as $bookingdate)
+      <tr>
+        <th scope="row">{{date('d-M-y', strtotime($bookingdate->booking_date_time))}}, {{$bookingdate->customer_name}}</th>
+        @if($bookingdate->remark == '')
+        <td>No remarks</td>
+        @else
+        <td>{{$bookingdate->remark}}</td>
+        @endif
+        @if($bookingdate->breakfast_status == 1)
+        <td>Completed</td>
+        @else
+        <td>Pending</td>
+        @endif
+      </tr>
+      @endforeach
+    </tbody>
+  </table>
+</div> -->
+
+
+<div style="margin-top: 50px;">
+  <h2 style="text-align: center; margin: 0px 20px;">Your previous breakfast selections' logs and status</h2>
+  @foreach($unique_date as $uniquedate)
+<div class="card" style="margin: 0px 20px; max-width: 95vw; margin-bottom: 50px;">
+  <div class="card-header">
+    Date: {{date('d-M-y', strtotime($uniquedate->booking_date_time))}}
+  </div>
+  @foreach($booking_date as $bookingdate)
+  @if(date('d-M-y', strtotime($bookingdate->booking_date_time)) == date('d-M-y', strtotime($uniquedate->booking_date_time)))
+  <div class="card-body">
+    <h3 class="card-title">Name: {{$bookingdate->customer_name}}</h3>
+    @if($bookingdate->breakfast_status == 1)
+    <h5 class="card-text">Status: Completed</h5>
+    @else
+    <h5 class="card-text">Status: Pending</h5>
+    @endif
+    @if($bookingdate->remark == '')
+    <p class="card-text">No remarks</p>
+    @else
+    <p class="card-text">Remark: {{$bookingdate->remark}}</p>
+    @endif
+  </div>
+  <hr>
+  @endif
+  @endforeach
+</div>
+@endforeach
+</div>
+
+
 
   <script type="text/javascript">
     var customerID;

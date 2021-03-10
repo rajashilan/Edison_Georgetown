@@ -39,8 +39,30 @@ class CustomerController extends Controller
     $groupID = DB::select('
     select *  from breakfast_groups
     ');
+    //dd($remarks);
 
-    return view('guest-breakfast-selection-page', compact('room_mates', 'breakfastSelection', 'groupID'));
+    //for $remarks
+    //create a separate table named remarks
+    //show all previous breakfast selections with date as the separation
+    //show remarks and status for each customer name
+
+    $booking_date = DB::select('
+      select food.*, customer.*
+      from customer_breakfast_orders food
+      inner join
+      (select *
+      from customers) customer
+      on food.booking_id = customer.booking_id
+      where customer.room_number = ?
+      order by booking_date_time ASC
+    ', [$room_number]);
+
+    $unique_date = DB::select('
+    select distinct CAST(booking_date_time as DATE) booking_date_time from customer_breakfast_orders where booking_id = ?', [$bookingID]);
+
+    //dd($unique_date);
+
+    return view('guest-breakfast-selection-page', compact('room_mates', 'breakfastSelection', 'groupID', 'booking_date', 'unique_date'));
   }
 
   // public function showCustomerBreakfastTrial(Request $request){
@@ -85,32 +107,64 @@ class CustomerController extends Controller
     $date = "$formatDate $orderTime:00";
     $location = request()->get('location');
     $i = 0;
+    $bookingID = $request->session()->get('booking_id');
 
-    //if the submitted date request is present in the database for the submitted customer id
-    //run a for loop and for each customer id
-    //use the for loop to go thru customer_breakfast_orders table
-    //if customer id is the same, delete the row
-    //once done, enter new record
+    $updateSameDay = DB::select('select booking_id from customer_breakfast_orders where booking_id = ? and booking_date_time between ? and ?', [$bookingID, "$formatDate 00:00:00", "$formatDate 23:59:59"]);
 
-
-    foreach($data_array as $key => $value){
-      //id
-      foreach ($value as $keyvalue => $food) {
-        //food selection id
-        $numFood = count($value);
-        if(++$i === $numFood){
-          $sqlFood.= $food;
-          $i = 0;
-        } else {
-        $sqlFood.= $food . ',';
+    if($updateSameDay){
+      $delete = DB::delete('delete from customer_breakfast_orders where booking_date_time between ? and ?', ["$formatDate 00:00:00", "$formatDate 23:59:59"]);
+      foreach($data_array as $key => $value){
+        //id
+        foreach ($value as $keyvalue => $food) {
+          //food selection id
+          $numFood = count($value);
+          if(++$i === $numFood){
+            $sqlFood.= $food;
+            $i = 0;
+          } else {
+          $sqlFood.= $food . ',';
+          }
         }
-      }
-      // echo $key . " => " . $sqlFood;
-      // echo "</br>";
 
-       $submit = DB::insert('insert into customer_breakfast_orders (booking_id, breakfast_selection_id, status, breakfast_location, booking_date_time) values (?,?,?,?,?)',
-       [$key, $sqlFood, 0, $location, $date]);
-      $sqlFood = '';
+
+         $submit = DB::insert('insert into customer_breakfast_orders (booking_id, breakfast_selection_id, breakfast_status, breakfast_location, booking_date_time) values (?,?,?,?,?)',
+         [$key, $sqlFood, 0, $location, $date]);
+        $sqlFood = '';
+      }
+
+
+         // $submit = DB::update('update customer_breakfast_orders set breakfast_selection_id = ?, status = ?, breakfast_location = ?, booking_date_time = ? where booking_date_time between ? and ?',
+         // [$sqlFood, 0, $location, $date, "$formatDate 00:00:00", "$formatDate 23:59:59"]);
+
+
+         // $delete = DB::delete('delete from customer_breakfast_orders where booking_date_time between ? and ?', ["$formatDate 00:00:00", "$formatDate 23:59:59"]);
+         // $submit = DB::insert('insert into customer_breakfast_orders (booking_id, breakfast_selection_id, status, breakfast_location, booking_date_time) values (?,?,?,?,?)',
+         // [$key, $sqlFood, 0, $location, $date]);
+
+         //$sqlFood = '';
+
+
+    } else {
+
+      foreach($data_array as $key => $value){
+        //id
+        foreach ($value as $keyvalue => $food) {
+          //food selection id
+          $numFood = count($value);
+          if(++$i === $numFood){
+            $sqlFood.= $food;
+            $i = 0;
+          } else {
+          $sqlFood.= $food . ',';
+          }
+        }
+
+
+         $submit = DB::insert('insert into customer_breakfast_orders (booking_id, breakfast_selection_id, breakfast_status, breakfast_location, booking_date_time) values (?,?,?,?,?)',
+         [$key, $sqlFood, 0, $location, $date]);
+        $sqlFood = '';
+      }
+
     }
 
     if($submit){
@@ -120,7 +174,12 @@ class CustomerController extends Controller
     return redirect()->back()->with('fail', 'Failed to send breakfast selection.');
   }
 
+//group cards by date of orders
+//show rooms with orders on that date
+//show the customers in that room
 
+//foreach booking date
+//foreach room that has that same booking date
   public function showBreakfastRecords(){
     $breakfastRecords = DB::select('select * from customer_breakfast_orders');
     //food is from breakfast selections to get food name based on id
@@ -136,40 +195,45 @@ class CustomerController extends Controller
       (select *
       from customers) customer
       on food.booking_id = customer.booking_id
-      where food.status = 0
+      where food.breakfast_status = 0
+      order by booking_date_time ASC
     ');
 
-    $room_numbers = DB::select('
+    $booking_date = DB::select('
       select food.*, customer.*
       from customer_breakfast_orders food
       inner join
       (select *
       from customers) customer
       on food.booking_id = customer.booking_id
-      where food.status = 0
-      group by customer.room_number
+      where food.breakfast_status = 0
+      group by CAST(booking_date_time as DATE)
+      order by booking_date_time ASC
     ');
 
     foreach($breakfastRecords as $records){
-    if($records->status == 1){
+    if($records->breakfast_status == 1){
       $countCompleted += 1;
     }
   }
 
   foreach($breakfastRecords as $records){
-  if($records->status == 0){
+  if($records->breakfast_status == 0){
     $countPending += 1;
   }
 }
-    return view('breakfast-records-page', compact('breakfastRecords', 'customers', 'food', 'countCompleted', 'countPending', 'room_numbers', 'breakfastSelections'));
+    // dd($breakfastSelections);
+    return view('breakfast-records-page', compact('breakfastRecords', 'customers', 'food', 'countCompleted', 'countPending', 'booking_date', 'breakfastSelections'));
   }
 
-  public function submitBreakfastRecords(Request $request, $room_number){
-    $userIDs = DB::select('select booking_id from customers where room_number = ?', [$room_number]);
-    foreach($userIDs as $id){
-      $completed = DB::update('update customer_breakfast_orders set status = 1 where booking_id = ? ', [$id->booking_id]);
-    }
-
+  public function submitBreakfastRecords(Request $request, $id){
+    //dd($request->remark);
+    // $userIDs = DB::select('select booking_id from customers where room_number = ?', [$room_number]);
+    // foreach($userIDs as $id){
+    //   // $completed = DB::update('update customer_breakfast_orders set status = 1, remark = ? where booking_id = ? ', [$remark, $id->booking_id]);
+    //   $completed = DB::update('update customer_breakfast_orders set status = 1 where booking_id = ? ', [$id->booking_id]);
+    // }
+    $completed = DB::update('update customer_breakfast_orders set breakfast_status = 1, remark = ? where id = ? ', [$request->remark, $id]);
     return redirect()->back();
   }
 

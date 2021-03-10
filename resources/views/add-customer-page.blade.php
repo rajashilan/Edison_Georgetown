@@ -96,7 +96,10 @@
       </div>
       <div class="mb-3">
         <label for="email" class="form-label">Email address</label>
-        <input placeholder="{{$email ?? ''}}" type="email" class="form-control" id="email" name="email">
+        <input placeholder="{{$email ?? ''}}" type="email" class="form-control" id="email" name="email" aria-describedby="emailHelpInline">
+        <span id="emailHelpInline" style="color: red; font-size: small;">
+          *required
+        </span>
       </div>
       <div class="mb-3">
         <label for="contact_number" class="form-label">Contact Number</label>
@@ -105,11 +108,13 @@
       <div class="mb-3">
         <label for="room_number" class="form-label">Room Number</label>
         <input placeholder="{{$room_number ?? ''}}" type="text" class="form-control" list="roomOptions" id="room_number" name="room_number" aria-describedby="roomHelpInline">
+        @if($rooms_available ?? '')
         <datalist id="roomOptions">
-          @foreach($rooms_available as $rooms)
+          @foreach($rooms_available ?? '' as $rooms)
           <option value="{{$rooms->room_number ?? ''}}">
             @endforeach
         </datalist>
+        @endif
         <span id="roomHelpInline" style="color: red; font-size: small;">
           *required
         </span>

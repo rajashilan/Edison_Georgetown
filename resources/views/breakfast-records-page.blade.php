@@ -73,22 +73,26 @@
   </div>
 </div>
 
+<!--
+//foreach booking date
+//foreach room that has that same booking date
+-->
+
 <div id="accordion" class="col-md-6">
-  @foreach($room_numbers as $room_number)
+  @foreach($booking_date as $bookingdate)
   <div class="card" style="margin-bottom: 10px;">
     <div class="card-header">
-      <a class="card-link" data-toggle="collapse" href="#{{$room_number->room_number}}">
-        Room number: {{$room_number->room_number}} | Location: {{$room_number->breakfast_location === 1? "The Lounge" : ($room_number->breakfast_location === 2? "Room" : "Not available")}} </br>
-        Date and Time: {{ date('d-M-y | h:i', strtotime($room_number->booking_date_time)) }}
+      <a class="card-link" data-toggle="collapse" href="#{{$bookingdate->booking_date_time}}">
+        Booking date for: {{ date('d-M-y', strtotime($bookingdate->booking_date_time)) }}
       </a>
     </div>
-    <div id="{{$room_number->room_number}}" class="collapse" data-parent="#accordion">
+    <div id="{{$bookingdate->booking_date_time}}" class="collapse" data-parent="#accordion">
       <div class="card-body">
+        @foreach($breakfastSelections as $breakfastSelection)
+        @if(date('d-M-y', strtotime($breakfastSelection->booking_date_time)) == date('d-M-y', strtotime($bookingdate->booking_date_time)))
         <ul class="list-group list-group-flush">
-          @foreach($breakfastSelections as $breakfastSelection)
-          @if($breakfastSelection->room_number == $room_number->room_number)
           <li class="list-group-item">
-          <h3 class="card-title">{{$breakfastSelection->customer_name}}</h3>
+            <h2 >{{$breakfastSelection->customer_name}} - Room {{$breakfastSelection->room_number}}</h2>
               @foreach(explode(',', $breakfastSelection->breakfast_selection_id) as $selection_id)
               @if($selection_id == '')
                [No selections made]
@@ -100,21 +104,17 @@
               @endforeach
               @endif
               @endforeach
-              <!--
-          <div class="form-floating" style="margin-top: 10px;">
-            <textarea class="form-control" placeholder="Leave a remark here" id="remark" style="height: 100px"></textarea>
-          </div>
-        -->
-          </li>
-          @endif
-          @endforeach
-          <li class="list-group-item">
-            <form action="{{route('submit.breakfast.records', $room_number->room_number)}}" method="post">
-              @csrf
-            <button type="submit" class="btn btn-primary" style="width: 100%; background: #1E261D; border: none;">Confirm</button>
-            </form>
+              <form action="{{route('submit.breakfast.records', $bookingdate->id)}}" method="post">
+                @csrf
+                <div class="form-floating" style="margin-top: 10px;">
+                  <textarea class="form-control" placeholder="Leave a remark here" name="remark" id="remark" style="height: 100px"></textarea>
+                </div>
+              <button type="submit" class="btn btn-primary" style="margin-bottom: 10px; width: 100%; background: #1E261D; border: none;">Confirm</button>
+              </form>
           </li>
         </ul>
+        @endif
+        @endforeach
       </div>
     </div>
   </div>

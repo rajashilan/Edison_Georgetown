@@ -70,19 +70,15 @@ class UserController extends Controller
   }
 
   public function loadRooms(){
-    $rooms_available = DB::select('select room_number from rooms where status=?',[1]);
+    $rooms_available = DB::select('select room_number from rooms');
     return view('add-customer-page', compact('rooms_available'));
   }
 
 
   public function addCustomer(Request $request){
     $password = rand(100000,999999);
-    if($request->name == '' || $request->room_number == '' || $request->booking_id == ''){
+    if($request->name == '' || $request->room_number == '' || $request->booking_id == '' || $request->email == ''){
       return redirect()->back()->with('fail', 'Please fill up all required entries!');
-    }
-
-    if ($request->email == ''){
-      $request->email = 'none';
     }
 
     if ($request->contact_number == ''){
