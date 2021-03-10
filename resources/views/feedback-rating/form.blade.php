@@ -8,6 +8,48 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    {{-- <script type="text/javascript">
+
+      $.ajaxSetup({
+           headers: {
+               'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+           }
+       });
+
+       $(".btn-submit").click(function(e){
+
+        e.preventDefault();
+
+          var radioValue_1 = $("input[name='Q1']:checked").val();
+          var radioValue_2 = $("input[name='Q2']:checked").val();
+          var radioValue_3 = $("input[name='Q3']:checked").val();
+          var txt_4 = $("#Q4").val();
+          var txt_5 = $("#Q5").val();
+
+          $.ajax({
+            type:'POST',
+            url:"{{ route('feedback.store') }}",
+            data:{radioValue_1:radioValue_1, radioValue_2:radioValue_2, radioValue_:radioValue_3, txt_4:txt_4, remarks:txt_5},
+            success:function(data){
+               alert(data.success);
+            }
+          });
+
+       });
+
+
+    </script> --}}
+
+    <style>
+      textarea {
+        overflow: auto;
+        width: 50%;
+        resize: vertical;
+      }
+    </style>
+
     <title>Hello, world!</title>
   </head>
   <body>
@@ -27,7 +69,7 @@
 </nav>
 
 <div class="row align-items-center justify-content-center" style="margin-top: 40px;">
-<form style="margin-top: 20px;" action="{{route('feedback.store')}}" method="post">
+<form style="margin-top: 20px;" action="{{route('feedback.store')}}" method="post"  enctype="multipart/form-data">
   @csrf
 
   @foreach ($questions as $question)
@@ -60,16 +102,17 @@
     @if($question->type === 2)
       <div class="form-group">
         <label>{{$question->question}}</label><br/>
-        <textarea name="{{$question->f_q_id}}" rows="3"></textarea><br/><br/>
+        <textarea id="Q{{$question->f_q_id}}" name="Q{{$question->f_q_id}}"  rows="3"></textarea><br/><br/>
       </div>
     @endif
    @endforeach
 
   <small id="emailHelp" class="form-text text-muted text-center">Thank you for your feedback and visit. ^^</small>
-  <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 20px; background: #1E261D; border: none;">Submit</button>
+  <button type="submit" id="btn_submit" class="btn-submit btn btn-primary" style="width: 100%; margin-top: 20px; background: #1E261D; border: none;">Submit</button>
+  <br/><br/>
+
 </form>
 </div>
-
 
 <!-- footer -->
 <footer class="bg-light text-center text-lg-start" style="margin-top: 60px;">

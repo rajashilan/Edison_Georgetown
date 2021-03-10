@@ -21,8 +21,8 @@ class ResetPasswordController extends Controller
     public function reset(Request $request) {
         $request->validate([
             'email' => 'required|email|exists:customers',
-            'password' => 'required|string|min:6|confirmed',
-            'password_confirmation' => 'required',
+            // 'password' => 'required|string|min:6',
+            // 'password_confirmation' => 'required|same:password',
 
         ]);
 
